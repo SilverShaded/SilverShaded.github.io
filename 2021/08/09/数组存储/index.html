@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>java basic data type |  Silver - Shaded - Cat</title>
+      <title>数组存储 |  Silver - Shaded - Cat</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-java-basic-data-type"
+  id="post-数组存储"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  java basic data type
+  数组存储
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/08/09/java-basic-data-type/" class="article-date">
-  <time datetime="2021-08-09T03:31:43.000Z" itemprop="datePublished">2021-08-09</time>
+      <a href="/2021/08/09/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8/" class="article-date">
+  <time datetime="2021-08-09T07:14:29.000Z" itemprop="datePublished">2021-08-09</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/java/">java</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">170</span>
+            <span class="post-count">219</span>
         </span>
     </span>
 
@@ -101,24 +101,53 @@
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h4 id="Java有八种基本数据类型"><a href="#Java有八种基本数据类型" class="headerlink" title="Java有八种基本数据类型"></a>Java有八种基本数据类型</h4><ul>
-<li>整数类型：有四种整形 byte/short/int/long，取值范围各不同</li>
-<li>小数类型：有两种小数型：float/double，取值范围和精度各不同</li>
-<li>字符类型：char，表示单个字符</li>
-<li>真假类型：boolean，表示真假    </li>
-</ul>
-<p>每个基本数据类型都有对应的数组类型，比如整数对应整数数组，char对应char数组。  </p>
-<p>long型要在赋值常量后面加L，表示是long型，否则默认int型</p>
-<p>float型要在赋值常量后面加f或F，表示是float型，否则默认double型  </p>
-<p>char用两个字节表示一个字符，可中文可英文，单引号。  </p>
+  <p>基本类型的数组有三种赋值形式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="comment">//给定初始值</span></span><br><span class="line"><span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="comment">//给定初始值</span></span><br><span class="line"><span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>]; <span class="comment">//3代表长度</span></span><br></pre></td></tr></table></figure>
+
+<p>不能在给定初始值的同时还给定长度。    </p>
+<p>一个基本类型变量，内存中只会有一块对应的内存空间；</p>
+<p>一个数组，内存中有两块对应的内存空间，一块用于存储数组内容本身，另一块用于存储内容的位置。</p>
+<table>
+<thead>
+<tr>
+<th align="center">代码</th>
+<th align="center">内存地址</th>
+<th align="center">内存数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int a = 100;</td>
+<td align="center">1000</td>
+<td align="center">100</td>
+</tr>
+<tr>
+<td align="center">int[] arr = {1,2,3};</td>
+<td align="center">2000</td>
+<td align="center">2500</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">2500</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">2504</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">2508</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<p>如上面表格，int a 的内存地址是1000，该地址（1000）存储的值就是值100。int[] arr的内存地址是2000，该地址存储的值是的地址2500，而从2500的地址开始才实际存储1、2、3。</p>
  
       <!-- reward -->
       
@@ -183,12 +212,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/08/09/java-basic-data-type/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/08/09/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/" rel="tag">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
@@ -196,19 +225,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/08/09/array-storage/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            array storage
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/08/06/init-pet/" class="article-nav-link">
+      <a href="/2021/08/09/java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">init pet</div>
+        <div class="article-nav-title">java基本数据类型</div>
       </a>
     
   </nav>
