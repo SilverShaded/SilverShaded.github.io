@@ -155,6 +155,63 @@
     
     
     <article
+  id="post-char的含义"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/18/char%E7%9A%84%E5%90%AB%E4%B9%89/"
+    >char的含义</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/18/char%E7%9A%84%E5%90%AB%E4%B9%89/" class="article-date">
+  <time datetime="2021-08-18T07:40:16.000Z" itemprop="datePublished">2021-08-18</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>char本质上是一个固定占用两个字节的无符号正整数，这个正整数对应于Unicode编码，用于表示Unicode编号对应的字符。</p>
+<p>由于char固定占用两个字符，char只能表示Unicode编号在65536以内的字符（无论是英文字符还是中文字符），而不能表示超出范围的字符。</p>
+<p>​    </p>
+<p>由于char本质是一个整数，可以进行整数的一些运算。</p>
+<p>在进行运算时会被看做int，但由于char占两个字节，运算结果不能直接赋值给char类型，而是需要进行强制类型转换。</p>
+<p>char类型的比较，就是Unicode编号的比较。</p>
+<p>​    </p>
+<p>大小写转换：大写A-Z的编号是65-90，小写a-z的编号是97-122，正好相差32，所以大写转小写要加32，小写转大写要减32.</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-乱码"
   class="article article-type-post"
   itemscope
@@ -707,59 +764,6 @@ Java不能单独表示一个位，但是可以用byte表示8位，也可以用16
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-init-network"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/06/init-network/"
-    >init network</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/06/init-network/" class="article-date">
-  <time datetime="2021-08-06T11:09:40.000Z" itemprop="datePublished">2021-08-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/network/">network</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
 
     </footer>
   </div>
