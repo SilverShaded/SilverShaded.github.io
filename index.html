@@ -155,6 +155,79 @@
     
     
     <article
+  id="post-四种循环"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/20/%E5%9B%9B%E7%A7%8D%E5%BE%AA%E7%8E%AF/"
+    >四种循环</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/20/%E5%9B%9B%E7%A7%8D%E5%BE%AA%E7%8E%AF/" class="article-date">
+  <time datetime="2021-08-20T08:58:53.000Z" itemprop="datePublished">2021-08-20</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>在java中，循环有四种形式，分别是while,do/while,for,foreach。</p>
+<p>​    </p>
+<p><strong>while</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Scanner reader = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line"><span class="keyword">int</span> num = reader.nextInt();</span><br><span class="line"><span class="keyword">int</span> password = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">while</span>(num!=password) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line">    num = reader.nextInt();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;correct&quot;</span>);</span><br><span class="line">reader.close();</span><br></pre></td></tr></table></figure>
+
+<p>上述代码的功能：使用类型为Scanner的reader变量从屏幕控制台接收数字,reader.nextInt()从屏幕接收一个数字。如果数字不是12345，就一直提示输入；数字是12345，就跳出循环。</p>
+<p>​    </p>
+<p><strong>do/while</strong></p>
+<p>不管语句条件是什么，代码块都会至少执行一次。</p>
+<p>先执行代码块，然后再判断条件语句。如果成立，则继续循环，否则退出循环。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Scanner reader = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="keyword">int</span> password = <span class="number">6789</span>;</span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line">    num = reader.nextInt();</span><br><span class="line">&#125;<span class="keyword">while</span>(num!=password); <span class="comment">//注意加分号</span></span><br><span class="line">System.out.println(<span class="string">&quot;correct&quot;</span>);</span><br><span class="line">reader.close();</span><br></pre></td></tr></table></figure>
+
+<p><strong>for</strong></p>
+<p>for(初始化语句;循环条件;步进操作){</p>
+<p>​    循环体<br>}</p>
+<p>分号不能省略。</p>
+<p>​    </p>
+<p><strong>foreach</strong></p>
+<p>for (元素类型 元素名称 : 遍历数组/集合/能进行迭代的实例) {</p>
+<p>​    语句</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> element : arr) &#123;</span><br><span class="line">    System.out.println(element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>foreach使用冒号:,冒号前面是循环中的每个元素</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-char的含义"
   class="article article-type-post"
   itemscope
@@ -709,59 +782,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/" rel="tag">travel</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-init-algorithm"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/06/init-algorithm/"
-    >init algorithm</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/06/init-algorithm/" class="article-date">
-  <time datetime="2021-08-06T11:10:24.000Z" itemprop="datePublished">2021-08-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
 
     </footer>
   </div>
