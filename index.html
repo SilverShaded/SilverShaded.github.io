@@ -191,6 +191,11 @@
 <p>典型例子：数学中一个数n的阶乘，表示为n!，它的值定义是这样的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>! = <span class="number">1</span></span><br><span class="line">n! = (n-<span class="number">1</span>)*n</span><br></pre></td></tr></table></figure>
 
+<p>0的阶乘是1，n的阶乘的值是n-1的阶乘的值乘以n，所以这个定义是一个递归的定义。</p>
+<p>为求n的值，需先求n-1的值，直到0，然后一次往回退。</p>
+<p>求阶乘的递归函数代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> factorial</span><br></pre></td></tr></table></figure>
+
 
 
  
