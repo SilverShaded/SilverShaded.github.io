@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">755</span>
+            <span class="post-count">982</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -138,7 +138,7 @@
 <p>​    </p>
 <p><strong>实例方法</strong></p>
 <p>实例方法表示具体的实例可以进行的操作。</p>
-<p>在实例方法中，有一个隐含的参数，这个参数就是当前操作的实例自己，它直接操作方法和变量。</p>
+<p>在实例方法中，有一个隐含的参数(this)，这个参数就是当前操作的实例自己，它直接操作方法和变量。</p>
 <ul>
 <li>类方法只能访问类变量，但不能访问实例变量。可以调用其他的类方法，但不能调用实例方法。</li>
 <li>实例方法既能访问实例变量，也可以访问类变量。既可以调用实例方法，也可以调用类方法。</li>
@@ -150,8 +150,25 @@
 <p>定义一个合格的类，实例变量是private属性，通过实例方法来操作实例变量。代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">distance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math.sqrt(x*x + y*y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><strong>this</strong>关键字表示当前实例，实例方法中隐含的参数就是this。</p>
+<p>在语句this.x=x;中，this.x表示实例变量x，右边的x表示方法参数中的x。</p>
+<p>使用这个类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Point p = <span class="keyword">new</span> Point();</span><br><span class="line">    p.setX(<span class="number">2</span>);</span><br><span class="line">    p.setY(<span class="number">3</span>);</span><br><span class="line">    System.out.println(p.distance());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>将对实例变量的直接访问改为了方法调用。</p>
+<p>​    </p>
+<p><strong>引入构造方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">()</span> </span>&#123; <span class="comment">//调用第二个构造方法</span></span><br><span class="line">    <span class="keyword">this</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x=x;</span><br><span class="line">    <span class="keyword">this</span>.y=y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>上面代码中的两个方法就是构造方法，构造方法可以有多个。</p>
+<p>构造方法的特殊之处：</p>
+<ul>
+<li><p>名称是固定的，与类名相同。</p>
+</li>
+<li><p>不能有返回值。</p>
+</li>
+</ul>
+<p>this不仅可以访问实例变量，还可以<strong>在构造方法中调用其他方法</strong>，这个this调用必须放在第一行。</p>
  
       <!-- reward -->
       
