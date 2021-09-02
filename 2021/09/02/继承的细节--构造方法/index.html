@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>类的继承 |  Silver - Shaded - Cat</title>
+      <title>继承的细节--构造方法 |  Silver - Shaded - Cat</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-类的继承"
+  id="post-继承的细节--构造方法"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  类的继承
+  继承的细节--构造方法
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" class="article-date">
-  <time datetime="2021-08-31T08:52:28.000Z" itemprop="datePublished">2021-08-31</time>
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2021-09-02T08:01:07.000Z" itemprop="datePublished">2021-09-02</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/java/">java</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">517</span>
+            <span class="post-count">574</span>
         </span>
     </span>
 
@@ -107,37 +107,57 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>计算机程序经常使用类之间的<strong>继承</strong>关系来表示对象之间的分类关系。</p>
-<p>在继承关系中，有父类(基类)和子类(派生类)。比如动物类Animal和狗类Dog，Animal是父类，Dog是子类。</p>
-<p>子类继承了父类的属性和行为，父类有的属性和行为，子类都有。但子类可以增加子类特有的属性和行为，某些父类有的行为，子类的实现方式可能与父类也不完全一样。</p>
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li><p>构造方法  <font color=blue>now!</font></p>
+</li>
+<li><p>重名与静态绑定</p>
+</li>
+<li><p>重载和重写</p>
+</li>
+<li><p>父子类型转换</p>
+</li>
+<li><p>继承访问权限（protected）</p>
+</li>
+<li><p>可见性重写</p>
+</li>
+<li><p>防止继承（final）</p>
+</li>
+</ul>
 <p>​    </p>
 <p>​    </p>
-<p><strong>Object</strong></p>
-<p>在Java中，所有类都有一个父类，就是Object。</p>
-<p>Object没有定义属性，但定义了一些方法，如下方代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">equals(Object obj):<span class="keyword">boolean</span> -<span class="function">Object</span></span><br><span class="line"><span class="function"><span class="title">getClass</span><span class="params">()</span>:Class&lt;?&gt; -Object</span></span><br><span class="line"><span class="function"><span class="title">hashCode</span><span class="params">()</span>:<span class="keyword">int</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">notify</span><span class="params">()</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">notifyAll</span><span class="params">()</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">toString</span><span class="params">()</span>:String -Object</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">()</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout,<span class="keyword">int</span> nanos)</span>:<span class="keyword">void</span> -Object   </span></span><br></pre></td></tr></table></figure>
+<p><strong>构造方法</strong></p>
+<p>子类可以通过super(…)调用父类的构造方法。如果子类没有通过super(…)调用，则会自动调用父类的默认构造方法。</p>
+<p>如果父类没有默认构造方法，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String member;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.member = member;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>以上方法可以被所有类直接使用。</p>
-<p>子类可以重写父类的方法，以反应自己的不同实现。</p>
-<p>方法前面放一个**@Override**，代表是重写的方法。</p>
-<p>下图是Object的toString()方法， 返回的是类名和内存地址(hashcode)。</p>
-<p><img src="https://i.loli.net/2021/08/31/QBUKg2wRHlvM5NE.png" alt="Object类的toString方法.png"></p>
-<p>下图经过重写toString()方法，返回的是m。</p>
-<p><img src="https://i.loli.net/2021/08/31/N7vyYrUCqiPsToe.png" alt="重写的toString方法.png"></p>
+<p>上方代码中的类只有一个带参数的构造函数，没有默认构造方法。</p>
+<p>这个时候，它的任何子类都必须在构造方法中通过super(…)调用Base的带参数的构造方法。</p>
+<p>如下所示，否则Java会提示编译错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(member);	<span class="comment">//调用Base的带参构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>避免父类的构造方法调用可重写的方法</strong></p>
+<p>如果在父类构造方法中调用了可被重写的方法，则可能会出现意想不到的结果。</p>
+<p>父类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        test(); <span class="comment">//构造函数中调用test方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类有一个实例变量a，a初始赋值为123。子类重写了test方法，要输出a的值。</p>
+<p>使用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    c.test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次输出0，是在new过程中输出的。</p>
+<p>new过程中，首先初始化父类Base，父类构造方法调用test()，test被子类重写了，就会调用子类的test方法。</p>
+<p>子类方法访问子类实例变量a，这个时候子类的实例变量的赋值语句和构造方法还没有执行，所以输出的默认值是0。</p>
 <p>​    </p>
-<p>Java使用<strong>extends</strong>关键字标明继承关系，一个类最多只能有一个父类。</p>
-<p>子类不能直接访问父类的私有属性和方法。</p>
-<p>除了私有的属性和方法外，子类继承了父类的其他属性和方法。</p>
-<p>假设父类Animal类如下代码:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类：动物类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>包含私有属性name和age，公共方法setName和setAge。</p>
-<p>子类Cat类不能直接调用name和age，但可以调用setName和setAge。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类：猫类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String owner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cat</span><span class="params">(String owner,<span class="keyword">int</span> age,String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.owner = owner;</span><br><span class="line">        <span class="keyword">this</span>.setAge(age);</span><br><span class="line">        <span class="keyword">super</span>.setName(name); <span class="comment">//super关键字</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Cat cat = <span class="keyword">new</span> Cat(<span class="string">&quot;me&quot;</span>,<span class="number">1</span>,<span class="string">&quot;shaded&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>super</strong>关键字指代父类，可用于调用父类构造方法,访问父类方法和变量。</p>
+<p>通过上面的例子，可以得出结论——<strong>在父类构造方法中调用可被子类重写的方法，是一种不好的实践，容易引起混淆，应该只调用private的方法</strong>。</p>
  
       <!-- reward -->
       
@@ -202,7 +222,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -215,19 +235,10 @@
    
   <nav class="article-nav">
     
+    
       <a href="/2021/08/31/%E4%BB%8E%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E7%B1%BB%E7%9C%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            从图形处理类看继承和多态
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">类的组合</div>
+        <div class="article-nav-title">从图形处理类看继承和多态</div>
       </a>
     
   </nav>

@@ -155,6 +155,110 @@
     
     
     <article
+  id="post-继承的细节--构造方法"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/"
+    >继承的细节--构造方法</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2021-09-02T08:01:07.000Z" itemprop="datePublished">2021-09-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li><p>构造方法  <font color=blue>now!</font></p>
+</li>
+<li><p>重名与静态绑定</p>
+</li>
+<li><p>重载和重写</p>
+</li>
+<li><p>父子类型转换</p>
+</li>
+<li><p>继承访问权限（protected）</p>
+</li>
+<li><p>可见性重写</p>
+</li>
+<li><p>防止继承（final）</p>
+</li>
+</ul>
+<p>​    </p>
+<p>​    </p>
+<p><strong>构造方法</strong></p>
+<p>子类可以通过super(…)调用父类的构造方法。如果子类没有通过super(…)调用，则会自动调用父类的默认构造方法。</p>
+<p>如果父类没有默认构造方法，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String member;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.member = member;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上方代码中的类只有一个带参数的构造函数，没有默认构造方法。</p>
+<p>这个时候，它的任何子类都必须在构造方法中通过super(…)调用Base的带参数的构造方法。</p>
+<p>如下所示，否则Java会提示编译错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(member);	<span class="comment">//调用Base的带参构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>避免父类的构造方法调用可重写的方法</strong></p>
+<p>如果在父类构造方法中调用了可被重写的方法，则可能会出现意想不到的结果。</p>
+<p>父类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        test(); <span class="comment">//构造函数中调用test方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类有一个实例变量a，a初始赋值为123。子类重写了test方法，要输出a的值。</p>
+<p>使用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    c.test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次输出0，是在new过程中输出的。</p>
+<p>new过程中，首先初始化父类Base，父类构造方法调用test()，test被子类重写了，就会调用子类的test方法。</p>
+<p>子类方法访问子类实例变量a，这个时候子类的实例变量的赋值语句和构造方法还没有执行，所以输出的默认值是0。</p>
+<p>​    </p>
+<p>通过上面的例子，可以得出结论——<strong>在父类构造方法中调用可被子类重写的方法，是一种不好的实践，容易引起混淆，应该只调用private的方法</strong>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-从图形处理类看继承和多态"
   class="article article-type-post"
   itemscope
@@ -247,7 +351,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
@@ -331,7 +435,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
@@ -1167,67 +1271,6 @@
 <p>​    </p>
 <p>**循环控制 - continue **</p>
 <p>continue语句会跳过循环体中剩下的代码，然后执行步进操作。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-char的含义"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/18/char%E7%9A%84%E5%90%AB%E4%B9%89/"
-    >char的含义</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/18/char%E7%9A%84%E5%90%AB%E4%B9%89/" class="article-date">
-  <time datetime="2021-08-18T07:40:16.000Z" itemprop="datePublished">2021-08-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>char本质上是一个固定占用两个字节的无符号正整数，这个正整数对应于Unicode编码，用于表示Unicode编号对应的字符。</p>
-<p>由于char固定占用两个字符，char只能表示Unicode编号在65536以内的字符（无论是英文字符还是中文字符），而不能表示超出范围的字符。</p>
-<p>​    </p>
-<p>由于char本质是一个整数，可以进行整数的一些运算。</p>
-<p>在进行运算时会被看做int，但由于char占两个字节，运算结果不能直接赋值给char类型，而是需要进行强制类型转换。</p>
-<p>char类型的比较，就是Unicode编号的比较。</p>
-<p>​    </p>
-<p>大小写转换：大写A-Z的编号是65-90，小写a-z的编号是97-122，正好相差32，所以大写转小写要加32，小写转大写要减32。</p>
  
       <!-- reward -->
       
