@@ -136,8 +136,8 @@
 <p>如下所示，否则Java会提示编译错误。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(member);	<span class="comment">//调用Base的带参构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
+<p>​    </p>
+<p>​    </p>
 <p><strong>避免父类的构造方法调用可重写的方法</strong></p>
 <p>如果在父类构造方法中调用了可被重写的方法，则可能会出现意想不到的结果。</p>
 <p>父类代码如下：</p>
