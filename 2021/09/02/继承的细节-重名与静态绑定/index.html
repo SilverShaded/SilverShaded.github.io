@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Tag: class |  Silver - Shaded - Cat</title>
+      <title>继承的细节--重名与静态绑定 |  Silver - Shaded - Cat</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,181 +53,236 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
+  <article
+  id="post-继承的细节-重名与静态绑定"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">#&nbspclass</h1>
-    
-    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  继承的细节--重名与静态绑定
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time datetime="2021-09-02T10:44:48.000Z" itemprop="datePublished">2021-09-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
   
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2021" class="archive-year">2021</a>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">555</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">2 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="archives">
       
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/" class="archive-article-date">
-  <time datetime="2021-09-02T10:44:48.000Z" itemprop="datePublished">09/02</time>
-</a>
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/"
-    >继承的细节--重名与静态绑定</a> 
-</h2>
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定 <font color=blue>now!</font></li>
+<li>重载和重写</li>
+<li>父子类型转换</li>
+<li>继承访问权限（protected）</li>
+<li>可见性重写</li>
+<li>防止继承（final）</li>
+</ul>
+<p>​    </p>
+<p><strong>重名</strong></p>
+<p>对于private变量和方法，它们只能在类内被访问，访问的也永远是当前类的对象。</p>
+<p>​    </p>
+<p>对于public变量和方法，在类内访问的是当前类的，但子类可以通过super.明确指定访问父类的。</p>
+<p>在类外，则要看访问变量的静态类型，静态类型是父类，则访问父类的变量和方法；静态类型是子类，则访问子类的变量和方法。</p>
+<p>​    </p>
+<p>接下来举个栗子。父类Base代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;static_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;base&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Base类定义了一个public静态变量s，一个public实例变量m、一个静态方法staticTest。</p>
+<p>子类Child代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;child_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;child&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类定义了和父类重名的变量m、s和方法staticTest。</p>
+<p>对于一个子类对象，它就有了两份变量和方法。在子类内部访问的时候，访问的是子类的。子类变量和方法隐藏了父类对应的变量和方法。</p>
+<p>​     </p>
+<p>调用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    Base b = c;</span><br><span class="line">    </span><br><span class="line">    System.out.println(b.s);</span><br><span class="line">    System.out.println(b.m);</span><br><span class="line">    b.staticTest();</span><br><span class="line">    </span><br><span class="line">    System.out.println(c.s);</span><br><span class="line">    System.out.println(c.m);</span><br><span class="line">    c.staticTest();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个子类对象new Child()，然后将该对象分别赋值给子类引用变量c和父类引用变量b。</p>
+<p>再通过b和c分别引用变量和方法。</p>
+<p>输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">static_base</span><br><span class="line">base</span><br><span class="line">base <span class="keyword">static</span>: static_base</span><br><span class="line">child_base</span><br><span class="line">child</span><br><span class="line">child <span class="keyword">static</span>: child_base</span><br></pre></td></tr></table></figure>
+
+<p>通过b(静态类型Base)访问时，访问的是Base的变量和方法。通过c(静态类型Child)访问时，访问的是Child的变量和方法。</p>
+<p>这叫做<strong>静态绑定</strong>，即访问绑定到变量的静态类型。</p>
+<p>实例变量、静态变量、private方法，都是静态绑定的。</p>
  
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  <time datetime="2021-09-02T08:01:07.000Z" itemprop="datePublished">09/02</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/"
-    >继承的细节--构造方法</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/08/31/%E4%BB%8E%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E7%B1%BB%E7%9C%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
-  <time datetime="2021-08-31T11:00:31.000Z" itemprop="datePublished">08/31</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/08/31/%E4%BB%8E%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E7%B1%BB%E7%9C%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/"
-    >从图形处理类看继承和多态</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  <time datetime="2021-08-31T08:52:28.000Z" itemprop="datePublished">08/31</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/"
-    >类的继承</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/" class="archive-article-date">
-  <time datetime="2021-08-31T03:56:32.000Z" itemprop="datePublished">08/31</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/"
-    >类的组合</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/08/27/%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89/" class="archive-article-date">
-  <time datetime="2021-08-27T06:22:58.000Z" itemprop="datePublished">08/27</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/08/27/%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89/"
-    >类的定义</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    
-  </div>
-</article>
-      
+      <!-- reward -->
       
     </div>
-  </div>
-  
-  
+    
 
-  
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82--%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">继承的细节--构造方法</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -384,6 +439,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link
