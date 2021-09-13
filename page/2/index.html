@@ -155,6 +155,253 @@
     
     
     <article
+  id="post-栈"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/23/%E6%A0%88/"
+    >栈</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/23/%E6%A0%88/" class="article-date">
+  <time datetime="2021-08-23T10:43:57.000Z" itemprop="datePublished">2021-08-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/data-structure/">data structure</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>函数调用方和函数本身就如何传递参数、如何返回结果、如何跳转指令等问题，使用内存来存放这些数据，并且就如何存放和使用这些数据达成一个一致的协议或约定。</p>
+<p>这个约定在各种计算机系统中都是类似的，存放这些数据的内存有一个相同的名字，叫<strong>栈</strong>。</p>
+<p>​    </p>
+<p>栈是一块内存，顺序是<strong>先进后出</strong>，类似于一个书堆，越晚放上的书越先拿走。</p>
+<p>栈的最下面称为栈底，最上面成为栈顶。</p>
+<p>往栈底放数据，称为入栈；往栈顶取数据，成为出栈。</p>
+<p>栈一般是从高位地址向低位地址扩展，所以<strong>栈底的内存地址是最高的，栈顶的内存地址是最低的</strong>。</p>
+<p>​     </p>
+<p><strong>计算机系统主要使用栈来存放函数调用过程中需要的数据，包括参数、返回地址，函数内定义的局部变量也放在栈中。</strong></p>
+<p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sum</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> c = a + b;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> d = Sum.sum(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">        System.out.println(d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码，概念上：main函数调用了sum函数，计算1+2，然后输出计算结果。</p>
+<p>从栈的角度：</p>
+<p>(1)当程序在main函数调用Sum.sum函数之前，栈的情况如下表格 </p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+<th align="center">函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x7FF4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">d</td>
+<td align="center">main</td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+</tr>
+</tbody></table>
+<p>栈主要存放了两个变量args(从控制台接收到的参数)和d。</p>
+<p>(2)在程序执行到Sum.sum的函数内部，准备return c之前，栈的情况如下表格。</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+<th align="center">函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FEC</td>
+<td align="center">3(c)</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FF0</td>
+<td align="center">栈中保存的返回地址</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FF4</td>
+<td align="center">2(b)</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center">1(a)</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">d</td>
+<td align="center">main</td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+</tr>
+</tbody></table>
+<p>main函数调用Sum.sum时，首先将参数1和2入栈，然后将返回地址入栈，接着跳转到sum函数，在sum函数内部，为局部变量c分配一个空间，而参数变量a和b则直接对应于入栈的数据1和2。在返回之前，返回值3保存到了专门的<strong>返回值存储器</strong>中。</p>
+<p>(3)调用return后，程序会跳转到栈中保存的返回地址，sum函数相关的数据会出战，从而又变回(1)中的状态。</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+<th align="center">函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x7FF4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">d</td>
+<td align="center">main</td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+</tr>
+</tbody></table>
+<p>(4)main的下一条指令是根据函数返回值给变量d赋值，返回值从专门的返回值存储器中获得。</p>
+<p>​    </p>
+<p>​    </p>
+<p>函数中的基本数据类型参数和函数内定义的基本数据类型变量，都分配在栈中。这些变量只有在函数被调用的时候才分配，而且在调用结束后就被释放了。</p>
+<p>而数组和对象类型，它们都有两块内存，一块存放实际的内容，一块存放实际内容的地址。实际的内容一般不是分配在栈上的，而是分配在<strong>堆</strong>中，但存放地址的空间是分配在栈上的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayMax</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = min;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span>(a &gt; max) &#123;</span><br><span class="line">                max = a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> ret = max(<span class="number">0</span>,arr);</span><br><span class="line">        System.out.println(ret);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码，概念上：main函数新建一个数组int[]{2,3,4}，然后调用函数max计算0和数组中元素的最大值，最后打印输出最大值。</p>
+<p>从栈的角度：</p>
+<table>
+<thead>
+<tr>
+<th align="center">栈-地址</th>
+<th align="center">栈-内容</th>
+<th align="center">函数</th>
+<th align="center">堆-地址</th>
+<th align="center">堆-内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x7FE8</td>
+<td align="center">max(4)</td>
+<td align="center">max</td>
+<td align="center">0x1000</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">0x7EFC</td>
+<td align="center">栈中保存的返回地址</td>
+<td align="center">max</td>
+<td align="center">0x1004</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">0x7FF0</td>
+<td align="center">0x1000(arr)</td>
+<td align="center">max</td>
+<td align="center">0x1008</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">0x7FF4</td>
+<td align="center">0(min)</td>
+<td align="center">max</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center">ret</td>
+<td align="center">main</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">0x1000(arr)</td>
+<td align="center">main</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>对于数组arr，在栈中存放的是实际内容的地址0x1000，存放地址的栈空间会随着入栈分配，出栈释放。</p>
+<p>存放实际内容的堆空间，在函数结束、栈空间没有变量指向它的时候，java系统会自动进行垃圾回收，从而释放这块空间。</p>
+<p>​    </p>
+<p>栈的空间不是无限的。栈空间过深，系统就会抛出错误——java.lang.StackOverflowError，即栈溢出错误。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-structure/" rel="tag">data structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/" rel="tag">stack</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-函数递归"
   class="article article-type-post"
   itemscope
@@ -756,101 +1003,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-数组存储"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/09/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8/"
-    >数组存储</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/09/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8/" class="article-date">
-  <time datetime="2021-08-09T07:14:29.000Z" itemprop="datePublished">2021-08-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>基本类型的数组有三种赋值形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="comment">//给定初始值</span></span><br><span class="line"><span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="comment">//给定初始值</span></span><br><span class="line"><span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>]; <span class="comment">//3代表长度</span></span><br></pre></td></tr></table></figure>
-
-<p>不能在给定初始值的同时还给定长度。    </p>
-<p>​    </p>
-<p>一个基本类型变量，内存中只会有一块对应的内存空间；</p>
-<p>一个数组，内存中有两块对应的内存空间，一块用于存储数组内容本身，另一块用于存储内容的位置。</p>
-<table>
-<thead>
-<tr>
-<th align="center">代码</th>
-<th align="center">内存地址</th>
-<th align="center">内存数据</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">int a = 100;</td>
-<td align="center">1000</td>
-<td align="center">100</td>
-</tr>
-<tr>
-<td align="center">int[] arr = {1,2,3};</td>
-<td align="center">2000</td>
-<td align="center">2500</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">2500</td>
-<td align="center">1</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">2504</td>
-<td align="center">2</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center">2508</td>
-<td align="center">3</td>
-</tr>
-</tbody></table>
-<p>如上面表格，int a 的内存地址是1000，该地址（1000）存储的值就是值100。int[] arr的内存地址是2000，该地址存储的值是的地址2500，而从2500的地址开始才实际存储1、2、3。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/" rel="tag">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
