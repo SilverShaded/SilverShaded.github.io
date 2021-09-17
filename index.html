@@ -155,6 +155,132 @@
     
     
     <article
+  id="post-继承实现的基本原理"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"
+    >继承实现的基本原理</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2021-09-15T08:45:12.000Z" itemprop="datePublished">2021-09-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>本节主要从概念上来介绍原理。</p>
+<p>​    </p>
+<p>首先创建一个基类Base，Base中包含实例变量actualCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法、step方法和action方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类实例代码块，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类构造方法，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base staticCode: &quot;</span>+staticCode+<span class="string">&quot;, actualCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">        step();</span><br><span class="line">        System.out.println(<span class="string">&quot;end&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​     </p>
+<p>接下来设计出继承Base的子类Child，Child同样包含实例变量actualCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法，并且重写了step方法。</p>
+<p>Child类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类实例代码块，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造方法，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child staticCode: &quot;</span>+staticCode+<span class="string">&quot;, instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>使用这两个类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   System.out.println(<span class="string">&quot;---- new Child()&quot;</span>);</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.action()&quot;</span>);</span><br><span class="line">   child.action();</span><br><span class="line"></span><br><span class="line">   Base base = child;</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.action()&quot;</span>);</span><br><span class="line">   base.action();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.staticCode: &quot;</span>+base.staticCode);</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.staticCode: &quot;</span>+child.staticCode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>屏幕输入结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">---- <span class="keyword">new</span> Child()</span><br><span class="line">基类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">子类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">基类实例代码块，actualCode: <span class="number">0</span></span><br><span class="line">基类构造方法，actualCode: <span class="number">1</span></span><br><span class="line">子类实例代码块，instanceCode: <span class="number">0</span></span><br><span class="line">子类构造方法，instanceCode: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">---- child.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.staticCode: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">---- child.staticCode: <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p><strong>类的加载</strong></p>
+<p>在java中，类是动态加载的。</p>
+<p>第一次使用这个类的时候才会加载，加载一个类时，会查看其父类是否已加载。如果没有，则加载其父类。</p>
+<p>​    </p>
+<p>一个类的信息，主要包括以下部分：</p>
+<ul>
+<li><p>static变量</p>
+</li>
+<li><p>类初始化代码</p>
+</li>
+<li><p>static方法</p>
+</li>
+<li><p>实例变量</p>
+</li>
+<li><p>实例初始化代码</p>
+</li>
+<li><p>实例方法</p>
+</li>
+<li><p>父类信息引用</p>
+</li>
+</ul>
+<p>类初始化代码包括：</p>
+<ul>
+<li><p>定义static变量时的赋值语句</p>
+</li>
+<li><p>static初始化代码块</p>
+</li>
+</ul>
+<p>实例初始化代码包括：</p>
+<ul>
+<li>定义实例变量时的赋值语句</li>
+<li>实例初始化代码块</li>
+<li>构造方法</li>
+</ul>
+<p>类加载过程包括：</p>
+<ul>
+<li><p>分配内存，保存类的信息</p>
+</li>
+<li><p>给static变量赋默认值</p>
+</li>
+<li><p>加载父类</p>
+</li>
+<li><p>设置父子关系</p>
+</li>
+<li><p>执行类初始化代码</p>
+</li>
+</ul>
+<p>类初始化代码，是先执行父类，再执行子类。</p>
+<p>父类执行时，子类static变量是有值的，为默认值。</p>
+<p>​    </p>
+<p>类的信息放在<strong>内存区</strong>，在java中称为<strong>方法区</strong>。</p>
+<p><img src="https://i.loli.net/2021/09/17/ur9HsMUE4vA2niQ.jpg" alt="继承实现.jpg"></p>
+<p>如上图，class_init()表示类初始化代码，instance_init()表示实例初始化代码。实例初始化代码包括了实例初始化代码块和构造方法。</p>
+<p>​    </p>
+<p>对于上方的Base类和Child类，它们的内存布局就像图中的方法区。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-继承的细节-防止继承"
   class="article article-type-post"
   itemscope
@@ -950,197 +1076,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-类的组合"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/"
-    >类的组合</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/" class="article-date">
-  <time datetime="2021-08-31T03:56:32.000Z" itemprop="datePublished">2021-08-31</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>基础类</strong></p>
-<p><strong>String</strong>是Java API中的一个类，表示多个字符。它内部是一个char的数组，提供了若干方法用于方便操作字符串。</p>
-<p>String可以用一个字符串常量初始化，必须是双引号。</p>
-<p>​    </p>
-<p><strong>Date</strong>是Java API中的一个类，表示日期和时间。它内部是一个long类型的值，提供了若干方法用于操作日期和时间。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date now = <span class="keyword">new</span> Date();</span><br></pre></td></tr></table></figure>
-
-<p>如上面代码，用无参的构造方法创建一个Date对象，这个对象就表示当前时间。</p>
-<p>​    </p>
-<p>​    </p>
-<p><strong>图形类</strong></p>
-<p>先扩展一下《类的定义》一章中的Point类，为它添加一个“计算改点到另一个点的距离”的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">distance</span><span class="params">(Point p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Math.sqrt(Math.pow(x-p.getX(),<span class="number">2</span>)+</span><br><span class="line">                     Math.pow(y-p.getY(),<span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>设计一个表示<strong>线 - Line</strong>的类，其中类的属性含有Point类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Line</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Point start;</span><br><span class="line">    <span class="keyword">private</span> Point end;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Line</span><span class="params">(Point start,Point end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">length</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start.distance(end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Line由两个Point组成，在创建Line时需要两个Point。</p>
-<p>使用这个类的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Point start = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">    Point end = <span class="keyword">new</span> Point(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    </span><br><span class="line">    Line line = <span class="keyword">new</span> Line(start,end);</span><br><span class="line">    System.out.println(Line.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>​    </p>
-<p><strong>电商概念</strong></p>
-<p>尝试用类描述一下电商系统中的一些基本概念。</p>
-<p>电商系统中最基本的有产品、用户和订单：</p>
-<ul>
-<li><p>产品：有产品唯一Id、名称、描述、图片、价格等属性。</p>
-</li>
-<li><p>用户：有用户名、密码等属性。</p>
-</li>
-<li><p>订单：有订单号、下单用户、选购产品列表及数量、下单时间、收货人、收货地址、联系电话、订单状态等属性。</p>
-</li>
-</ul>
-<p>产品Product类的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="comment">//唯一id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品图片链接</span></span><br><span class="line">    <span class="keyword">private</span> String pictureUrl;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品描述</span></span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品价格</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>用户User类的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>订单条目OrderItem类来描述单个产品及选购的数量，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderItem</span> </span>&#123;</span><br><span class="line">    <span class="comment">//购买产品</span></span><br><span class="line">    <span class="keyword">private</span> Product product;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//购买数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> quantity;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderItem</span><span class="params">(Product product,<span class="keyword">int</span> quantity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.product = productl;</span><br><span class="line">        <span class="keyword">this</span>.quantity = quantity;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//合计价格</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">computePrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> product.getPrice()*quantity;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最后是包含全部属性的订单Order类，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">    <span class="comment">//订单号</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//购买用户</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//购买产品列表及数量</span></span><br><span class="line">    <span class="keyword">private</span> OrderItem[] items;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//下单时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createtime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//收货人</span></span><br><span class="line">    <span class="keyword">private</span> String receiver;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//收货地址</span></span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//联系电话</span></span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//订单状态</span></span><br><span class="line">    <span class="keyword">private</span> String status;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">computeTotalPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> totalPrice = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(items != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(OrderItem item : items) &#123;</span><br><span class="line">                totalPrice+=item.computePrice(); <span class="comment">//计算总金额</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Order类引用了User类，以及一个订单条目的数组items，定义了一个计算总价的方法。</p>
-<p>​    </p>
-<p>​    </p>
-<p><strong>引用自己的类</strong></p>
-<p>一个类定义中还可以引用它自己。</p>
-<p>比如想要描述人以及人之间的血缘关系，用Person类表示一个人，它的实例成员包括其父母孩子，这些成员也都是Person类型。</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//父亲</span></span><br><span class="line">    <span class="keyword">private</span> Person father;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//母亲</span></span><br><span class="line">    <span class="keyword">private</span> Person mother;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//孩子数组</span></span><br><span class="line">    <span class="keyword">private</span> Person[] children;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Person daZhongMa = <span class="keyword">new</span> Person(<span class="string">&quot;大仲马&quot;</span>);</span><br><span class="line">    Person xiaoZhongMa = <span class="keyword">new</span> Person(<span class="string">&quot;小仲马&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    xiaoZhongMa.setFather(daZhongMa);</span><br><span class="line">    daZhongMa.setChildren(<span class="keyword">new</span> Person[]&#123;xiaoZhongMa&#125;);</span><br><span class="line">    </span><br><span class="line">    System.out.println(xiaoZhongMa.getFather().getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码先创建了大仲马，然后创建了小仲马，接着调用xiaozhongma的setFather()和dazhongma的setChildren()，设置了父子关系。</p>
-<table>
-<thead>
-<tr>
-<th align="center">栈-地址</th>
-<th align="center">栈-内容</th>
-<th align="center">堆-地址</th>
-<th align="center">堆-内容</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0x8000</td>
-<td align="center">0x1000</td>
-<td align="center">0x1000</td>
-<td align="center">小仲马</td>
-<td align="center">xiaoZhongMa.name</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">0x1004</td>
-<td align="center">0x1010</td>
-<td align="center">xiaoZhongMa.father</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">0x1008</td>
-<td align="center">null</td>
-<td align="center">xiaoZhongMa.mother</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">0x100C</td>
-<td align="center">null</td>
-<td align="center">xiaoZhongMa.children</td>
-</tr>
-<tr>
-<td align="center">0x8008</td>
-<td align="center">0x1010</td>
-<td align="center">0x1010</td>
-<td align="center">大仲马</td>
-<td align="center">daZhongMa.name</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">0x1014</td>
-<td align="center">null</td>
-<td align="center">daZhongMa.father</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">0x1018</td>
-<td align="center">null</td>
-<td align="center">daZhongMa.mother</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">0x101C</td>
-<td align="center">0x1000</td>
-<td align="center">daZhongMa.children</td>
-</tr>
-</tbody></table>
-<p>​    </p>
-<p>​    </p>
-<p><strong>互相引用的类</strong></p>
-<p>定义两个类MyFile和MyFolder，分别表示文件和文件夹。</p>
-<p>文件和文件夹都有名称、创建时间、父文件夹，根文件夹没有父文件夹，文件夹还有子文件列表和子文件夹列表。</p>
-<p>文件MyFile类代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFile</span> </span>&#123;</span><br><span class="line">    <span class="comment">//文件名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createtime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//文件大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//上级目录</span></span><br><span class="line">    <span class="keyword">private</span> MyFolder parent;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>文件夹MyFolder类的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFolder</span> </span>&#123;</span><br><span class="line">    <span class="comment">//文件夹名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createtime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//上级文件夹</span></span><br><span class="line">    <span class="keyword">private</span> MyFolder parent;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//包含的文件</span></span><br><span class="line">    <span class="keyword">private</span> MyFile[] files;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//包含的子文件夹</span></span><br><span class="line">    <span class="keyword">private</span> MyFolder[] subFolders;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (files != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(MyFile file : files) &#123;</span><br><span class="line">                totalSize+=file.getSize(); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(subFolders != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(MyFolder folder : subFolders) &#123;</span><br><span class="line">                totalSize+=folder.totalSize(); <span class="comment">//计算子文件夹的size</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> totalSize;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>MyFile引用了MyFolder，MyFolder也引用了MyFile，两者组合互相引用。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>

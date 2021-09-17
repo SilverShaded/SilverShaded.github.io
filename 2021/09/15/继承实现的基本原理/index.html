@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>继承的细节--防止继承 |  Silver - Shaded - Cat</title>
+      <title>继承实现的基本原理 |  Silver - Shaded - Cat</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-继承的细节-防止继承"
+  id="post-继承实现的基本原理"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  继承的细节--防止继承
+  继承实现的基本原理
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%98%B2%E6%AD%A2%E7%BB%A7%E6%89%BF/" class="article-date">
-  <time datetime="2021-09-13T10:55:18.000Z" itemprop="datePublished">2021-09-13</time>
+      <a href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2021-09-15T08:45:12.000Z" itemprop="datePublished">2021-09-15</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/java/">java</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">202</span>
+            <span class="post-count">803</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -107,26 +107,79 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
-<ul>
-<li>构造方法  </li>
-<li>重名与静态绑定</li>
-<li>重载和重写 </li>
-<li>父子类型转换</li>
-<li>继承访问权限（protected）</li>
-<li>可见性重写</li>
-<li>防止继承（final） <font color=blue>now!</font></li>
-</ul>
-<p><strong>final</strong>关键字可以防止类被继承。</p>
-<p>一个java类，默认情况下都是可以被继承的。但加了final关键字之后就不能被继承了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中的Base类不能被继承。</p>
+  <p>本节主要从概念上来介绍原理。</p>
 <p>​    </p>
-<p>一个非final的类，类中的public/protected实例方法默认情况下都是可以被重写的。但加了final关键字后就不能被重写了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;不能被重写&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先创建一个基类Base，Base中包含实例变量actualCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法、step方法和action方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类实例代码块，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类构造方法，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base staticCode: &quot;</span>+staticCode+<span class="string">&quot;, actualCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">        step();</span><br><span class="line">        System.out.println(<span class="string">&quot;end&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上面代码中的test方法不能被重写。</p>
+<p>​     </p>
+<p>接下来设计出继承Base的子类Child，Child同样包含实例变量actualCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法，并且重写了step方法。</p>
+<p>Child类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类实例代码块，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造方法，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child staticCode: &quot;</span>+staticCode+<span class="string">&quot;, instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>使用这两个类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   System.out.println(<span class="string">&quot;---- new Child()&quot;</span>);</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.action()&quot;</span>);</span><br><span class="line">   child.action();</span><br><span class="line"></span><br><span class="line">   Base base = child;</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.action()&quot;</span>);</span><br><span class="line">   base.action();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.staticCode: &quot;</span>+base.staticCode);</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.staticCode: &quot;</span>+child.staticCode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>屏幕输入结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">---- <span class="keyword">new</span> Child()</span><br><span class="line">基类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">子类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">基类实例代码块，actualCode: <span class="number">0</span></span><br><span class="line">基类构造方法，actualCode: <span class="number">1</span></span><br><span class="line">子类实例代码块，instanceCode: <span class="number">0</span></span><br><span class="line">子类构造方法，instanceCode: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">---- child.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.staticCode: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">---- child.staticCode: <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p><strong>类的加载</strong></p>
+<p>在java中，类是动态加载的。</p>
+<p>第一次使用这个类的时候才会加载，加载一个类时，会查看其父类是否已加载。如果没有，则加载其父类。</p>
+<p>​    </p>
+<p>一个类的信息，主要包括以下部分：</p>
+<ul>
+<li><p>static变量</p>
+</li>
+<li><p>类初始化代码</p>
+</li>
+<li><p>static方法</p>
+</li>
+<li><p>实例变量</p>
+</li>
+<li><p>实例初始化代码</p>
+</li>
+<li><p>实例方法</p>
+</li>
+<li><p>父类信息引用</p>
+</li>
+</ul>
+<p>类初始化代码包括：</p>
+<ul>
+<li><p>定义static变量时的赋值语句</p>
+</li>
+<li><p>static初始化代码块</p>
+</li>
+</ul>
+<p>实例初始化代码包括：</p>
+<ul>
+<li>定义实例变量时的赋值语句</li>
+<li>实例初始化代码块</li>
+<li>构造方法</li>
+</ul>
+<p>类加载过程包括：</p>
+<ul>
+<li><p>分配内存，保存类的信息</p>
+</li>
+<li><p>给static变量赋默认值</p>
+</li>
+<li><p>加载父类</p>
+</li>
+<li><p>设置父子关系</p>
+</li>
+<li><p>执行类初始化代码</p>
+</li>
+</ul>
+<p>类初始化代码，是先执行父类，再执行子类。</p>
+<p>父类执行时，子类static变量是有值的，为默认值。</p>
+<p>​    </p>
+<p>类的信息放在<strong>内存区</strong>，在java中称为<strong>方法区</strong>。</p>
+<p><img src="https://i.loli.net/2021/09/17/ur9HsMUE4vA2niQ.jpg" alt="继承实现.jpg"></p>
+<p>如上图，class_init()表示类初始化代码，instance_init()表示实例初始化代码。实例初始化代码包括了实例初始化代码块和构造方法。</p>
+<p>​    </p>
+<p>对于上方的Base类和Child类，它们的内存布局就像图中的方法区。</p>
  
       <!-- reward -->
       
@@ -191,7 +244,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%98%B2%E6%AD%A2%E7%BB%A7%E6%89%BF/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -204,19 +257,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            继承实现的基本原理
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E5%8F%AF%E8%A7%81%E6%80%A7%E9%87%8D%E5%86%99/" class="article-nav-link">
+      <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%98%B2%E6%AD%A2%E7%BB%A7%E6%89%BF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">继承的细节--可见性重写</div>
+        <div class="article-nav-title">继承的细节--防止继承</div>
       </a>
     
   </nav>
