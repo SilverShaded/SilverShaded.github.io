@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">803</span>
+            <span class="post-count">1k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -180,6 +180,15 @@
 <p>如上图，class_init()表示类初始化代码，instance_init()表示实例初始化代码。实例初始化代码包括了实例初始化代码块和构造方法。</p>
 <p>​    </p>
 <p>对于上方的Base类和Child类，它们的内存布局就像图中的方法区。</p>
+<p>child.action()的具体执行过程如下：</p>
+<p>1.查看child的对象类型，找到Child类型。在Child类型中寻找action方法，发现没有，于是到Base类中寻找。</p>
+<p>2.在Base类中找到了action方法，开始执行该方法。</p>
+<p>3.action先输出start，再从Child类型寻找step方法。</p>
+<p>4.在Child类型中找到了step方法，执行它，然后返回action方法</p>
+<p>5.继续执行action方法， 输出end</p>
+<p><strong>寻找要执行的实例方法的时候，是从对象的实际类型信息开始查找的，找不到的时候，再查找父类类型信息。</strong></p>
+<p>base.action和child.action都是<strong>动态绑定</strong>，动态绑定实现的机制，就是根据对象的实际类型查找要执行的方法，子类型中找不到的时候再查找父类。由于base和child指向的动态类型都是Child，所以执行结果一样。</p>
+<p>​    </p>
  
       <!-- reward -->
       
@@ -256,6 +265,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2021/09/17/%E8%99%9A%E6%96%B9%E6%B3%95%E8%A1%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            虚方法表
+          
+        </div>
+      </a>
     
     
       <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%98%B2%E6%AD%A2%E7%BB%A7%E6%89%BF/" class="article-nav-link">
