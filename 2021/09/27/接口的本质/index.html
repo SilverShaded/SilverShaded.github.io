@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">720</span>
+            <span class="post-count">820</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -141,6 +141,9 @@
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明MyComparable类型的变量，引用Point对象。</span></span><br><span class="line">MyComparable p1 = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">MyComparable p2 = <span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">System.out.println(p1.compareTo(p2));</span><br></pre></td></tr></table></figure>
 
+<p>p1和p2是MyComparable类型的变量，但引用了Point类型的对象，之所以能赋值是因为Point实现了MyComparable接口。</p>
+<p>如果一个类型实现了多个接口，那这种类型的对象就可以被赋值给任一接口类型的变量。</p>
+<p>p1和p2能且只能调用MyComparable接口的方法。实际执行时，执行的是具体实现类的代码。</p>
  
       <!-- reward -->
       
