@@ -155,6 +155,71 @@
     
     
     <article
+  id="post-使用接口替代继承"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/28/%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E6%9B%BF%E4%BB%A3%E7%BB%A7%E6%89%BF/"
+    >使用接口替代继承</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/28/%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E6%9B%BF%E4%BB%A3%E7%BB%A7%E6%89%BF/" class="article-date">
+  <time datetime="2021-09-28T06:24:17.000Z" itemprop="datePublished">2021-09-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>使用组合替代继承，可以复用代码，但不能统一处理。使用接口，针对接口编程，可以实现统一处理不同类型的对象，但接口没有代码实现，无法复用代码。</p>
+<p><strong>将组合和接口结合起来</strong>，就既可以统一处理，也可以复用代码了。</p>
+<p>举个栗子：</p>
+<p>先增加一个接口IAdd：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAdd</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> number)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span>[] numbers)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改Base类代码，让它实现IAdd接口，代码基本不变：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> <span class="keyword">implements</span> <span class="title">IAdd</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_NUM = <span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[MAX_NUM];</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (count &lt; MAX_NUM) &#123;</span><br><span class="line">            arr[count++] = number;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : numbers) &#123;</span><br><span class="line">            add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改Child类代码，也是实现IAdd接口，代码基本不变：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">implements</span> <span class="title">IAdd</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Base base;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sum;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        base = <span class="keyword">new</span> Base();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        base.add(number);</span><br><span class="line">        sum+=number;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        base.addAll(numbers);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numbers.length;i++) &#123;</span><br><span class="line">            sum+=numbers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/" rel="tag">interface</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-接口的细节"
   class="article article-type-post"
   itemscope
@@ -882,87 +947,6 @@
 <p>​    </p>
 <p>这种思路和设计在设计模式中被称之为<strong>模板方法</strong>，action就是一个模板方法，它定义了实现的模板，而具体实现由子类提供。</p>
 <p>模板方法在很多框架中由广泛的应用，这是使用protected的一个常用场景。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-继承的细节-父子类型转换"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E7%88%B6%E5%AD%90%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
-    >继承的细节--父子类型转换</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E7%88%B6%E5%AD%90%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="article-date">
-  <time datetime="2021-09-03T04:00:31.000Z" itemprop="datePublished">2021-09-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
-<ul>
-<li>构造方法  </li>
-<li>重名与静态绑定 </li>
-<li>重载和重写</li>
-<li>父子类型转换 <font color=blue>now!</font></li>
-<li>继承访问权限（protected）</li>
-<li>可见性重写</li>
-<li>防止继承（final）</li>
-</ul>
-<p>​    </p>
-<p>根据《从图形处理类看继承和多态》一章可知，子类型的对象可以赋值给父类型的引用变量。</p>
-<p>但父类型的变量不一定能成功赋值给子类型的变量，<strong>向下转型</strong>不一定成功。</p>
-<p>栗子如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Base base = <span class="keyword">new</span> Child();</span><br><span class="line">Child child = (Child)base;</span><br></pre></td></tr></table></figure>
-
-<p>Child child = (Child)base就是将变量base的类型强制转换为Child并赋值为child。<br>因为base的动态类型就是child，所以向下转型没问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Base base = <span class="keyword">new</span> Base();</span><br><span class="line">Child child = (Child)base;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码，在运行时会抛出错误，错误为类型转换异常。</p>
-<p>​    </p>
-<p><strong>一个父类的变量，能否转换为一个子类的变量，取决于这个父类变量的动态类型（即引用的对象类型）是不是这个子类或这个子类的子类。</strong></p>
-<p>​    </p>
-<p>给定一个父类的变量，通过<strong>instanceof</strong>关键字，能知道它到底是不是某个子类的对象，从而安全的进行类型转换。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canCast</span><span class="params">(Base b)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> b <span class="keyword">instanceof</span> Child; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>canCast函数返回Base类型变量b是否可以转换为Child类型。</p>
-<p>instanceof前面是变量，后面是类，返回值为true时表示变量引用的对象是该类或其子类的对象，false则反之。</p>
  
       <!-- reward -->
       
