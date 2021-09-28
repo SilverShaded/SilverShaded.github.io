@@ -155,6 +155,98 @@
     
     
     <article
+  id="post-接口的细节"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/28/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%86%E8%8A%82/"
+    >接口的细节</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/28/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%86%E8%8A%82/" class="article-date">
+  <time datetime="2021-09-28T03:06:31.000Z" itemprop="datePublished">2021-09-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>接口的四项细节：</p>
+<ul>
+<li><p>接口中的变量</p>
+</li>
+<li><p>接口的继承</p>
+</li>
+<li><p>类的继承与接口</p>
+</li>
+<li><p>instanceof</p>
+</li>
+</ul>
+<p>​    </p>
+<p><strong>接口中的变量</strong></p>
+<p>接口中可以定义变量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Interface1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> a =<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>变量a可以通过“接口名.变量名”的方式使用，如Interface1.a。</p>
+<p>​    </p>
+<p><strong>接口的继承</strong></p>
+<p>接口可以继承别的接口，继承的基本概念与类一样。</p>
+<p>与类不同的是，<strong>接口可以有多个父接口</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IBase1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IBase2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IChild</span> <span class="keyword">extends</span> <span class="title">IBase1</span>,<span class="title">IBase2</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口的继承同样使用<strong>extends</strong>关键字，多个父接口之间以逗号分割。</p>
+<p>​    </p>
+<p><strong>类的继承与接口</strong></p>
+<p>类的继承与接口可以共存——类可以在继承基类的情况下，同时实现一个或多个接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> <span class="keyword">implements</span> <span class="title">IChild</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>entends要放在implements之前</strong>。</p>
+<p>​    </p>
+<p><strong>instanceof</strong></p>
+<p>与类一样，接口也可以使用instanceof关键字，用来判断一个对象是否实现了某接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Point point = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">if</span> (point <span class="keyword">instanceof</span> MyComparable) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;comparable&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/" rel="tag">interface</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-针对接口而非具体类型的编程"
   class="article article-type-post"
   itemscope
@@ -871,116 +963,6 @@
 
 <p>canCast函数返回Base类型变量b是否可以转换为Child类型。</p>
 <p>instanceof前面是变量，后面是类，返回值为true时表示变量引用的对象是该类或其子类的对象，false则反之。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-继承的细节-重载和重写"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99/"
-    >继承的细节--重载和重写</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99/" class="article-date">
-  <time datetime="2021-09-02T12:19:31.000Z" itemprop="datePublished">2021-09-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
-<ul>
-<li><p>构造方法  </p>
-</li>
-<li><p>重名与静态绑定</p>
-</li>
-<li><p>重载和重写 <font color=blue>now!</font></p>
-</li>
-<li><p>父子类型转换</p>
-</li>
-<li><p>继承访问权限（protected）</p>
-</li>
-<li><p>可见性重写</p>
-</li>
-<li><p>防止继承（final）</p>
-</li>
-</ul>
-<p>​    </p>
-<p><strong>重载和重写</strong></p>
-<p>重载=方法名称相同，但参数签名不同（参数个数或类型或顺序不同）。</p>
-<p>重写= 子类重写父类相同参数签名的方法。</p>
-<p>​    </p>
-<p>举一个栗子，父类代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base_int_int&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>父类定义了sum(int a,int b)方法。</p>
-<p>子类代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sum</span><span class="params">(<span class="keyword">long</span> a,<span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child_long_long&quot;</span>);</span><br><span class="line">       <span class="keyword">return</span> a+b;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>子类定义了sum(long a,long b)方法。</p>
-<p>​    </p>
-<p>调用代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Child child = <span class="keyword">new</span> Child();</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">        child.sum(a,b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>虽然每个sum方法都是兼容的，int类型可以自动转型为long，当只有一个方法的时候，那个方法就会被调用。</p>
-<p>但现在有多个方法可用，子类的sum方法参数类型虽然兼容但是不完全匹配，而父类的sum方法参数类型是完全匹配的。</p>
-<p>所以父类的sum方法被调用了，输出结果为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_int_int</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>如果父类将其中一个int参数改为long参数，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base_int_long&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>再运行程序，调用的依然是父类的sum函数，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_int_long</span><br></pre></td></tr></table></figure>
-
-<p>虽然子类和父类的两个方法的参数类型都不完全匹配，但是相比之下，还是父类的sum方法更匹配一些，至少有一个int参数。</p>
-<p>​    </p>
-<p>现在修改一下子类代码，让它的参数类型和父类一致：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Base base = <span class="keyword">new</span> Child();<span class="comment">//静态类型是Base，动态类型是Child</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">        base.sum(a,b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">child_int_long</span><br></pre></td></tr></table></figure>
-
-<p>说明这一回调用的是子类的sum函数。</p>
-<p>​    </p>
-<p>从上面的这些栗子中，我们可以得知——<strong>当有多个重名函数的时候，在决定要调用哪个函数的过程中，首先是按照参数类型进行匹配的。换句话说，寻找在所有重载函数中最匹配的。然后才看变量的动态类型，进行动态绑定。</strong></p>
  
       <!-- reward -->
       
