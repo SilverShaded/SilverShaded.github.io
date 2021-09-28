@@ -155,6 +155,83 @@
     
     
     <article
+  id="post-抽象类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/28/%E6%8A%BD%E8%B1%A1%E7%B1%BB/"
+    >抽象类</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/28/%E6%8A%BD%E8%B1%A1%E7%B1%BB/" class="article-date">
+  <time datetime="2021-09-28T07:30:56.000Z" itemprop="datePublished">2021-09-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>抽象类：没有直接对应的对象，表达的是抽象概念，一般是具体类的比较上层的父类。</p>
+<p>比如，猫是具体对象，动物则是抽象概念；芒果是具体对象，图形是抽象概念。</p>
+<p>​    </p>
+<p><strong>抽象方法和抽象类</strong></p>
+<p>抽象方法和抽象类都是用<strong>abstract</strong>关键字来声明。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...其他代码</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义了抽象方法的类必须被声明为抽象类，但抽象类可以没有抽象方法</strong>。</p>
+<p>抽象类可以定义具体方法、实例变量等。</p>
+<p>抽象类与具体类的核心区别：<strong>抽象类不能创建对象</strong>，比如不能使用new Shape()，而具体类可以。</p>
+<p>​    </p>
+<p>抽象类不能创建对象，要创建对象，必须使用它的具体子类。</p>
+<p>一个类在继承抽象类后，必须实现抽象类中定义的所有抽象方法，除非它自己也声明为抽象类。</p>
+<p>Circle类的实现代码，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...其他代码</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//....</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Circle实现了draw()方法。</p>
+<p>​    </p>
+<p>与接口类似，抽象类虽然不能使用new，但可以声明抽象类的变量，引用抽象类具体子类的对象。</p>
+<p>如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shape shape = <span class="keyword">new</span> Circle();</span><br><span class="line">shape.draw();</span><br></pre></td></tr></table></figure>
+
+<p>shape是抽象类Shape类型的变量，引用了具体子类Circle的对象，调用draw方法将调用Circle的draw代码。</p>
+<p>​    </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/abstract/" rel="tag">abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-使用接口替代继承"
   class="article article-type-post"
   itemscope
@@ -862,91 +939,6 @@
 <p>如果父类是public，则子类也必须是public。</p>
 <p>如果父类是protected，子类可以是protected，也可以是public，即子类可以升级父类方法的可见性，但不能降低。</p>
 <p>子类必须支持父类所有对外的行为，所以不能降低可见性；子类可以增加父类的行为，所以能提升可见性。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-继承的细节-protected"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-protected/"
-    >继承的细节--protected</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-protected/" class="article-date">
-  <time datetime="2021-09-03T11:08:43.000Z" itemprop="datePublished">2021-09-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
-<ul>
-<li>构造方法  </li>
-<li>重名与静态绑定 </li>
-<li>重载和重写</li>
-<li>父子类型转换 </li>
-<li>继承访问权限（protected） <font color=blue>now!</font></li>
-<li>可见性重写</li>
-<li>防止继承（final）</li>
-</ul>
-<p>​    </p>
-<p>除了public/private之外，还有一种可见性介于中间的修饰符<strong>protected</strong>。</p>
-<p>protected表示虽然不能被外部操作访问，但可被子类访问，还可被同一个包中的其他类访问（不管其他类是否是该类的子类）。</p>
-<p>​    </p>
-<p>举个栗子，基类Base代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> currentStep;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.currentStep = <span class="number">1</span>;</span><br><span class="line">        step1();</span><br><span class="line">        <span class="keyword">this</span>.currentStep = <span class="number">2</span>;</span><br><span class="line">        step2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>含有protected修饰符的是变量currentStep和方法step1、step2，还对外提供了方法action。</p>
-<p>子类一般不重写action，只重写step1和step2。同时，子类可以直接访问currentStep查看进行到了哪一步。</p>
-<p>子类Child的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step1</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child step &quot;</span>+<span class="keyword">this</span>.currentStep);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step2</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child step &quot;</span>+<span class="keyword">this</span>.currentStep);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用子类的main方法代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line">   child.action();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">child step <span class="number">1</span></span><br><span class="line">child step <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>子类通过重写protected方法step1和step2，来修改对外的行为。</p>
-<p>​    </p>
-<p>这种思路和设计在设计模式中被称之为<strong>模板方法</strong>，action就是一个模板方法，它定义了实现的模板，而具体实现由子类提供。</p>
-<p>模板方法在很多框架中由广泛的应用，这是使用protected的一个常用场景。</p>
  
       <!-- reward -->
       
