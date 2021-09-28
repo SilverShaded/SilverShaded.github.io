@@ -155,6 +155,75 @@
     
     
     <article
+  id="post-针对接口而非具体类型的编程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/27/%E9%92%88%E5%AF%B9%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%85%B7%E4%BD%93%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BC%96%E7%A8%8B/"
+    >针对接口而非具体类型的编程</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/27/%E9%92%88%E5%AF%B9%E6%8E%A5%E5%8F%A3%E8%80%8C%E9%9D%9E%E5%85%B7%E4%BD%93%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2021-09-27T10:38:00.000Z" itemprop="datePublished">2021-09-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>在一些程序中，代码并不知道具体的类型，才是接口发挥威力的地方。</p>
+<p>举个栗子，一个使用MyComparable接口的类CompUtil，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompUtil</span> </span>&#123;</span><br><span class="line">    <span class="comment">//找出最大值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">max</span><span class="params">(MyComparable[] objs)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//objs为空</span></span><br><span class="line">        <span class="keyword">if</span> (objs == <span class="keyword">null</span> || objs.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        MyComparable max = objs[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;objs.length;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (max.compareTo(objs[i]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                max = objs[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//从小到大排序</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(MyComparable[] objs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;objs.length;i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;objs.length;j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (objs[j].compareTo(objs[min])&lt;<span class="number">0</span>) &#123;</span><br><span class="line">                    min = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (min!=i) &#123;</span><br><span class="line">                MyComparable temp = objs[i];</span><br><span class="line">                objs[i] = objs[min];</span><br><span class="line">                objs[min] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>CompUtil类提供了两个方法，max获取传入数组中的最大值，sort对数组进行升序排序，参数都是MyComparable类型的的数组。</p>
+<p>这个类是针对MyComparable接口编程，它并不知道具体的类型是什么，也并不关心，但却可以对任意实现了MyComparable接口的类型进行操作。</p>
+<p>​    </p>
+<p>接下来对Point类型进行操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Point[] points = <span class="keyword">new</span> Point[] &#123;</span><br><span class="line">      <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>),</span><br><span class="line">      <span class="keyword">new</span> Point(<span class="number">3</span>,<span class="number">4</span>),</span><br><span class="line">      <span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;max: &quot;</span> + CompUtil.max(points));</span><br><span class="line">CompUtil.sort(points);</span><br><span class="line">System.out.println(<span class="string">&quot;sort: &quot;</span> + Arrays.toString(points));</span><br></pre></td></tr></table></figure>
+
+<p>points可以作为MyComparable[]类型的参数。实际上，可以针对任何实现了MyComparable接口的类型数组进行操作。</p>
+<p>​    </p>
+<p><strong>针对接口而非具体类型进行编程，是计算机程序的一种重要思维方式。</strong></p>
+<p>接口的优点：</p>
+<p>1.代码复用。同一套代码可以处理多种不同类型的对象，只要这些对象都有相同的能力。</p>
+<p>2.降低了耦合，提高了灵活性。使用接口的代码依赖的是接口本身，而非实现接口的具体类型。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/" rel="tag">interface</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-接口的本质"
   class="article article-type-post"
   itemscope
@@ -912,97 +981,6 @@
 <p>说明这一回调用的是子类的sum函数。</p>
 <p>​    </p>
 <p>从上面的这些栗子中，我们可以得知——<strong>当有多个重名函数的时候，在决定要调用哪个函数的过程中，首先是按照参数类型进行匹配的。换句话说，寻找在所有重载函数中最匹配的。然后才看变量的动态类型，进行动态绑定。</strong></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-继承的细节-重名与静态绑定"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/"
-    >继承的细节--重名与静态绑定</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/" class="article-date">
-  <time datetime="2021-09-02T10:44:48.000Z" itemprop="datePublished">2021-09-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
-<ul>
-<li>构造方法  </li>
-<li>重名与静态绑定 <font color=blue>now!</font></li>
-<li>重载和重写</li>
-<li>父子类型转换</li>
-<li>继承访问权限（protected）</li>
-<li>可见性重写</li>
-<li>防止继承（final）</li>
-</ul>
-<p>​    </p>
-<p><strong>重名</strong></p>
-<p>对于private变量和方法，它们只能在类内被访问，访问的也永远是当前类的对象。</p>
-<p>​    </p>
-<p>对于public变量和方法，在类内访问的是当前类的，但子类可以通过super.明确指定访问父类的。</p>
-<p>在类外，则要看访问变量的静态类型，静态类型是父类，则访问父类的变量和方法；静态类型是子类，则访问子类的变量和方法。</p>
-<p>​    </p>
-<p>接下来举个栗子。父类Base代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;static_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;base&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Base类定义了一个public静态变量s，一个public实例变量m、一个静态方法staticTest。</p>
-<p>子类Child代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;child_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;child&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>子类定义了和父类重名的变量m、s和方法staticTest。</p>
-<p>对于一个子类对象，它就有了两份变量和方法。在子类内部访问的时候，访问的是子类的。子类变量和方法隐藏了父类对应的变量和方法。</p>
-<p>​     </p>
-<p>调用代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    Base b = c;</span><br><span class="line">    </span><br><span class="line">    System.out.println(b.s);</span><br><span class="line">    System.out.println(b.m);</span><br><span class="line">    b.staticTest();</span><br><span class="line">    </span><br><span class="line">    System.out.println(c.s);</span><br><span class="line">    System.out.println(c.m);</span><br><span class="line">    c.staticTest();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建一个子类对象new Child()，然后将该对象分别赋值给子类引用变量c和父类引用变量b。</p>
-<p>再通过b和c分别引用变量和方法。</p>
-<p>输出结果为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">static_base</span><br><span class="line">base</span><br><span class="line">base <span class="keyword">static</span>: static_base</span><br><span class="line">child_base</span><br><span class="line">child</span><br><span class="line">child <span class="keyword">static</span>: child_base</span><br></pre></td></tr></table></figure>
-
-<p>通过b(静态类型Base)访问时，访问的是Base的变量和方法。通过c(静态类型Child)访问时，访问的是Child的变量和方法。</p>
-<p>这叫做<strong>静态绑定</strong>，即访问绑定到变量的静态类型。</p>
-<p><strong>实例变量、静态变量、private方法，都是静态绑定的。</strong></p>
  
       <!-- reward -->
       
