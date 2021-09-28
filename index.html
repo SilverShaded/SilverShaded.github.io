@@ -155,6 +155,63 @@
     
     
     <article
+  id="post-抽象类和接口"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/28/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/"
+    >抽象类和接口</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/28/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/" class="article-date">
+  <time datetime="2021-09-28T08:30:45.000Z" itemprop="datePublished">2021-09-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>抽象类和接口有类似之处，它们都不能用于创建对象，接口中的方法其实都是抽象方法。如果抽象类中只定义了抽象方法，那抽象类和接口就更像了。</p>
+<p>但抽象类和接口根本上是不同的，一个类可以实现多个接口，但只能继承一个类。</p>
+<p><strong>抽象类和接口是配合关系，它们经常一起使用，接口声明能力，抽象类提供默认实现，实现全部或部分方法，一个接口经常有一个对应的抽象类。</strong></p>
+<p>（感觉不会经常用的样子……）</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/abstract/" rel="tag">abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/" rel="tag">interface</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-抽象方法和抽象类"
   class="article article-type-post"
   itemscope
@@ -865,80 +922,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;不能被重写&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上面代码中的test方法不能被重写。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-继承的细节-可见性重写"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E5%8F%AF%E8%A7%81%E6%80%A7%E9%87%8D%E5%86%99/"
-    >继承的细节--可见性重写</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E5%8F%AF%E8%A7%81%E6%80%A7%E9%87%8D%E5%86%99/" class="article-date">
-  <time datetime="2021-09-13T10:34:22.000Z" itemprop="datePublished">2021-09-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
-<ul>
-<li><p>构造方法  </p>
-</li>
-<li><p>重名与静态绑定 </p>
-</li>
-<li><p>重载和重写</p>
-</li>
-<li><p>父子类型转换 </p>
-</li>
-<li><p>继承访问权限（protected）</p>
-</li>
-<li><p>可见性重写 <font color=blue>now!</font></p>
-</li>
-<li><p>防止继承（final）</p>
-</li>
-</ul>
-<p><strong>重写时，子类方法不能降低父类方法的可见性</strong>。</p>
-<p>如果父类是public，则子类也必须是public。</p>
-<p>如果父类是protected，子类可以是protected，也可以是public，即子类可以升级父类方法的可见性，但不能降低。</p>
-<p>子类必须支持父类所有对外的行为，所以不能降低可见性；子类可以增加父类的行为，所以能提升可见性。</p>
  
       <!-- reward -->
       
