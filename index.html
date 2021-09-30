@@ -155,6 +155,62 @@
     
     
     <article
+  id="post-程序的编译与连接"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/30/%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E4%B8%8E%E8%BF%9E%E6%8E%A5/"
+    >程序的编译与连接</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/30/%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E4%B8%8E%E8%BF%9E%E6%8E%A5/" class="article-date">
+  <time datetime="2021-09-30T09:15:53.000Z" itemprop="datePublished">2021-09-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>从java源代码到运行的程序，有<strong>编译</strong>和<strong>连接</strong>两个步骤。</p>
+<p>编译是<strong>将源代码文件变成一种字节码</strong>，后缀是.class的文件。一般由javac（编译器）命令完成编译。</p>
+<p>连接是在运行时动态执行的，.class文件不能直接运行，运行的是java虚拟机。虚拟机解析.class文件，<strong>转换为机器能识别的二进制代码</strong>，然后运行。所谓连接就是根据引用到的类加载相应的字节码并执行。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-程序打包"
   class="article article-type-post"
   itemscope
@@ -780,65 +836,6 @@
 <p>2.对不希望被重写的公开方法添加<strong>final</strong>修饰符。</p>
 <p>3.写文档，说明可重写方法的实现机制，为子类提供倡导，告诉子类应该如何重写。</p>
 <p>4.在基类修改可能影响子类时，写修改说明。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-虚方法表"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/17/%E8%99%9A%E6%96%B9%E6%B3%95%E8%A1%A8/"
-    >虚方法表</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/17/%E8%99%9A%E6%96%B9%E6%B3%95%E8%A1%A8/" class="article-date">
-  <time datetime="2021-09-17T12:25:48.000Z" itemprop="datePublished">2021-09-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>如果继承的层次比较深，要调用的方法位于比较上层的父类，则调用的效率是比较低的，因为每次调用都要进行很多次查找。</p>
-<p>大多数系统使用一种称为<strong>虚方法表</strong>的方法来优化调用的效率。</p>
-<p><img src="https://i.loli.net/2021/09/17/YFbxOS6PBJDyp3q.jpg" alt="虚方法表.jpg"></p>
-<p><strong>虚方法表，就是在类加载的时候，为每个类创建一个表，这个表包括该类的对象所有动态绑定的方法及其地址，包括父类的方法，但一个方法只有一条记录，子类重写了父类方法后只会保留子类的。</strong></p>
-<p>​    </p>
-<p>虚方法表在类加载的时候生成，当通过对象动态绑定方法的时候，只需要查找这个表就可以了，不需要挨个查找每个父类。</p>
  
       <!-- reward -->
       
