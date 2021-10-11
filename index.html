@@ -197,6 +197,16 @@
 <p>使用Size：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.MEDIUM;</span><br></pre></td></tr></table></figure>
 
+<p>Size size声明了一个变量size，它的类型是Size，size=Size.MEDIUM将枚举值MEDIUM赋值给size变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.toString());	<span class="comment">//输出SMALL</span></span><br><span class="line">System.out.println(size.name());	<span class="comment">//输出SMALL</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举变量的toString方法返回其字面值（SMALL），所有枚举类型也有一个<strong>name</strong>方法，返回值与toString一样。</p>
+<p>​    </p>
+<p><strong>枚举值是有顺序的</strong>，可以比较大小。</p>
+<p>枚举类型都有一个方法**int ordinal()**，表示枚举值在声明时的顺序，从0开始。</p>
+<p>枚举类型都实现了Java API中的Comparable接口，都可以通过方法compareTo与其他枚举值比较ordinal的大小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出0</span></span><br><span class="line">size = Size.MEDIUM;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出1</span></span><br><span class="line">System.out.println(Size.SMALL.compareTo(Size.MEDIUM));  <span class="comment">//输出-1，表示SMALL小于MEDIUM</span></span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
