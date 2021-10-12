@@ -155,7 +155,7 @@
     
     
     <article
-  id="post-枚举"
+  id="post-枚举的基本用法"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -166,8 +166,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/09/30/%E6%9E%9A%E4%B8%BE/"
-    >枚举</a> 
+  <a class="article-title" href="/2021/09/30/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/"
+    >枚举的基本用法</a> 
 </h2>
  
 
@@ -175,7 +175,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/09/30/%E6%9E%9A%E4%B8%BE/" class="article-date">
+      <a href="/2021/09/30/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="article-date">
   <time datetime="2021-09-30T09:40:04.000Z" itemprop="datePublished">2021-09-30</time>
 </a> 
   <div class="article-category">
@@ -207,6 +207,14 @@
 <p>枚举类型都实现了Java API中的Comparable接口，都可以通过方法compareTo与其他枚举值比较ordinal的大小。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出0</span></span><br><span class="line">size = Size.MEDIUM;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出1</span></span><br><span class="line">System.out.println(Size.SMALL.compareTo(Size.MEDIUM));  <span class="comment">//输出-1，表示SMALL小于MEDIUM</span></span><br></pre></td></tr></table></figure>
 
+<p>​    </p>
+<p>枚举类型都有一个静态的valueOf(String)方法，可以返回字符串对应的枚举值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Size.SMALL==Size.valueOf(<span class="string">&quot;SMALL&quot;</span>)); <span class="comment">//输出true</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举类型都有一个静态的values方法，返回一个包括所有枚举值的数组，顺序与声明时的顺序一致。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Size size : Size.values()) &#123;</span><br><span class="line">	System.out.println(size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>屏幕输出三行，分别是SMALL，MEDIUM，LARGE。</p>
  
       <!-- reward -->
       
