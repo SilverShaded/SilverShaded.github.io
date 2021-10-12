@@ -155,6 +155,63 @@
     
     
     <article
+  id="post-枚举的典型场景"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/"
+    >枚举的典型场景</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/" class="article-date">
+  <time datetime="2021-10-12T11:25:25.000Z" itemprop="datePublished">2021-10-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>实际应用中，枚举经常会有关联的实例变量和方法。</p>
+<p>举个栗子，假设Size的枚举值可能有关联的缩写和中文名称，可能需要静态方法根据缩写返回对应的枚举值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    SMALL(<span class="string">&quot;S&quot;</span>,<span class="string">&quot;小号&quot;</span>),</span><br><span class="line">    MEDIUM(<span class="string">&quot;M&quot;</span>,<span class="string">&quot;中号&quot;</span>),</span><br><span class="line">    LARGE(<span class="string">&quot;L&quot;</span>,<span class="string">&quot;大号&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String abbr;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String abbr,String title)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.abbr = abbr;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAbbr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> abbr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> title;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//根据abbr返回size</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">fromAbbr</span><span class="params">(String abbr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Size size : Size.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (size.getAbbr().equals(abbr)) &#123;</span><br><span class="line">                <span class="keyword">return</span> size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-枚举的基本实现原理"
   class="article article-type-post"
   itemscope
@@ -188,6 +245,12 @@
        
   <p>实际上，枚举类型会被Java编译器转换为一个对应的类，这个类继承了Java API中的java.lang.Enum类。</p>
 <p>Enum类有两个实例变量name和ordinal，在构造方法中需要传递，name()，toString()，ordinal()，compareTo()，equals()方法都是由Enum类根据其实例变量name和ordinal实现的。</p>
+<p>values和valueOf方法是编译器给每个枚举类型自动添加的。</p>
+<p>枚举类型Size转换后的普通类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Size</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">Size</span>&gt; </span>&#123;	<span class="comment">//final，不能被继承</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size SMALL = <span class="keyword">new</span> Size(<span class="string">&quot;SMALL&quot;</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size MEDIUM = <span class="keyword">new</span> Size(<span class="string">&quot;MEDIUM&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size LARGE = <span class="keyword">new</span> Size(<span class="string">&quot;LARGE&quot;</span>,<span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Size[] VALUES =</span><br><span class="line">            <span class="keyword">new</span> Size[]&#123;SMALL,MEDIUM,LARGE&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//私有构造方法，接受name和ordinal，传递给父类。不能在外部创建新的实例。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String name, <span class="keyword">int</span> ordinal)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, ordinal);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Size[] values()&#123;</span><br><span class="line">        Size[] values = <span class="keyword">new</span> Size[VALUES.length];</span><br><span class="line">        System.arraycopy(VALUES, <span class="number">0</span>,</span><br><span class="line">                values, <span class="number">0</span>, VALUES.length);<span class="comment">//要复制的源数组VALUES,从源数组0的位置开始复制，目标数组为values，目标数组的下标位置是0，要复制的长度是VALUES的长度</span></span><br><span class="line">        <span class="keyword">return</span> values;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">valueOf</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Enum.valueOf(Size.class, name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>枚举类型本质上也是类，但由于编译器自动做了很多事情，它的使用也就更为简洁、安全和方便。</p>
  
       <!-- reward -->
       
@@ -710,98 +773,6 @@
 
 <p>修改Child类代码，也是实现IAdd接口，代码基本不变：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">implements</span> <span class="title">IAdd</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Base base;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sum;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        base = <span class="keyword">new</span> Base();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        base.add(number);</span><br><span class="line">        sum+=number;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        base.addAll(numbers);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;numbers.length;i++) &#123;</span><br><span class="line">            sum+=numbers[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/" rel="tag">interface</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-接口的细节"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/28/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%86%E8%8A%82/"
-    >接口的细节</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/28/%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%BB%86%E8%8A%82/" class="article-date">
-  <time datetime="2021-09-28T03:06:31.000Z" itemprop="datePublished">2021-09-28</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>接口的四项细节：</p>
-<ul>
-<li><p>接口中的变量</p>
-</li>
-<li><p>接口的继承</p>
-</li>
-<li><p>类的继承与接口</p>
-</li>
-<li><p>instanceof</p>
-</li>
-</ul>
-<p>​    </p>
-<p><strong>接口中的变量</strong></p>
-<p>接口中可以定义变量：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Interface1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> a =<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>变量a可以通过“接口名.变量名”的方式使用，如Interface1.a。</p>
-<p>​    </p>
-<p><strong>接口的继承</strong></p>
-<p>接口可以继承别的接口，继承的基本概念与类一样。</p>
-<p>与类不同的是，<strong>接口可以有多个父接口</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IBase1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IBase2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IChild</span> <span class="keyword">extends</span> <span class="title">IBase1</span>,<span class="title">IBase2</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接口的继承同样使用<strong>extends</strong>关键字，多个父接口之间以逗号分割。</p>
-<p>​    </p>
-<p><strong>类的继承与接口</strong></p>
-<p>类的继承与接口可以共存——类可以在继承基类的情况下，同时实现一个或多个接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> <span class="keyword">implements</span> <span class="title">IChild</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>entends要放在implements之前</strong>。</p>
-<p>​    </p>
-<p><strong>instanceof</strong></p>
-<p>与类一样，接口也可以使用instanceof关键字，用来判断一个对象是否实现了某接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Point point = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">if</span> (point <span class="keyword">instanceof</span> MyComparable) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;comparable&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
 
  
       <!-- reward -->

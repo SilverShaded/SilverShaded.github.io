@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">78</span>
+            <span class="post-count">336</span>
         </span>
     </span>
 
@@ -109,6 +109,12 @@
        
   <p>实际上，枚举类型会被Java编译器转换为一个对应的类，这个类继承了Java API中的java.lang.Enum类。</p>
 <p>Enum类有两个实例变量name和ordinal，在构造方法中需要传递，name()，toString()，ordinal()，compareTo()，equals()方法都是由Enum类根据其实例变量name和ordinal实现的。</p>
+<p>values和valueOf方法是编译器给每个枚举类型自动添加的。</p>
+<p>枚举类型Size转换后的普通类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Size</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">Size</span>&gt; </span>&#123;	<span class="comment">//final，不能被继承</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size SMALL = <span class="keyword">new</span> Size(<span class="string">&quot;SMALL&quot;</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size MEDIUM = <span class="keyword">new</span> Size(<span class="string">&quot;MEDIUM&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size LARGE = <span class="keyword">new</span> Size(<span class="string">&quot;LARGE&quot;</span>,<span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Size[] VALUES =</span><br><span class="line">            <span class="keyword">new</span> Size[]&#123;SMALL,MEDIUM,LARGE&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//私有构造方法，接受name和ordinal，传递给父类。不能在外部创建新的实例。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String name, <span class="keyword">int</span> ordinal)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, ordinal);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Size[] values()&#123;</span><br><span class="line">        Size[] values = <span class="keyword">new</span> Size[VALUES.length];</span><br><span class="line">        System.arraycopy(VALUES, <span class="number">0</span>,</span><br><span class="line">                values, <span class="number">0</span>, VALUES.length);<span class="comment">//要复制的源数组VALUES,从源数组0的位置开始复制，目标数组为values，目标数组的下标位置是0，要复制的长度是VALUES的长度</span></span><br><span class="line">        <span class="keyword">return</span> values;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">valueOf</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Enum.valueOf(Size.class, name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>枚举类型本质上也是类，但由于编译器自动做了很多事情，它的使用也就更为简洁、安全和方便。</p>
  
       <!-- reward -->
       
@@ -185,6 +191,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            枚举的典型场景
+          
+        </div>
+      </a>
     
     
       <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%A5%BD%E5%A4%84/" class="article-nav-link">
