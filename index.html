@@ -155,6 +155,78 @@
     
     
     <article
+  id="post-异常类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/13/%E5%BC%82%E5%B8%B8%E7%B1%BB/"
+    >异常类</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/13/%E5%BC%82%E5%B8%B8%E7%B1%BB/" class="article-date">
+  <time datetime="2021-10-13T09:13:00.000Z" itemprop="datePublished">2021-10-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>NullPointerException和NumberFormatException都是异常类，所有异常类都有一个共同的父类<strong>Throwable</strong>。</p>
+<p>Throwable有4个public构造方法：</p>
+<p>1.public Throwable()</p>
+<p>2.public Throwable(String message)</p>
+<p>3.public Throwable(String message,Throwable cause)</p>
+<p>4.public Throwable(Throwable cause)</p>
+<p><strong>message表示异常信息，cause表示触发该异常的其他异常。</strong></p>
+<p>异常可以形成一个异常链，上层的异常由底层异常触发，cause表示底层异常。</p>
+<p><strong>异常类体系</strong></p>
+<p>以Throwable为根，Java API中定义了非常多的异常类，表示各种类型的异常，部分类示意如下：</p>
+<p><img src="https://i.loli.net/2021/10/13/fXNLOM4yDZIBGUq.jpg" alt="异常类体系.jpg"></p>
+<p>Throwable是所有异常的基类，它有两个子类Error和Excepetion。</p>
+<p><strong>Error表示系统错误或资源耗尽</strong>，由java系统自己使用，应用程序不应抛出和处理。比如图中列出的虚拟器错误(VirtualMachineError)、子类内存溢出错误(OutOfMemoryError)、栈溢出错误(StackOverflowError)。</p>
+<p><strong>Exception表示应用程序错误，它有很多子类，应用程序也可以通过继承Exception或其子类创建自定义异常</strong>，比如图中列出的IOException(输入输出I/O异常)，SQLException(数据库SQL异常)，RuntimeException（运行时异常）。</p>
+<p>​    </p>
+<p>RuntimeException(运行时异常)比较特殊，它的名字有点误导，因为其他异常也是运行时产生的，它表示的实际含义是unchecked exception (未受检异常)，相对而言，Exception的其他子类和Exception自身则是checked exception (受检异常)，Error及其子类也是unchecked exception。</p>
+<p>checked还是unchecked，区别在于java如何处理这两种异常。<strong>对于checked异常，java会强制要求开发者进行处理，否则会有编译错误，而对于unchecked异常则没有这个要求</strong>。</p>
+<p>​    </p>
+<p>异常类</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-NumberFormatException（数字格式异常）"
   class="article article-type-post"
   itemscope
@@ -719,63 +791,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-抽象类和接口"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/28/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/"
-    >抽象类和接口</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/28/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/" class="article-date">
-  <time datetime="2021-09-28T08:30:45.000Z" itemprop="datePublished">2021-09-28</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>抽象类和接口有类似之处，它们都不能用于创建对象，接口中的方法其实都是抽象方法。如果抽象类中只定义了抽象方法，那抽象类和接口就更像了。</p>
-<p>但抽象类和接口根本上是不同的，一个类可以实现多个接口，但只能继承一个类。</p>
-<p><strong>抽象类和接口是配合关系，它们经常一起使用，接口声明能力，抽象类提供默认实现，实现全部或部分方法，一个接口经常有一个对应的抽象类。</strong></p>
-<p>（感觉不会经常用的样子……）</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/abstract/" rel="tag">abstract</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interface/" rel="tag">interface</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
