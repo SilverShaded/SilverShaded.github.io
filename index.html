@@ -155,6 +155,65 @@
     
     
     <article
+  id="post-自定义异常"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/"
+    >自定义异常</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" class="article-date">
+  <time datetime="2021-10-19T11:41:11.000Z" itemprop="datePublished">2021-10-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>自定义异常类，一般通过继承Exception或者它的某个子类。<br>如果父类是RuntimeException或它的某个子类，则自定义异常也是unchecked exception。如果是Exception或Exception的其他子类，则自定义异常是checked exception。</p>
+<p>​    </p>
+<p>继承Exception的栗子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(String message, Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message,cause);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(cause);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>AppException没有定义额外的属性和代码，只是继承了Exception，定义了构造方法并调用了父类的构造方法。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-RuntimeException的常见子类"
   class="article article-type-post"
   itemscope
@@ -753,68 +812,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-程序打包"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/30/%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85/"
-    >程序打包</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/30/%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85/" class="article-date">
-  <time datetime="2021-09-30T08:49:50.000Z" itemprop="datePublished">2021-09-30</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>可见性范围从小到大是：</p>
-<p>private &lt; 默认(包) &lt; protected &lt; public</p>
-<p>​    </p>
-<p>为方便使用第三方代码，也为了方便我们写的代码给其他人使用，所以需要对代码进行<strong>打包</strong>。</p>
-<p>打包的一般不是源代码，而是编译后的代码，打包将多个编译后的文件打包为一个文件，方便其他程序调用。</p>
-<p>在java中，编译后的一个或多个包的java class文件可以打包为一个文件，<strong>java中打包命令为jar，打包后的文件后缀为.jar，一般称之为jar包</strong>。</p>
-<p>​    </p>
-<p>打包方式：</p>
-<p><strong>首先到编译后的java class文件根目录，然后运行”jar -cvf &lt;包名&gt;.jar &lt;最上层报名&gt;”的命令打包</strong>。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/package/" rel="tag">package</a></li></ul>
 
     </footer>
   </div>

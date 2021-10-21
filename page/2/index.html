@@ -155,6 +155,68 @@
     
     
     <article
+  id="post-程序打包"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/30/%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85/"
+    >程序打包</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/30/%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85/" class="article-date">
+  <time datetime="2021-09-30T08:49:50.000Z" itemprop="datePublished">2021-09-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>可见性范围从小到大是：</p>
+<p>private &lt; 默认(包) &lt; protected &lt; public</p>
+<p>​    </p>
+<p>为方便使用第三方代码，也为了方便我们写的代码给其他人使用，所以需要对代码进行<strong>打包</strong>。</p>
+<p>打包的一般不是源代码，而是编译后的代码，打包将多个编译后的文件打包为一个文件，方便其他程序调用。</p>
+<p>在java中，编译后的一个或多个包的java class文件可以打包为一个文件，<strong>java中打包命令为jar，打包后的文件后缀为.jar，一般称之为jar包</strong>。</p>
+<p>​    </p>
+<p>打包方式：</p>
+<p><strong>首先到编译后的java class文件根目录，然后运行”jar -cvf &lt;包名&gt;.jar &lt;最上层报名&gt;”的命令打包</strong>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/package/" rel="tag">package</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-内部类的定义"
   class="article article-type-post"
   itemscope
@@ -777,143 +839,6 @@
 <p><strong>虚方法表，就是在类加载的时候，为每个类创建一个表，这个表包括该类的对象所有动态绑定的方法及其地址，包括父类的方法，但一个方法只有一条记录，子类重写了父类方法后只会保留子类的。</strong></p>
 <p>​    </p>
 <p>虚方法表在类加载的时候生成，当通过对象动态绑定方法的时候，只需要查找这个表就可以了，不需要挨个查找每个父类。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-继承实现的基本原理"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"
-    >继承实现的基本原理 （不是很懂的一章）</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" class="article-date">
-  <time datetime="2021-09-15T08:45:12.000Z" itemprop="datePublished">2021-09-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>本节主要从概念上来介绍原理。</p>
-<p>​    </p>
-<p>首先创建一个基类Base，Base中包含实例变量instanceCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法、step方法和action方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类实例代码块，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类构造方法，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base staticCode: &quot;</span>+staticCode+<span class="string">&quot;, actualCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">        step();</span><br><span class="line">        System.out.println(<span class="string">&quot;end&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​     </p>
-<p>接下来设计出继承Base的子类Child，Child同样包含实例变量actualCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法，并且重写了step方法。</p>
-<p>Child类代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类实例代码块，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造方法，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child staticCode: &quot;</span>+staticCode+<span class="string">&quot;, instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​        </p>
-<p>使用这两个类的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   System.out.println(<span class="string">&quot;---- new Child()&quot;</span>);</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.action()&quot;</span>);</span><br><span class="line">   child.action();</span><br><span class="line"></span><br><span class="line">   Base base = child;</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.action()&quot;</span>);</span><br><span class="line">   base.action();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.staticCode: &quot;</span>+base.staticCode);</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.staticCode: &quot;</span>+child.staticCode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>child.action()的具体执行过程如下：</p>
-<p>1.查看child的对象类型，找到Child类型。在Child类型中寻找action方法，发现没有，于是到Base类中寻找。</p>
-<p>2.在Base类中找到了action方法，开始执行该方法。</p>
-<p>3.action先输出start，再从Child类型寻找step方法。</p>
-<p>4.在Child类型中找到了step方法，执行它，然后返回action方法</p>
-<p>5.继续执行action方法， 输出end</p>
-<p><strong>寻找要执行的实例方法的时候，是从对象的实际类型信息开始查找的，找不到的时候，再查找父类类型信息。</strong></p>
-<p>base.action和child.action都是<strong>动态绑定</strong>，动态绑定实现的机制，就是根据对象的实际类型查找要执行的方法，子类型中找不到的时候再查找父类。由于base和child指向的动态类型都是Child，所以执行结果一样。</p>
-<p>​    </p>
-<p>屏幕输入结果为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">---- <span class="keyword">new</span> Child()</span><br><span class="line">基类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">子类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">基类实例代码块，actualCode: <span class="number">0</span></span><br><span class="line">基类构造方法，actualCode: <span class="number">1</span></span><br><span class="line">子类实例代码块，instanceCode: <span class="number">0</span></span><br><span class="line">子类构造方法，instanceCode: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">---- child.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.staticCode: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">---- child.staticCode: <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p><strong>类的加载</strong></p>
-<p>在java中，类是动态加载的。</p>
-<p>第一次使用这个类的时候才会加载，加载一个类时，会查看其父类是否已加载。如果没有，则加载其父类。</p>
-<p>​    </p>
-<p>一个类的信息，主要包括以下部分：</p>
-<ul>
-<li><p>static变量</p>
-</li>
-<li><p>类初始化代码</p>
-</li>
-<li><p>static方法</p>
-</li>
-<li><p>实例变量</p>
-</li>
-<li><p>实例初始化代码</p>
-</li>
-<li><p>实例方法</p>
-</li>
-<li><p>父类信息引用</p>
-</li>
-</ul>
-<p>类初始化代码包括：</p>
-<ul>
-<li><p>定义static变量时的赋值语句</p>
-</li>
-<li><p>static初始化代码块</p>
-</li>
-</ul>
-<p>实例初始化代码包括：</p>
-<ul>
-<li>定义实例变量时的赋值语句</li>
-<li>实例初始化代码块</li>
-<li>构造方法</li>
-</ul>
-<p>类加载过程包括：</p>
-<ul>
-<li><p>分配内存，保存类的信息</p>
-</li>
-<li><p>给static变量赋默认值</p>
-</li>
-<li><p>加载父类</p>
-</li>
-<li><p>设置父子关系</p>
-</li>
-<li><p>执行类初始化代码</p>
-</li>
-</ul>
-<p>类初始化代码，是先执行父类，再执行子类。</p>
-<p>父类执行时，子类static变量是有值的，为默认值。</p>
-<p>​    </p>
-<p>类的信息放在<strong>内存区</strong>，在java中称为<strong>方法区</strong>。</p>
-<p><img src="https://i.loli.net/2021/09/17/ur9HsMUE4vA2niQ.jpg" alt="继承实现.jpg"></p>
-<p>如上图，class_init()表示类初始化代码，instance_init()表示实例初始化代码。实例初始化代码包括了实例初始化代码块和构造方法。</p>
-<p>​    </p>
-<p>对于上方的Base类和Child类，它们的内存布局就像图中的方法区。</p>
-<p>​    </p>
  
       <!-- reward -->
       
