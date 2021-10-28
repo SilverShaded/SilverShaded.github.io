@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> Silver - Shaded - Cat</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/SilverShaded"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Silver - Shaded - Cat</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['探索世界的尽头', '方寸之间，随想之地', ''],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-虚方法表"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/17/%E8%99%9A%E6%96%B9%E6%B3%95%E8%A1%A8/"
+    >虚方法表</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/17/%E8%99%9A%E6%96%B9%E6%B3%95%E8%A1%A8/" class="article-date">
+  <time datetime="2021-09-17T12:25:48.000Z" itemprop="datePublished">2021-09-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>如果继承的层次比较深，要调用的方法位于比较上层的父类，则调用的效率是比较低的，因为每次调用都要进行很多次查找。</p>
+<p>大多数系统使用一种称为<strong>虚方法表</strong>的方法来优化调用的效率。</p>
+<p><img src="https://i.loli.net/2021/09/17/YFbxOS6PBJDyp3q.jpg" alt="虚方法表.jpg"></p>
+<p><strong>虚方法表，就是在类加载的时候，为每个类创建一个表，这个表包括该类的对象所有动态绑定的方法及其地址，包括父类的方法，但一个方法只有一条记录，子类重写了父类方法后只会保留子类的。</strong></p>
+<p>​    </p>
+<p>虚方法表在类加载的时候生成，当通过对象动态绑定方法的时候，只需要查找这个表就可以了，不需要挨个查找每个父类。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承实现的基本原理"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"
+    >继承实现的基本原理 （不是很懂的一章）</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/15/%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2021-09-15T08:45:12.000Z" itemprop="datePublished">2021-09-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>本节主要从概念上来介绍原理。</p>
+<p>​    </p>
+<p>首先创建一个基类Base，Base中包含实例变量instanceCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法、step方法和action方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类实例代码块，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;基类构造方法，actualCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base staticCode: &quot;</span>+staticCode+<span class="string">&quot;, actualCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;start&quot;</span>);</span><br><span class="line">        step();</span><br><span class="line">        System.out.println(<span class="string">&quot;end&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​     </p>
+<p>接下来设计出继承Base的子类Child，Child同样包含实例变量actualCode、静态变量staticCode、一段静态初始化代码块、一段实例初始化代码块、一个构造方法，并且重写了step方法。</p>
+<p>Child类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> staticCode;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> instanceCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类静态代码块，staticCode: &quot;</span>+staticCode);</span><br><span class="line">        staticCode = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类实例代码块，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造方法，instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">        instanceCode = <span class="number">20</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child staticCode: &quot;</span>+staticCode+<span class="string">&quot;, instanceCode: &quot;</span>+instanceCode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        </p>
+<p>使用这两个类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   System.out.println(<span class="string">&quot;---- new Child()&quot;</span>);</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.action()&quot;</span>);</span><br><span class="line">   child.action();</span><br><span class="line"></span><br><span class="line">   Base base = child;</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.action()&quot;</span>);</span><br><span class="line">   base.action();</span><br><span class="line"></span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- base.staticCode: &quot;</span>+base.staticCode);</span><br><span class="line">   System.out.println(<span class="string">&quot;\n---- child.staticCode: &quot;</span>+child.staticCode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>child.action()的具体执行过程如下：</p>
+<p>1.查看child的对象类型，找到Child类型。在Child类型中寻找action方法，发现没有，于是到Base类中寻找。</p>
+<p>2.在Base类中找到了action方法，开始执行该方法。</p>
+<p>3.action先输出start，再从Child类型寻找step方法。</p>
+<p>4.在Child类型中找到了step方法，执行它，然后返回action方法</p>
+<p>5.继续执行action方法， 输出end</p>
+<p><strong>寻找要执行的实例方法的时候，是从对象的实际类型信息开始查找的，找不到的时候，再查找父类类型信息。</strong></p>
+<p>base.action和child.action都是<strong>动态绑定</strong>，动态绑定实现的机制，就是根据对象的实际类型查找要执行的方法，子类型中找不到的时候再查找父类。由于base和child指向的动态类型都是Child，所以执行结果一样。</p>
+<p>​    </p>
+<p>屏幕输入结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">---- <span class="keyword">new</span> Child()</span><br><span class="line">基类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">子类静态代码块，staticCode: <span class="number">0</span></span><br><span class="line">基类实例代码块，actualCode: <span class="number">0</span></span><br><span class="line">基类构造方法，actualCode: <span class="number">1</span></span><br><span class="line">子类实例代码块，instanceCode: <span class="number">0</span></span><br><span class="line">子类构造方法，instanceCode: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">---- child.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.action()</span><br><span class="line">start</span><br><span class="line">child staticCode: <span class="number">10</span>, instanceCode: <span class="number">20</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">---- base.staticCode: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">---- child.staticCode: <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p><strong>类的加载</strong></p>
+<p>在java中，类是动态加载的。</p>
+<p>第一次使用这个类的时候才会加载，加载一个类时，会查看其父类是否已加载。如果没有，则加载其父类。</p>
+<p>​    </p>
+<p>一个类的信息，主要包括以下部分：</p>
+<ul>
+<li><p>static变量</p>
+</li>
+<li><p>类初始化代码</p>
+</li>
+<li><p>static方法</p>
+</li>
+<li><p>实例变量</p>
+</li>
+<li><p>实例初始化代码</p>
+</li>
+<li><p>实例方法</p>
+</li>
+<li><p>父类信息引用</p>
+</li>
+</ul>
+<p>类初始化代码包括：</p>
+<ul>
+<li><p>定义static变量时的赋值语句</p>
+</li>
+<li><p>static初始化代码块</p>
+</li>
+</ul>
+<p>实例初始化代码包括：</p>
+<ul>
+<li>定义实例变量时的赋值语句</li>
+<li>实例初始化代码块</li>
+<li>构造方法</li>
+</ul>
+<p>类加载过程包括：</p>
+<ul>
+<li><p>分配内存，保存类的信息</p>
+</li>
+<li><p>给static变量赋默认值</p>
+</li>
+<li><p>加载父类</p>
+</li>
+<li><p>设置父子关系</p>
+</li>
+<li><p>执行类初始化代码</p>
+</li>
+</ul>
+<p>类初始化代码，是先执行父类，再执行子类。</p>
+<p>父类执行时，子类static变量是有值的，为默认值。</p>
+<p>​    </p>
+<p>类的信息放在<strong>内存区</strong>，在java中称为<strong>方法区</strong>。</p>
+<p><img src="https://i.loli.net/2021/09/17/ur9HsMUE4vA2niQ.jpg" alt="继承实现.jpg"></p>
+<p>如上图，class_init()表示类初始化代码，instance_init()表示实例初始化代码。实例初始化代码包括了实例初始化代码块和构造方法。</p>
+<p>​    </p>
+<p>对于上方的Base类和Child类，它们的内存布局就像图中的方法区。</p>
+<p>​    </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-防止继承"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%98%B2%E6%AD%A2%E7%BB%A7%E6%89%BF/"
+    >继承的细节--防止继承</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%98%B2%E6%AD%A2%E7%BB%A7%E6%89%BF/" class="article-date">
+  <time datetime="2021-09-13T10:55:18.000Z" itemprop="datePublished">2021-09-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定</li>
+<li>重载和重写 </li>
+<li>父子类型转换</li>
+<li>继承访问权限（protected）</li>
+<li>可见性重写</li>
+<li>防止继承（final） <font color=blue>now!</font></li>
+</ul>
+<p><strong>final</strong>关键字可以防止类被继承。</p>
+<p>一个java类，默认情况下都是可以被继承的。但加了final关键字之后就不能被继承了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中的Base类不能被继承。</p>
+<p>​    </p>
+<p>一个非final的类，类中的public/protected实例方法默认情况下都是可以被重写的。但加了final关键字后就不能被重写了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;不能被重写&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中的test方法不能被重写。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-可见性重写"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E5%8F%AF%E8%A7%81%E6%80%A7%E9%87%8D%E5%86%99/"
+    >继承的细节--可见性重写</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/13/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E5%8F%AF%E8%A7%81%E6%80%A7%E9%87%8D%E5%86%99/" class="article-date">
+  <time datetime="2021-09-13T10:34:22.000Z" itemprop="datePublished">2021-09-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li><p>构造方法  </p>
+</li>
+<li><p>重名与静态绑定 </p>
+</li>
+<li><p>重载和重写</p>
+</li>
+<li><p>父子类型转换 </p>
+</li>
+<li><p>继承访问权限（protected）</p>
+</li>
+<li><p>可见性重写 <font color=blue>now!</font></p>
+</li>
+<li><p>防止继承（final）</p>
+</li>
+</ul>
+<p><strong>重写时，子类方法不能降低父类方法的可见性</strong>。</p>
+<p>如果父类是public，则子类也必须是public。</p>
+<p>如果父类是protected，子类可以是protected，也可以是public，即子类可以升级父类方法的可见性，但不能降低。</p>
+<p>子类必须支持父类所有对外的行为，所以不能降低可见性；子类可以增加父类的行为，所以能提升可见性。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-protected"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-protected/"
+    >继承的细节--protected</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-protected/" class="article-date">
+  <time datetime="2021-09-03T11:08:43.000Z" itemprop="datePublished">2021-09-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定 </li>
+<li>重载和重写</li>
+<li>父子类型转换 </li>
+<li>继承访问权限（protected） <font color=blue>now!</font></li>
+<li>可见性重写</li>
+<li>防止继承（final）</li>
+</ul>
+<p>​    </p>
+<p>除了public/private之外，还有一种可见性介于中间的修饰符<strong>protected</strong>。</p>
+<p>protected表示虽然不能被外部操作访问，但可被子类访问，还可被同一个包中的其他类访问（不管其他类是否是该类的子类）。</p>
+<p>​    </p>
+<p>举个栗子，基类Base代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> currentStep;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.currentStep = <span class="number">1</span>;</span><br><span class="line">        step1();</span><br><span class="line">        <span class="keyword">this</span>.currentStep = <span class="number">2</span>;</span><br><span class="line">        step2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>含有protected修饰符的是变量currentStep和方法step1、step2，还对外提供了方法action。</p>
+<p>子类一般不重写action，只重写step1和step2。同时，子类可以直接访问currentStep查看进行到了哪一步。</p>
+<p>子类Child的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step1</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child step &quot;</span>+<span class="keyword">this</span>.currentStep);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step2</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child step &quot;</span>+<span class="keyword">this</span>.currentStep);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用子类的main方法代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line">   child.action();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">child step <span class="number">1</span></span><br><span class="line">child step <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>子类通过重写protected方法step1和step2，来修改对外的行为。</p>
+<p>​    </p>
+<p>这种思路和设计在设计模式中被称之为<strong>模板方法</strong>，action就是一个模板方法，它定义了实现的模板，而具体实现由子类提供。</p>
+<p>模板方法在很多框架中由广泛的应用，这是使用protected的一个常用场景。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-父子类型转换"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E7%88%B6%E5%AD%90%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+    >继承的细节--父子类型转换</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E7%88%B6%E5%AD%90%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2021-09-03T04:00:31.000Z" itemprop="datePublished">2021-09-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定 </li>
+<li>重载和重写</li>
+<li>父子类型转换 <font color=blue>now!</font></li>
+<li>继承访问权限（protected）</li>
+<li>可见性重写</li>
+<li>防止继承（final）</li>
+</ul>
+<p>​    </p>
+<p>根据《从图形处理类看继承和多态》一章可知，子类型的对象可以赋值给父类型的引用变量。</p>
+<p>但父类型的变量不一定能成功赋值给子类型的变量，<strong>向下转型</strong>不一定成功。</p>
+<p>栗子如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Base base = <span class="keyword">new</span> Child();</span><br><span class="line">Child child = (Child)base;</span><br></pre></td></tr></table></figure>
+
+<p>Child child = (Child)base就是将变量base的类型强制转换为Child并赋值为child。<br>因为base的动态类型就是child，所以向下转型没问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Base base = <span class="keyword">new</span> Base();</span><br><span class="line">Child child = (Child)base;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码，在运行时会抛出错误，错误为类型转换异常。</p>
+<p>​    </p>
+<p><strong>一个父类的变量，能否转换为一个子类的变量，取决于这个父类变量的动态类型（即引用的对象类型）是不是这个子类或这个子类的子类。</strong></p>
+<p>​    </p>
+<p>给定一个父类的变量，通过<strong>instanceof</strong>关键字，能知道它到底是不是某个子类的对象，从而安全的进行类型转换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canCast</span><span class="params">(Base b)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> b <span class="keyword">instanceof</span> Child; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>canCast函数返回Base类型变量b是否可以转换为Child类型。</p>
+<p>instanceof前面是变量，后面是类，返回值为true时表示变量引用的对象是该类或其子类的对象，false则反之。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-重载和重写"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99/"
+    >继承的细节--重载和重写</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99/" class="article-date">
+  <time datetime="2021-09-02T12:19:31.000Z" itemprop="datePublished">2021-09-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li><p>构造方法  </p>
+</li>
+<li><p>重名与静态绑定</p>
+</li>
+<li><p>重载和重写 <font color=blue>now!</font></p>
+</li>
+<li><p>父子类型转换</p>
+</li>
+<li><p>继承访问权限（protected）</p>
+</li>
+<li><p>可见性重写</p>
+</li>
+<li><p>防止继承（final）</p>
+</li>
+</ul>
+<p>​    </p>
+<p><strong>重载和重写</strong></p>
+<p>重载=方法名称相同，但参数签名不同（参数个数或类型或顺序不同）。</p>
+<p>重写= 子类重写父类相同参数签名的方法。</p>
+<p>​    </p>
+<p>举一个栗子，父类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base_int_int&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>父类定义了sum(int a,int b)方法。</p>
+<p>子类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sum</span><span class="params">(<span class="keyword">long</span> a,<span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child_long_long&quot;</span>);</span><br><span class="line">       <span class="keyword">return</span> a+b;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类定义了sum(long a,long b)方法。</p>
+<p>​    </p>
+<p>调用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Child child = <span class="keyword">new</span> Child();</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">        child.sum(a,b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然每个sum方法都是兼容的，int类型可以自动转型为long，当只有一个方法的时候，那个方法就会被调用。</p>
+<p>但现在有多个方法可用，子类的sum方法参数类型虽然兼容但是不完全匹配，而父类的sum方法参数类型是完全匹配的。</p>
+<p>所以父类的sum方法被调用了，输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_int_int</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>如果父类将其中一个int参数改为long参数，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base_int_long&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再运行程序，调用的依然是父类的sum函数，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_int_long</span><br></pre></td></tr></table></figure>
+
+<p>虽然子类和父类的两个方法的参数类型都不完全匹配，但是相比之下，还是父类的sum方法更匹配一些，至少有一个int参数。</p>
+<p>​    </p>
+<p>现在修改一下子类代码，让它的参数类型和父类一致：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Base base = <span class="keyword">new</span> Child();<span class="comment">//静态类型是Base，动态类型是Child</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">        base.sum(a,b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">child_int_long</span><br></pre></td></tr></table></figure>
+
+<p>说明这一回调用的是子类的sum函数。</p>
+<p>​    </p>
+<p>从上面的这些栗子中，我们可以得知——<strong>当有多个重名函数的时候，在决定要调用哪个函数的过程中，首先是按照参数类型进行匹配的。换句话说，寻找在所有重载函数中最匹配的。然后才看变量的动态类型，进行动态绑定。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-重名与静态绑定"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/"
+    >继承的细节--重名与静态绑定</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time datetime="2021-09-02T10:44:48.000Z" itemprop="datePublished">2021-09-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定 <font color=blue>now!</font></li>
+<li>重载和重写</li>
+<li>父子类型转换</li>
+<li>继承访问权限（protected）</li>
+<li>可见性重写</li>
+<li>防止继承（final）</li>
+</ul>
+<p>​    </p>
+<p><strong>重名</strong></p>
+<p>对于private变量和方法，它们只能在类内被访问，访问的也永远是当前类的对象。</p>
+<p>​    </p>
+<p>对于public变量和方法，在类内访问的是当前类的，但子类可以通过super.明确指定访问父类的。</p>
+<p>在类外，则要看访问变量的静态类型，静态类型是父类，则访问父类的变量和方法；静态类型是子类，则访问子类的变量和方法。</p>
+<p>​    </p>
+<p>接下来举个栗子。父类Base代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;static_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;base&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Base类定义了一个public静态变量s，一个public实例变量m、一个静态方法staticTest。</p>
+<p>子类Child代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;child_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;child&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类定义了和父类重名的变量m、s和方法staticTest。</p>
+<p>对于一个子类对象，它就有了两份变量和方法。在子类内部访问的时候，访问的是子类的。子类变量和方法隐藏了父类对应的变量和方法。</p>
+<p>​     </p>
+<p>调用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    Base b = c;</span><br><span class="line">    </span><br><span class="line">    System.out.println(b.s);</span><br><span class="line">    System.out.println(b.m);</span><br><span class="line">    b.staticTest();</span><br><span class="line">    </span><br><span class="line">    System.out.println(c.s);</span><br><span class="line">    System.out.println(c.m);</span><br><span class="line">    c.staticTest();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个子类对象new Child()，然后将该对象分别赋值给子类引用变量c和父类引用变量b。</p>
+<p>再通过b和c分别引用变量和方法。</p>
+<p>输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">static_base</span><br><span class="line">base</span><br><span class="line">base <span class="keyword">static</span>: static_base</span><br><span class="line">child_base</span><br><span class="line">child</span><br><span class="line">child <span class="keyword">static</span>: child_base</span><br></pre></td></tr></table></figure>
+
+<p>通过b(静态类型Base)访问时，访问的是Base的变量和方法。通过c(静态类型Child)访问时，访问的是Child的变量和方法。</p>
+<p>这叫做<strong>静态绑定</strong>，即访问绑定到变量的静态类型。</p>
+<p><strong>实例变量、静态变量、private方法，都是静态绑定的。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-继承的细节-构造方法"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/"
+    >继承的细节--构造方法</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2021-09-02T08:01:07.000Z" itemprop="datePublished">2021-09-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li><p>构造方法  <font color=blue>now!</font></p>
+</li>
+<li><p>重名与静态绑定</p>
+</li>
+<li><p>重载和重写</p>
+</li>
+<li><p>父子类型转换</p>
+</li>
+<li><p>继承访问权限（protected）</p>
+</li>
+<li><p>可见性重写</p>
+</li>
+<li><p>防止继承（final）</p>
+</li>
+</ul>
+<p>​    </p>
+<p>​    </p>
+<p><strong>构造方法</strong></p>
+<p>子类可以通过super(…)调用父类的构造方法。如果子类没有通过super(…)调用，则会自动调用父类的默认构造方法。</p>
+<p>如果父类没有默认构造方法，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String member;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.member = member;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上方代码中的类只有一个带参数的构造函数，没有默认构造方法。</p>
+<p>这个时候，它的任何子类都必须在构造方法中通过super(…)调用Base的带参数的构造方法。</p>
+<p>如下所示，否则Java会提示编译错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">(String member)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(member);	<span class="comment">//调用Base的带参构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>​    </p>
+<p><strong>避免父类的构造方法调用可重写的方法</strong></p>
+<p>如果在父类构造方法中调用了可被重写的方法，则可能会出现意想不到的结果。</p>
+<p>父类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        test(); <span class="comment">//构造函数中调用test方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Child</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类有一个实例变量a，a初始赋值为123。子类重写了test方法，要输出a的值。</p>
+<p>使用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    c.test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>第一次输出0，是在new过程中输出的。</p>
+<p>new过程中，首先初始化父类Base，父类构造方法调用test()，test被子类重写了，就会调用子类的test方法。</p>
+<p>子类方法访问子类实例变量a，这个时候子类的实例变量的赋值语句和构造方法还没有执行，所以输出的默认值是0。</p>
+<p>​    </p>
+<p>通过上面的例子，可以得出结论——<strong>在父类构造方法中调用可被子类重写的方法，是一种不好的实践，容易引起混淆，应该只调用private的方法</strong>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-从图形处理类看继承和多态"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/31/%E4%BB%8E%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E7%B1%BB%E7%9C%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/"
+    >从图形处理类看继承和多态</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/31/%E4%BB%8E%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E7%B1%BB%E7%9C%8B%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="article-date">
+  <time datetime="2021-08-31T11:00:31.000Z" itemprop="datePublished">2021-08-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="https://i.loli.net/2021/08/31/hcLzn9FmegXV2G4.jpg" alt="各类图形.jpg"></p>
+<p>上图有一些基本的图形。接下来，用以下类来定义图形：</p>
+<ul>
+<li><p>父类Shape，表示图形</p>
+</li>
+<li><p>类Circle，表示圆</p>
+</li>
+<li><p>类Line，表示直线</p>
+</li>
+<li><p>类ArrowLine，表示带箭头的直线</p>
+</li>
+</ul>
+<p>​    </p>
+<p>图形Shape类有一个表示颜色的属性，和一个表示绘制的方法，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类：图形类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_COLOR = <span class="string">&quot;black&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> String color;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Shape</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(DEFAULT_COLOR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Shape</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.color = color;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getColor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> color;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.color = color;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;draw shape&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>圆circle类继承自Shape，但包括了Shape没有的中心点和半径属性，以及额外的方法area，用于计算面积。</p>
+<p>此外又重写了draw方法。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="comment">//中心点</span></span><br><span class="line">    <span class="keyword">private</span> Point center;</span><br><span class="line">    <span class="comment">//半径</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> r;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(Point center,<span class="keyword">double</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.center = center;</span><br><span class="line">        <span class="keyword">this</span>.r = r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;draw circle at &quot;</span>+center.toString()+<span class="string">&quot; with r &quot;</span></span><br><span class="line">        +r+<span class="string">&quot;, using color : &quot;</span>+getColor());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math.PI*r*r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>直线Line类继承Shape类，它有两个点，有一个获取长度的方法，并且重写了draw方法。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Line</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Point start;</span><br><span class="line">    <span class="keyword">private</span> Point end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Line</span><span class="params">(Point start,Point end,String color)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(color);</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">length</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start.distance(end);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;draw line from &quot;</span>+ start.toString() + <span class="string">&quot; to &quot;</span></span><br><span class="line">        +end.toString()+<span class="string">&quot;,using color &quot;</span>+<span class="keyword">super</span>.getColor());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>带箭头直线ArrowLine类继承自Line类，多了表示两端是否有箭头的两个属性，也重写了draw方法。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrowLine</span> <span class="keyword">extends</span> <span class="title">Line</span></span>&#123;</span><br><span class="line">    <span class="comment">//起点是否有箭头</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> startArrow;</span><br><span class="line">    <span class="comment">//终点是否有箭头</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> endArrow;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrowLine</span><span class="params">(Point start,Point end,String color,</span></span></span><br><span class="line"><span class="params"><span class="function">                     <span class="keyword">boolean</span> startArrow,<span class="keyword">boolean</span> endArrow)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(start,end,color);</span><br><span class="line">        <span class="keyword">this</span>.startArrow = startArrow;</span><br><span class="line">        <span class="keyword">this</span>.endArrow = endArrow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.draw();</span><br><span class="line">        <span class="keyword">if</span> (startArrow) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;draw start arrow&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (endArrow) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;draw end arrow&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>super.draw();表示调用父类的draw()方法。</p>
+<p>​    </p>
+<p>使用继承的一个好处是可以统一处理不同子类型的对象。</p>
+<p>比如说，设计一个图形管理ShapeManager类，它负责管理画板上的所有图形对象并负责绘制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">//图形最大个数为100</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_NUM = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> Shape[] shapes = <span class="keyword">new</span> Shape[MAX_NUM];</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> shapeNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addShape</span><span class="params">(Shape shape)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (shapeNum &lt; MAX_NUM) &#123;</span><br><span class="line">            shapes[shapeNum++] = shape;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;shapeNum;i++) &#123;</span><br><span class="line">            shapes[i].draw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上方代码，ShapeManager使用一个数组保存所有的shape，在draw方法中调用每个shape的draw方法。</p>
+<p>​     </p>
+<p>接下来使用ShapeManager：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   ShapeManager manager = <span class="keyword">new</span> ShapeManager();</span><br><span class="line"></span><br><span class="line">   manager.addShape(<span class="keyword">new</span> Circle(<span class="keyword">new</span> Point(<span class="number">4</span>,<span class="number">4</span>),<span class="number">3</span>)); <span class="comment">//添加圆形</span></span><br><span class="line">   manager.addShape(<span class="keyword">new</span> Line(<span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>),<span class="keyword">new</span> Point(<span class="number">3</span>,<span class="number">4</span>),<span class="string">&quot;green&quot;</span>)); <span class="comment">//添加直线</span></span><br><span class="line">   manager.addShape(<span class="keyword">new</span> ArrowLine(<span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>),<span class="keyword">new</span> Point(<span class="number">5</span>,<span class="number">5</span>),<span class="string">&quot;black&quot;</span>,<span class="keyword">false</span>,<span class="keyword">false</span>)); <span class="comment">//添加箭头线</span></span><br><span class="line"></span><br><span class="line">   manager.draw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建了三个图形，分别是一个圆、直线、箭头线，然后加到ShapeManager中，再调用manager的draw方法。</p>
+<p>在addShape方法中，参数Shape shape，声明的类型是Shape，而实际的类型则分别是Circle、Line、ArrowLine。子类对象赋值给父类引用变量，叫做<strong>向上转型</strong>，转型=转换类型，向上转型=转换为父类类型。</p>
+<p>变量Shape可以引用任何Shape子类类型的对象，称为<strong>多态</strong>，即<strong>一种类型的变量，可引用多种实际类型对象</strong>。</p>
+<p>对于变量shape，它有两个类型，类型Shape，我们称之为shape的<strong>静态类型</strong>；类型Circle/Line/ArrowLine，我们称之为shape的<strong>动态类型</strong>。</p>
+<p>在ShapeManager的draw方法中，shapes[i].draw()调用的是其对应动态类型的draw方法，这称之为方法的<strong>动态绑定</strong>。</p>
+<p>​    </p>
+<p>为什么要有多态和动态绑定呢？创建对象的代码 (ShapeManager以外的代码）和操作对象的代码(ShapeManager本身的代码），经常不在一起，操作对象的代码往往只知道对象是某种父类型，也往往只需要知道它是某种父类型就可以了。</p>
+<p><strong>多态和动态绑定是计算机程序中的一种重要思维方式，使得操作对象的程序不需要关注对象的实际类型，从而可以统一处理不同对象，但又能实现每个对象的特有行为。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> Silver Shaded
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Silver - Shaded - Cat"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">index</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">archives</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">category</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">tags</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/network/">network</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/algorithm/">algorithm</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/java/">java</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/travel/">travel</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/pet">pet</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2021/about">aboutMe</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

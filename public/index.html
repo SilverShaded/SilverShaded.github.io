@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> Silver - Shaded - Cat</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/SilverShaded"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Silver - Shaded - Cat</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['探索世界的尽头', '方寸之间，随想之地', ''],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-异常中的finally"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/22/%E5%BC%82%E5%B8%B8%E4%B8%AD%E7%9A%84finally/"
+    >异常中的finally</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/22/%E5%BC%82%E5%B8%B8%E4%B8%AD%E7%9A%84finally/" class="article-date">
+  <time datetime="2021-10-22T12:10:51.000Z" itemprop="datePublished">2021-10-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>catch后面可以跟<strong>finally</strong>语句，语法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//可能抛出异常</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    <span class="comment">//捕获异常</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">//不管有无异常都执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>finally内的代码不管有无异常发生</strong>，都会执行：</p>
+<ul>
+<li><p>如果没有异常发生，在try内的代码执行结束后执行。</p>
+</li>
+<li><p>如果有异常发生且被catch捕获，在catch内的代码执行结束后执行。</p>
+</li>
+<li><p>如果有异常发生但没被捕获，则在异常被抛给上层之前执行。</p>
+</li>
+</ul>
+<p>由于finally的这个特点，它一般用于释放资源，如数据库连接、文件流等。</p>
+<p>​    </p>
+<p>try/catch/finall语法中，catch不是必须的，可以只有try/finally。这表示不捕获异常，异常自动向上传递。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-自定义异常"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/"
+    >自定义异常</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/19/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" class="article-date">
+  <time datetime="2021-10-19T11:41:11.000Z" itemprop="datePublished">2021-10-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>自定义异常类，一般通过继承Exception或者它的某个子类。<br>如果父类是RuntimeException或它的某个子类，则自定义异常也是unchecked exception。如果是Exception或Exception的其他子类，则自定义异常是checked exception。</p>
+<p>​    </p>
+<p>继承Exception的栗子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(String message, Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message,cause);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(cause);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>AppException没有定义额外的属性和代码，只是继承了Exception，定义了构造方法并调用了父类的构造方法。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-RuntimeException的常见子类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/19/RuntimeException%E7%9A%84%E5%B8%B8%E8%A7%81%E5%AD%90%E7%B1%BB/"
+    >RuntimeException的常见子类</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/19/RuntimeException%E7%9A%84%E5%B8%B8%E8%A7%81%E5%AD%90%E7%B1%BB/" class="article-date">
+  <time datetime="2021-10-19T11:10:34.000Z" itemprop="datePublished">2021-10-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <table>
+<thead>
+<tr>
+<th align="center">异常</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">NullPointerException</td>
+<td align="center">空指针异常</td>
+</tr>
+<tr>
+<td align="center">IllegalStateException</td>
+<td align="center">非法状态</td>
+</tr>
+<tr>
+<td align="center">ClassCastException</td>
+<td align="center">非法强制类型转换</td>
+</tr>
+<tr>
+<td align="center">IllegalArgumentException</td>
+<td align="center">参数错误</td>
+</tr>
+<tr>
+<td align="center">NumberFormatException</td>
+<td align="center">数字格式错误</td>
+</tr>
+<tr>
+<td align="center">ArrayIndexOutOfBoundsException</td>
+<td align="center">数组索引越界</td>
+</tr>
+<tr>
+<td align="center">StringIndexOutOfBoundsException</td>
+<td align="center">字符串索引越界</td>
+</tr>
+</tbody></table>
+<p>这些异常类其实并没有比Throwable这个基类多多少属性和方法，大部分类在继承父类后只是定义了几个构造方法，这些构造方法也只是强调了父类的构造方法。</p>
+<p>定义那么多类，主要是为了名字不同。异常类的名字本身就代表了异常的关键信息。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-异常类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/13/%E5%BC%82%E5%B8%B8%E7%B1%BB/"
+    >异常类</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/13/%E5%BC%82%E5%B8%B8%E7%B1%BB/" class="article-date">
+  <time datetime="2021-10-13T09:13:00.000Z" itemprop="datePublished">2021-10-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>NullPointerException和NumberFormatException都是异常类，所有异常类都有一个共同的父类<strong>Throwable</strong>。</p>
+<p>Throwable有4个public构造方法：</p>
+<p>1.public Throwable()</p>
+<p>2.public Throwable(String message)</p>
+<p>3.public Throwable(String message,Throwable cause)</p>
+<p>4.public Throwable(Throwable cause)</p>
+<p><strong>message表示异常信息，cause表示触发该异常的其他异常。</strong></p>
+<p>异常可以形成一个异常链，上层的异常由底层异常触发，cause表示底层异常。</p>
+<p><strong>异常类体系</strong></p>
+<p>以Throwable为根，Java API中定义了非常多的异常类，表示各种类型的异常，部分类示意如下：</p>
+<p><img src="https://i.loli.net/2021/10/13/fXNLOM4yDZIBGUq.jpg" alt="异常类体系.jpg"></p>
+<p>Throwable是所有异常的基类，它有两个子类Error和Excepetion。</p>
+<p><strong>Error表示系统错误或资源耗尽</strong>，由java系统自己使用，应用程序不应抛出和处理。比如图中列出的虚拟器错误(VirtualMachineError)、子类内存溢出错误(OutOfMemoryError)、栈溢出错误(StackOverflowError)。</p>
+<p><strong>Exception表示应用程序错误，它有很多子类，应用程序也可以通过继承Exception或其子类创建自定义异常</strong>，比如图中列出的IOException(输入输出I/O异常)，SQLException(数据库SQL异常)，RuntimeException（运行时异常）。</p>
+<p>​    </p>
+<p>RuntimeException(运行时异常)比较特殊，它的名字有点误导，因为其他异常也是运行时产生的，它表示的实际含义是unchecked exception (未受检异常)，相对而言，Exception的其他子类和Exception自身则是checked exception (受检异常)，Error及其子类也是unchecked exception。</p>
+<p>checked还是unchecked，区别在于java如何处理这两种异常。<strong>对于checked异常，java会强制要求开发者进行处理，否则会有编译错误，而对于unchecked异常则没有这个要求</strong>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-NumberFormatException（数字格式异常）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/13/NumberFormatException%EF%BC%88%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%BC%82%E5%B8%B8%EF%BC%89/"
+    >NumberFormatException（数字格式异常）</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/13/NumberFormatException%EF%BC%88%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%BC%82%E5%B8%B8%EF%BC%89/" class="article-date">
+  <time datetime="2021-10-13T06:48:35.000Z" itemprop="datePublished">2021-10-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入数字:&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> num = Integer.parseInt(scanner.next()); <span class="comment">//解析控制台输入的整数</span></span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>scanner要求输入数字，并通过Integer.parseInt将参数转换为一个整数，再输出这个整数。 </p>
+<p>如果输入123，屏幕会输出123，但如果用户输入的不是数字，比如doge，屏幕会输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.NumberFormatException: For input string: <span class="string">&quot;doge&quot;</span></span><br><span class="line">	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:<span class="number">65</span>)</span><br><span class="line">	at java.lang.Integer.parseInt(Integer.java:<span class="number">580</span>)</span><br><span class="line">	at java.lang.Integer.parseInt(Integer.java:<span class="number">615</span>)</span><br><span class="line">	at com.example.restservice.ExceptionTest.main(ExceptionTest.java:<span class="number">9</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>出现异常NumberFormatException。</p>
+<p>​     </p>
+<p>对于屏幕输出中的异常栈信息，开发者是可以理解的，但普通用户无法理解。<br>我们需要给用户一个更为友好的信息，告诉用户，ta应该输入的是数字。要做到这一点，我们需要自己“捕获”异常。</p>
+<p>“捕获”是指使用try/catch关键字，捕获异常后的示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入数字:&quot;</span>);</span><br><span class="line">        String input = scanner.next();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> num = Integer.parseInt(input); <span class="comment">//解析控制台输入的整数</span></span><br><span class="line">            System.out.println(num);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;参数&quot;</span>+input+<span class="string">&quot;不是有效的数字，请输入数字。&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<strong>try/catch捕获并处理了异常</strong>，try后面的大括号{}内包含可能抛出异常的代码，括号后的catch语句包含能捕获的异常和代理代码。</p>
+<p>catch后面括号内是异常信息，包括异常类型和变量名，这里是NumberFormatException e。大括号{}内是处理代码，这里输出一个更为友好的提示信息。</p>
+<p><strong>捕获异常后，程序就不会异常退出了，但try语句内异常点之后的其他代码就不会执行了，执行完catch内的语句后，程序会继续执行catch大括号外的代码。</strong></p>
+<p>​    </p>
+<p>异常是相对于return的一种退出机制，可以由系统触发，也可以由程序通过<strong>throw语句</strong>触发。异常可以通过try/catch语句进行捕获并处理，如果没有捕获，则会导致程序退出并输出异常栈信息。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-NullPointerException（空指针异常）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/13/NullPointerException%EF%BC%88%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8%EF%BC%89/"
+    >NullPointerException（空指针异常）</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/13/NullPointerException%EF%BC%88%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8%EF%BC%89/" class="article-date">
+  <time datetime="2021-10-13T06:23:59.000Z" itemprop="datePublished">2021-10-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="keyword">null</span>;</span><br><span class="line">        s.indexOf(<span class="string">&quot;a&quot;</span>); <span class="comment">//查找a在字符串s中首次出现的位置</span></span><br><span class="line">        System.out.println(<span class="string">&quot;end&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上面的代码，屏幕输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.NullPointerException</span><br><span class="line">	at com.example.restservice.ExceptionTest.main(ExceptionTest.java:<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当运行s.indexOf(“a”)时，java系统发现s的值为null，没有办法继续执行，这时就启用异常处理机制：</p>
+<p>首先 ，创建一个异常对象——类NullPointerException的对象，然后查找看谁能处理这个异常。在上面的代码中，没有代码能处理这个异常，java就启用默认处理机制，打印异常栈信息到屏幕，并退出程序。</p>
+<p>​    </p>
+<p><strong>java的默认异常处理机制是退出程序，异常发生点后的代码都不会执行。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-枚举的典型场景"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/"
+    >枚举的典型场景</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/" class="article-date">
+  <time datetime="2021-10-12T11:25:25.000Z" itemprop="datePublished">2021-10-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>实际应用中，枚举经常会有关联的实例变量和方法。</p>
+<p>举个栗子，假设Size的枚举值可能有关联的缩写和中文名称，可能需要静态方法根据缩写返回对应的枚举值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    SMALL(<span class="string">&quot;S&quot;</span>,<span class="string">&quot;小号&quot;</span>),</span><br><span class="line">    MEDIUM(<span class="string">&quot;M&quot;</span>,<span class="string">&quot;中号&quot;</span>),</span><br><span class="line">    LARGE(<span class="string">&quot;L&quot;</span>,<span class="string">&quot;大号&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String abbr;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String abbr,String title)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.abbr = abbr;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAbbr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> abbr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> title;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//根据abbr返回枚举值，比如输入M返回MEDIUM</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">fromAbbr</span><span class="params">(String abbr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Size size : Size.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (size.getAbbr().equals(abbr)) &#123;</span><br><span class="line">                <span class="keyword">return</span> size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>枚举值的定义需要放在最上面，枚举值写完之后，要以分号结尾，然后才能写其他代码</strong>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-枚举的基本实现原理"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"
+    >枚举的基本实现原理</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2021-10-12T09:31:25.000Z" itemprop="datePublished">2021-10-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>实际上，枚举类型会被Java编译器转换为一个对应的类，这个类继承了Java API中的java.lang.Enum类。</p>
+<p>Enum类有两个实例变量name和ordinal，在构造方法中需要传递，name()，toString()，ordinal()，compareTo()，equals()方法都是由Enum类根据其实例变量name和ordinal实现的。</p>
+<p>values和valueOf方法是编译器给每个枚举类型自动添加的。</p>
+<p>枚举类型Size转换后的普通类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Size</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">Size</span>&gt; </span>&#123;	<span class="comment">//final，不能被继承</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size SMALL = <span class="keyword">new</span> Size(<span class="string">&quot;SMALL&quot;</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size MEDIUM = <span class="keyword">new</span> Size(<span class="string">&quot;MEDIUM&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size LARGE = <span class="keyword">new</span> Size(<span class="string">&quot;LARGE&quot;</span>,<span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Size[] VALUES =</span><br><span class="line">            <span class="keyword">new</span> Size[]&#123;SMALL,MEDIUM,LARGE&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//私有构造方法，接受name和ordinal，传递给父类。不能在外部创建新的实例。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String name, <span class="keyword">int</span> ordinal)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, ordinal);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Size[] values()&#123;</span><br><span class="line">        Size[] values = <span class="keyword">new</span> Size[VALUES.length];</span><br><span class="line">        System.arraycopy(VALUES, <span class="number">0</span>,</span><br><span class="line">                values, <span class="number">0</span>, VALUES.length);<span class="comment">//要复制的源数组VALUES,从源数组0的位置开始复制，目标数组为values，目标数组的下标位置是0，要复制的长度是VALUES的长度</span></span><br><span class="line">        <span class="keyword">return</span> values;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">valueOf</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Enum.valueOf(Size.class, name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>枚举类型本质上也是类，但由于编译器自动做了很多事情，它的使用也就更为简洁、安全和方便。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-枚举的好处"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%A5%BD%E5%A4%84/"
+    >枚举的好处</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%A5%BD%E5%A4%84/" class="article-date">
+  <time datetime="2021-10-12T09:21:27.000Z" itemprop="datePublished">2021-10-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>枚举的优点：</p>
+<ul>
+<li>定义枚举的语法更为简洁。</li>
+<li>枚举更为安全，一个枚举类型的变量，它的值要么为null，要么为枚举值之一，不可能为其他值。</li>
+<li>枚举类型自带很多遍历方法（如values,valueOf,toString等），易于使用。</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-枚举的基本用法"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/30/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/"
+    >枚举的基本用法</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/30/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="article-date">
+  <time datetime="2021-09-30T09:40:04.000Z" itemprop="datePublished">2021-09-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>枚举是一种特殊的数据，它的取值是<strong>有限</strong>的，可以枚举出来的。</p>
+<p><strong>基本用法</strong></p>
+<p>举个栗子，为表示衣服的尺寸，需要定义一个枚举类型Size。Size包括三个尺寸，小/中/大。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    SMALL, MEDIUM, LARGE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>枚举使用enum关键字来定义，Size包括三个值，分别表示小、中、大。<strong>值一般是大写的字母，多个值之间以逗号分隔</strong>。</p>
+<p>枚举类型可以定义为一个单独的文件，也可以定义在其他类内部。</p>
+<p>​    </p>
+<p>使用Size：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.MEDIUM;</span><br></pre></td></tr></table></figure>
+
+<p>Size size声明了一个变量size，它的类型是Size，size=Size.MEDIUM将枚举值MEDIUM赋值给size变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.toString());	<span class="comment">//输出SMALL</span></span><br><span class="line">System.out.println(size.name());	<span class="comment">//输出SMALL</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举变量的toString方法返回其字面值（SMALL），所有枚举类型也有一个<strong>name</strong>方法，返回值与toString一样。</p>
+<p>​    </p>
+<p><strong>枚举值是有顺序的</strong>，可以比较大小。</p>
+<p>枚举类型都有一个方法**int ordinal()**，表示枚举值在声明时的顺序，从0开始。</p>
+<p>枚举类型都实现了Java API中的Comparable接口，都可以通过方法compareTo与其他枚举值比较ordinal的大小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出0</span></span><br><span class="line">size = Size.MEDIUM;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出1</span></span><br><span class="line">System.out.println(Size.SMALL.compareTo(Size.MEDIUM));  <span class="comment">//输出-1，表示SMALL小于MEDIUM</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>枚举类型都有一个静态的valueOf(String)方法，可以返回字符串对应的枚举值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Size.SMALL==Size.valueOf(<span class="string">&quot;SMALL&quot;</span>)); <span class="comment">//输出true</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举类型都有一个静态的values方法，返回一个包括所有枚举值的数组，顺序与声明时的顺序一致。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Size size : Size.values()) &#123;</span><br><span class="line">	System.out.println(size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>屏幕输出三行，分别是SMALL，MEDIUM，LARGE。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> Silver Shaded
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Silver - Shaded - Cat"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">index</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">archives</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">category</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">tags</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/network/">network</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/algorithm/">algorithm</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/java/">java</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/travel/">travel</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/pet">pet</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2021/about">aboutMe</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

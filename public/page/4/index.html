@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> Silver - Shaded - Cat</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/SilverShaded"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Silver - Shaded - Cat</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['探索世界的尽头', '方寸之间，随想之地', ''],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-类的继承"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/"
+    >类的继承</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" class="article-date">
+  <time datetime="2021-08-31T08:52:28.000Z" itemprop="datePublished">2021-08-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>计算机程序经常使用类之间的<strong>继承</strong>关系来表示对象之间的分类关系。</p>
+<p>在继承关系中，有父类(基类)和子类(派生类)。比如动物类Animal和狗类Dog，Animal是父类，Dog是子类。</p>
+<p>子类继承了父类的属性和行为，父类有的属性和行为，子类都有。但子类可以增加子类特有的属性和行为，某些父类有的行为，子类的实现方式可能与父类也不完全一样。</p>
+<p>​    </p>
+<p>​    </p>
+<p><strong>Object</strong></p>
+<p>在Java中，所有类都有一个父类，就是Object。</p>
+<p>Object没有定义属性，但定义了一些方法，如下方代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">equals(Object obj):<span class="keyword">boolean</span> -<span class="function">Object</span></span><br><span class="line"><span class="function"><span class="title">getClass</span><span class="params">()</span>:Class&lt;?&gt; -Object</span></span><br><span class="line"><span class="function"><span class="title">hashCode</span><span class="params">()</span>:<span class="keyword">int</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">notify</span><span class="params">()</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">notifyAll</span><span class="params">()</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">toString</span><span class="params">()</span>:String -Object</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">()</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span>:<span class="keyword">void</span> -Object</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout,<span class="keyword">int</span> nanos)</span>:<span class="keyword">void</span> -Object   </span></span><br></pre></td></tr></table></figure>
+
+<p>以上方法可以被所有类直接使用。</p>
+<p>子类可以重写父类的方法，以反应自己的不同实现。</p>
+<p>方法前面放一个**@Override**，代表是重写的方法。</p>
+<p>下图是Object的toString()方法， 返回的是类名和内存地址(hashcode)。</p>
+<p><img src="https://i.loli.net/2021/08/31/QBUKg2wRHlvM5NE.png" alt="Object类的toString方法.png"></p>
+<p>下图经过重写toString()方法，返回的是m。</p>
+<p><img src="https://i.loli.net/2021/08/31/N7vyYrUCqiPsToe.png" alt="重写的toString方法.png"></p>
+<p>​    </p>
+<p>Java使用<strong>extends</strong>关键字标明继承关系，一个类最多只能有一个父类。</p>
+<p>子类不能直接访问父类的私有属性和方法。</p>
+<p>除了私有的属性和方法外，子类继承了父类的其他属性和方法。</p>
+<p>假设父类Animal类如下代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类：动物类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>包含私有属性name和age，公共方法setName和setAge。</p>
+<p>子类Cat类不能直接调用name和age，但可以调用setName和setAge。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子类：猫类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String owner;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cat</span><span class="params">(String owner,<span class="keyword">int</span> age,String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.owner = owner;</span><br><span class="line">        <span class="keyword">this</span>.setAge(age);</span><br><span class="line">        <span class="keyword">super</span>.setName(name); <span class="comment">//super关键字</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Cat cat = <span class="keyword">new</span> Cat(<span class="string">&quot;me&quot;</span>,<span class="number">1</span>,<span class="string">&quot;shaded&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>super</strong>关键字指代父类，可用于调用父类构造方法,访问父类方法和变量。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-类的组合"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/"
+    >类的组合</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/31/%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88/" class="article-date">
+  <time datetime="2021-08-31T03:56:32.000Z" itemprop="datePublished">2021-08-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>基础类</strong></p>
+<p><strong>String</strong>是Java API中的一个类，表示多个字符。它内部是一个char的数组，提供了若干方法用于方便操作字符串。</p>
+<p>String可以用一个字符串常量初始化，必须是双引号。</p>
+<p>​    </p>
+<p><strong>Date</strong>是Java API中的一个类，表示日期和时间。它内部是一个long类型的值，提供了若干方法用于操作日期和时间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date now = <span class="keyword">new</span> Date();</span><br></pre></td></tr></table></figure>
+
+<p>如上面代码，用无参的构造方法创建一个Date对象，这个对象就表示当前时间。</p>
+<p>​    </p>
+<p>​    </p>
+<p><strong>图形类</strong></p>
+<p>先扩展一下《类的定义》一章中的Point类，为它添加一个“计算改点到另一个点的距离”的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">distance</span><span class="params">(Point p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Math.sqrt(Math.pow(x-p.getX(),<span class="number">2</span>)+</span><br><span class="line">                     Math.pow(y-p.getY(),<span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设计一个表示<strong>线 - Line</strong>的类，其中类的属性含有Point类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Line</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Point start;</span><br><span class="line">    <span class="keyword">private</span> Point end;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Line</span><span class="params">(Point start,Point end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">length</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start.distance(end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Line由两个Point组成，在创建Line时需要两个Point。</p>
+<p>使用这个类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Point start = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">    Point end = <span class="keyword">new</span> Point(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    </span><br><span class="line">    Line line = <span class="keyword">new</span> Line(start,end);</span><br><span class="line">    System.out.println(Line.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>​    </p>
+<p><strong>电商概念</strong></p>
+<p>尝试用类描述一下电商系统中的一些基本概念。</p>
+<p>电商系统中最基本的有产品、用户和订单：</p>
+<ul>
+<li><p>产品：有产品唯一Id、名称、描述、图片、价格等属性。</p>
+</li>
+<li><p>用户：有用户名、密码等属性。</p>
+</li>
+<li><p>订单：有订单号、下单用户、选购产品列表及数量、下单时间、收货人、收货地址、联系电话、订单状态等属性。</p>
+</li>
+</ul>
+<p>产品Product类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="comment">//唯一id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品图片链接</span></span><br><span class="line">    <span class="keyword">private</span> String pictureUrl;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品描述</span></span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//产品价格</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户User类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>订单条目OrderItem类来描述单个产品及选购的数量，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderItem</span> </span>&#123;</span><br><span class="line">    <span class="comment">//购买产品</span></span><br><span class="line">    <span class="keyword">private</span> Product product;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//购买数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> quantity;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderItem</span><span class="params">(Product product,<span class="keyword">int</span> quantity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.product = productl;</span><br><span class="line">        <span class="keyword">this</span>.quantity = quantity;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//合计价格</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">computePrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> product.getPrice()*quantity;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后是包含全部属性的订单Order类，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">    <span class="comment">//订单号</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//购买用户</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//购买产品列表及数量</span></span><br><span class="line">    <span class="keyword">private</span> OrderItem[] items;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//下单时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createtime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//收货人</span></span><br><span class="line">    <span class="keyword">private</span> String receiver;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//收货地址</span></span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//联系电话</span></span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//订单状态</span></span><br><span class="line">    <span class="keyword">private</span> String status;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">computeTotalPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> totalPrice = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(items != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(OrderItem item : items) &#123;</span><br><span class="line">                totalPrice+=item.computePrice(); <span class="comment">//计算总金额</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Order类引用了User类，以及一个订单条目的数组items，定义了一个计算总价的方法。</p>
+<p>​    </p>
+<p>​    </p>
+<p><strong>引用自己的类</strong></p>
+<p>一个类定义中还可以引用它自己。</p>
+<p>比如想要描述人以及人之间的血缘关系，用Person类表示一个人，它的实例成员包括其父母孩子，这些成员也都是Person类型。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//父亲</span></span><br><span class="line">    <span class="keyword">private</span> Person father;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//母亲</span></span><br><span class="line">    <span class="keyword">private</span> Person mother;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//孩子数组</span></span><br><span class="line">    <span class="keyword">private</span> Person[] children;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Person daZhongMa = <span class="keyword">new</span> Person(<span class="string">&quot;大仲马&quot;</span>);</span><br><span class="line">    Person xiaoZhongMa = <span class="keyword">new</span> Person(<span class="string">&quot;小仲马&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    xiaoZhongMa.setFather(daZhongMa);</span><br><span class="line">    daZhongMa.setChildren(<span class="keyword">new</span> Person[]&#123;xiaoZhongMa&#125;);</span><br><span class="line">    </span><br><span class="line">    System.out.println(xiaoZhongMa.getFather().getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码先创建了大仲马，然后创建了小仲马，接着调用xiaozhongma的setFather()和dazhongma的setChildren()，设置了父子关系。</p>
+<table>
+<thead>
+<tr>
+<th align="center">栈-地址</th>
+<th align="center">栈-内容</th>
+<th align="center">堆-地址</th>
+<th align="center">堆-内容</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x8000</td>
+<td align="center">0x1000</td>
+<td align="center">0x1000</td>
+<td align="center">小仲马</td>
+<td align="center">xiaoZhongMa.name</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0x1004</td>
+<td align="center">0x1010</td>
+<td align="center">xiaoZhongMa.father</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0x1008</td>
+<td align="center">null</td>
+<td align="center">xiaoZhongMa.mother</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0x100C</td>
+<td align="center">null</td>
+<td align="center">xiaoZhongMa.children</td>
+</tr>
+<tr>
+<td align="center">0x8008</td>
+<td align="center">0x1010</td>
+<td align="center">0x1010</td>
+<td align="center">大仲马</td>
+<td align="center">daZhongMa.name</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0x1014</td>
+<td align="center">null</td>
+<td align="center">daZhongMa.father</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0x1018</td>
+<td align="center">null</td>
+<td align="center">daZhongMa.mother</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">0x101C</td>
+<td align="center">0x1000</td>
+<td align="center">daZhongMa.children</td>
+</tr>
+</tbody></table>
+<p>​    </p>
+<p>​    </p>
+<p><strong>互相引用的类</strong></p>
+<p>定义两个类MyFile和MyFolder，分别表示文件和文件夹。</p>
+<p>文件和文件夹都有名称、创建时间、父文件夹，根文件夹没有父文件夹，文件夹还有子文件列表和子文件夹列表。</p>
+<p>文件MyFile类代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFile</span> </span>&#123;</span><br><span class="line">    <span class="comment">//文件名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createtime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//文件大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//上级目录</span></span><br><span class="line">    <span class="keyword">private</span> MyFolder parent;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>文件夹MyFolder类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFolder</span> </span>&#123;</span><br><span class="line">    <span class="comment">//文件夹名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createtime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//上级文件夹</span></span><br><span class="line">    <span class="keyword">private</span> MyFolder parent;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//包含的文件</span></span><br><span class="line">    <span class="keyword">private</span> MyFile[] files;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//包含的子文件夹</span></span><br><span class="line">    <span class="keyword">private</span> MyFolder[] subFolders;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">totalSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> totalSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (files != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(MyFile file : files) &#123;</span><br><span class="line">                totalSize+=file.getSize(); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(subFolders != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(MyFolder folder : subFolders) &#123;</span><br><span class="line">                totalSize+=folder.totalSize(); <span class="comment">//计算子文件夹的size</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> totalSize;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MyFile引用了MyFolder，MyFolder也引用了MyFile，两者组合互相引用。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-类的定义"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/27/%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89/"
+    >类的定义</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/27/%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89/" class="article-date">
+  <time datetime="2021-08-27T06:22:58.000Z" itemprop="datePublished">2021-08-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>类既是函数的容器，也用来表示自定义数据类型。</p>
+<p>​    </p>
+<p>所谓自定义数据类型，就是除了八种基本类型以外的其他类型，用于表示和处理基本类型以外的其他数据。</p>
+<p>一个数据类型，由其包含的属性以及该类型可以进行的操作组成。属性又可以分为是类型本身具有的属性，还是一个具体数据具有的属性。同样，操作也可以分为是类型本身可以进行的操作，还是一个具体数据可以进行的操作。</p>
+<p>由此，一个数据类型就主要由四部分组成：</p>
+<ul>
+<li><p>类型本身具有的属性，通过类变量体现</p>
+</li>
+<li><p>类型本身可以进行的操作，通过类方法体现</p>
+</li>
+<li><p>类型实例具有的属性，通过实例变量体现</p>
+</li>
+<li><p>类型实例可以进行的操作，通过实例方法体现</p>
+</li>
+</ul>
+<p>​    </p>
+<p><strong>类方法</strong></p>
+<p><strong>static</strong>表示类方法，又称静态方法。与类方法相对的是实例方法，实例方法没有static修饰符，必须通过实例或者叫对象调用。而类方法可以直接通过类名进行调用，不需要创建实例。</p>
+<p>​    </p>
+<p><strong>类变量</strong></p>
+<p>类型本身具有的属性通过类变量体现，经常用于表示一个类型中的常量。</p>
+<p>比如Math类中定义的两个数学常量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> E = <span class="number">2.7182818284590452354</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14159265358979323846</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>static</strong>表示是类变量。与类变量相对的是实例变量，没有static修饰符。</p>
+<p>final表示变量被赋值后，就不能再修改了。</p>
+<p><strong>实例变量</strong></p>
+<p>实例变量表示具体的实例所具有的属性。与基本类型对比， int a;这个语句，int就是类型，a就是实例。</p>
+<p>​    </p>
+<p><strong>实例方法</strong></p>
+<p>实例方法表示具体的实例可以进行的操作。</p>
+<p>在实例方法中，有一个隐含的参数(this)，这个参数就是当前操作的实例自己，它直接操作方法和变量。</p>
+<ul>
+<li>类方法只能访问类变量，但不能访问实例变量。可以调用其他的类方法，但不能调用实例方法。</li>
+<li>实例方法既能访问实例变量，也可以访问类变量。既可以调用实例方法，也可以调用类方法。</li>
+</ul>
+<p>class变量和数组变量本身不存储数据，而只是存储实际内容的位置，它们都称为<strong>引用类型</strong>的变量。</p>
+<p>​    </p>
+<p>通过对象来访问和操作其内部的数据是一种基本的面向对象思维。</p>
+<p>​    </p>
+<p>定义一个合格的类，实例变量是private属性，通过实例方法来操作实例变量。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">distance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math.sqrt(x*x + y*y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>this</strong>关键字表示当前实例，实例方法中隐含的参数就是this。</p>
+<p>在语句this.x=x;中，this.x表示实例变量x，右边的x表示方法参数中的x。</p>
+<p>使用这个类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Point p = <span class="keyword">new</span> Point();</span><br><span class="line">    p.setX(<span class="number">2</span>);</span><br><span class="line">    p.setY(<span class="number">3</span>);</span><br><span class="line">    System.out.println(p.distance());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将对实例变量的直接访问改为了方法调用。</p>
+<p>​    </p>
+<p><strong>引入构造方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">()</span> </span>&#123; <span class="comment">//调用第二个构造方法</span></span><br><span class="line">    <span class="keyword">this</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x=x;</span><br><span class="line">    <span class="keyword">this</span>.y=y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中的两个方法就是构造方法，构造方法可以有多个。</p>
+<p>构造方法的特殊之处：</p>
+<ul>
+<li><p>名称是固定的，与类名相同。</p>
+</li>
+<li><p>不能有返回值。</p>
+</li>
+</ul>
+<p>this不仅可以访问实例变量，还可以<strong>在构造方法中调用其他方法</strong>，这个this调用必须放在第一行。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-栈"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/23/%E6%A0%88/"
+    >栈</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/23/%E6%A0%88/" class="article-date">
+  <time datetime="2021-08-23T10:43:57.000Z" itemprop="datePublished">2021-08-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/data-structure/">data structure</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>函数调用方和函数本身就如何传递参数、如何返回结果、如何跳转指令等问题，使用内存来存放这些数据，并且就如何存放和使用这些数据达成一个一致的协议或约定。</p>
+<p>这个约定在各种计算机系统中都是类似的，存放这些数据的内存有一个相同的名字，叫<strong>栈</strong>。</p>
+<p>​    </p>
+<p>栈是一块内存，顺序是<strong>先进后出</strong>，类似于一个书堆，越晚放上的书越先拿走。</p>
+<p>栈的最下面称为栈底，最上面成为栈顶。</p>
+<p>往栈底放数据，称为入栈；往栈顶取数据，成为出栈。</p>
+<p>栈一般是从高位地址向低位地址扩展，所以<strong>栈底的内存地址是最高的，栈顶的内存地址是最低的</strong>。</p>
+<p>​     </p>
+<p><strong>计算机系统主要使用栈来存放函数调用过程中需要的数据，包括参数、返回地址，函数内定义的局部变量也放在栈中。</strong></p>
+<p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sum</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> c = a + b;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> d = Sum.sum(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">        System.out.println(d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码，概念上：main函数调用了sum函数，计算1+2，然后输出计算结果。</p>
+<p>从栈的角度：</p>
+<p>(1)当程序在main函数调用Sum.sum函数之前，栈的情况如下表格 </p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+<th align="center">函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x7FF4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">d</td>
+<td align="center">main</td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+</tr>
+</tbody></table>
+<p>栈主要存放了两个变量args(从控制台接收到的参数)和d。</p>
+<p>(2)在程序执行到Sum.sum的函数内部，准备return c之前，栈的情况如下表格。</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+<th align="center">函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FEC</td>
+<td align="center">3(c)</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FF0</td>
+<td align="center">栈中保存的返回地址</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FF4</td>
+<td align="center">2(b)</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center">1(a)</td>
+<td align="center">sum</td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">d</td>
+<td align="center">main</td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+</tr>
+</tbody></table>
+<p>main函数调用Sum.sum时，首先将参数1和2入栈，然后将返回地址入栈，接着跳转到sum函数，在sum函数内部，为局部变量c分配一个空间，而参数变量a和b则直接对应于入栈的数据1和2。在返回之前，返回值3保存到了专门的<strong>返回值存储器</strong>中。</p>
+<p>(3)调用return后，程序会跳转到栈中保存的返回地址，sum函数相关的数据会出战，从而又变回(1)中的状态。</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+<th align="center">函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x7FF4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">d</td>
+<td align="center">main</td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+</tr>
+</tbody></table>
+<p>(4)main的下一条指令是根据函数返回值给变量d赋值，返回值从专门的返回值存储器中获得。</p>
+<p>​    </p>
+<p>​    </p>
+<p>函数中的基本数据类型参数和函数内定义的基本数据类型变量，都分配在栈中。这些变量只有在函数被调用的时候才分配，而且在调用结束后就被释放了。</p>
+<p>而数组和对象类型，它们都有两块内存，一块存放实际的内容，一块存放实际内容的地址。实际的内容一般不是分配在栈上的，而是分配在<strong>堆</strong>中，但存放地址的空间是分配在栈上的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayMax</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = min;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span>(a &gt; max) &#123;</span><br><span class="line">                max = a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> ret = max(<span class="number">0</span>,arr);</span><br><span class="line">        System.out.println(ret);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码，概念上：main函数新建一个数组int[]{2,3,4}，然后调用函数max计算0和数组中元素的最大值，最后打印输出最大值。</p>
+<p>从栈的角度：</p>
+<table>
+<thead>
+<tr>
+<th align="center">栈-地址</th>
+<th align="center">栈-内容</th>
+<th align="center">函数</th>
+<th align="center">堆-地址</th>
+<th align="center">堆-内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x7FE8</td>
+<td align="center">max(4)</td>
+<td align="center">max</td>
+<td align="center">0x1000</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">0x7EFC</td>
+<td align="center">栈中保存的返回地址</td>
+<td align="center">max</td>
+<td align="center">0x1004</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">0x7FF0</td>
+<td align="center">0x1000(arr)</td>
+<td align="center">max</td>
+<td align="center">0x1008</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">0x7FF4</td>
+<td align="center">0(min)</td>
+<td align="center">max</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FF8</td>
+<td align="center">ret</td>
+<td align="center">main</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x7FFC</td>
+<td align="center">0x1000(arr)</td>
+<td align="center">main</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">0x8000</td>
+<td align="center">args</td>
+<td align="center">main</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>对于数组arr，在栈中存放的是实际内容的地址0x1000，存放地址的栈空间会随着入栈分配，出栈释放。</p>
+<p>存放实际内容的堆空间，在函数结束、栈空间没有变量指向它的时候，java系统会自动进行垃圾回收，从而释放这块空间。</p>
+<p>​    </p>
+<p>栈的空间不是无限的。栈空间过深，系统就会抛出错误——java.lang.StackOverflowError，即栈溢出错误。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-structure/" rel="tag">data structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/" rel="tag">stack</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-函数递归"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/23/%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/"
+    >函数递归</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/23/%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/" class="article-date">
+  <time datetime="2021-08-23T09:45:52.000Z" itemprop="datePublished">2021-08-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>调用自己的函数，就叫做递归函数。</p>
+<p>​     </p>
+<p>典型例子：数学中一个数n的阶乘，表示为n!，它的值定义是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>! = <span class="number">1</span></span><br><span class="line">n! = (n-<span class="number">1</span>)*n</span><br></pre></td></tr></table></figure>
+
+<p>0的阶乘是1，n的阶乘的值是n-1的阶乘的值乘以n，所以这个定义是一个递归的定义。</p>
+<p>为求n的值，需先求n-1的值，直到0，然后一次往回退。</p>
+<p>求阶乘的递归函数代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n*factorial(n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>递归是有开销的，而且使用不当，可能会出现意外的错误。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/" rel="tag">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-函数重载"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/23/%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/"
+    >函数重载</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/23/%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" class="article-date">
+  <time datetime="2021-08-23T09:36:42.000Z" itemprop="datePublished">2021-08-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>同一个类中函数名字相同但参数不同的现象，一般称为函数重载。</p>
+<p>为什么需要函数重载呢？一般是因为函数想表达的意义是一样的，但函数个数或类型不一样。</p>
+<p>比如，求两个数的最大值，在java的Math库中就定义了四个函数：</p>
+<p><img src="https://i.loli.net/2021/08/23/BpzlJTPda4WvUnx.png" alt="Math库的四个max函数.png"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/" rel="tag">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-函数定义"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/23/%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89/"
+    >函数定义</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/23/%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89/" class="article-date">
+  <time datetime="2021-08-23T06:42:25.000Z" itemprop="datePublished">2021-08-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>函数的基本语法结构:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修饰符 返回值类型 函数名字(参数类型 参数名字,...) &#123;</span><br><span class="line">    操作 ...</span><br><span class="line">    <span class="keyword">return</span> 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义函数就是定义了一段有着明确功能的子程序，但定义函数本身不会执行任何代码，函数要被执行，需要被调用。</p>
+<p>​    </p>
+<p>java中，任何函数都需要放在一个类中。函数放在类中，类中包含多个函数。</p>
+<p>函数一般叫做方法。</p>
+<p>一个类里面可以定义多个函数，可以定义一个叫做<strong>main</strong>的函数，形式如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>main函数表示程序的入口，String[] args表示从控制台接收到的参数。</p>
+<p>java中运行一个程序的时候，需要指定一个定义了main函数的类，java会寻找main函数，并从main函数开始执行。</p>
+<p>​    </p>
+<p>对于需要重复执行的代码，可以定义函数，然后在需要的地方调用，这样可以减少重复代码。</p>
+<p><strong>数组参数</strong></p>
+<p>数组作为参数与基本类型不同，<del>基本类型不会对调用者中的变量造成任何影响</del>(不懂这句= =)，但数组不是，在函数内修改数组中的元素会修改调用者中的数组内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">reset</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        arr[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">    reset(arr);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        System.out.println(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在reset函数内给参数数组元素赋值，在main函数中数组arr的值也会变。</p>
+<p>​    </p>
+<p><strong>可变长度的参数</strong></p>
+<p>有的时候，参数个数不是固定的，数量是未知的。</p>
+<p>java支持可变长度的参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> min,<span class="keyword">int</span>... a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = min;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(max&lt;a[i]) &#123;</span><br><span class="line">            max = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    System.out.println(max(<span class="number">0</span>));</span><br><span class="line">    System.out.println(max(<span class="number">0</span>,<span class="number">2</span>));</span><br><span class="line">    System.out.println(max(<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>));</span><br><span class="line">    System.out.println(max(<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>max函数接受一个最小值，以及可变长度的若干参数，返回其中的最大值。</p>
+<p>可变长度参数的语法是在数据类型后面加三个点…，在函数内，可变长度参数可以看作是数组，可变长度参数必须是参数列表中的最后一个参数，一个函数也只能有一个可变长度的参数。</p>
+<p>可变长度参数实际上会转换为数组参数，函数声明max(int min,int… a)实际上会转换为max(int min,int[] a)。在main函数调用max(0,2,4,5)的时候，实际上会转换为调用max(0,new int[]{2,4,5})，使用可变长度参数主要是简化了代码书写。</p>
+<p>函数的返回值最多只能有一个，void情况下没有返回值。</p>
+<p>​    </p>
+<p>同一个类里，函数可以重名，但是参数不能一样。一样是指参数个数相同，每个位置的参数类型也一样。但参数的名字不算，返回值类型也不算。</p>
+<p>换句话说，函数的<strong>唯一性标示是：类名_函数名_参数2类型_…参数n类型</strong>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/" rel="tag">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-四种循环"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/20/%E5%9B%9B%E7%A7%8D%E5%BE%AA%E7%8E%AF/"
+    >四种循环</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/20/%E5%9B%9B%E7%A7%8D%E5%BE%AA%E7%8E%AF/" class="article-date">
+  <time datetime="2021-08-20T08:58:53.000Z" itemprop="datePublished">2021-08-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>在java中，循环有四种形式，分别是while,do/while,for,foreach。</p>
+<p>​    </p>
+<p><strong>while</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Scanner reader = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line"><span class="keyword">int</span> num = reader.nextInt();</span><br><span class="line"><span class="keyword">int</span> password = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">while</span>(num!=password) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line">    num = reader.nextInt();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;correct&quot;</span>);</span><br><span class="line">reader.close();</span><br></pre></td></tr></table></figure>
+
+<p>上述代码的功能：使用类型为Scanner的reader变量从屏幕控制台接收数字,reader.nextInt()从屏幕接收一个数字。如果数字不是12345，就一直提示输入；数字是12345，就跳出循环。</p>
+<p>​    </p>
+<p><strong>do/while</strong></p>
+<p>不管语句条件是什么，代码块都会至少执行一次。</p>
+<p>先执行代码块，然后再判断条件语句。如果成立，则继续循环，否则退出循环。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Scanner reader = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="keyword">int</span> password = <span class="number">6789</span>;</span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line">    num = reader.nextInt();</span><br><span class="line">&#125;<span class="keyword">while</span>(num!=password); <span class="comment">//注意加分号</span></span><br><span class="line">System.out.println(<span class="string">&quot;correct&quot;</span>);</span><br><span class="line">reader.close();</span><br></pre></td></tr></table></figure>
+
+<p><strong>for</strong></p>
+<p>for(初始化语句;循环条件;步进操作){</p>
+<p>​    循环体<br>}</p>
+<p>分号不能省略。</p>
+<p>​    </p>
+<p><strong>foreach</strong></p>
+<p>for (元素类型 元素名称 : 遍历数组/集合/能进行迭代的实例) {</p>
+<p>​    语句</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> element : arr) &#123;</span><br><span class="line">    System.out.println(element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>foreach使用冒号:，冒号前面是循环中的每个元素，包括数据类型和变量名称。</p>
+<p>冒号后面是要遍历的数组或集合。</p>
+<p>每次循环中element都会自动更新。</p>
+<p>对于不需要使用索引变量、只是简单遍历的情况，foreach语法上更为简洁。</p>
+<p>​    </p>
+<p>**循环控制 - break **</p>
+<p>使用break关键字可以中断循环。</p>
+<p>​    </p>
+<p>**循环控制 - continue **</p>
+<p>continue语句会跳过循环体中剩下的代码，然后执行步进操作。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-char的含义"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/18/char%E7%9A%84%E5%90%AB%E4%B9%89/"
+    >char的含义</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/18/char%E7%9A%84%E5%90%AB%E4%B9%89/" class="article-date">
+  <time datetime="2021-08-18T07:40:16.000Z" itemprop="datePublished">2021-08-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>char本质上是一个固定占用两个字节的无符号正整数，这个正整数对应于Unicode编码，用于表示Unicode编号对应的字符。</p>
+<p>由于char固定占用两个字符，char只能表示Unicode编号在65536以内的字符（无论是英文字符还是中文字符），而不能表示超出范围的字符。</p>
+<p>​    </p>
+<p>由于char本质是一个整数，可以进行整数的一些运算。</p>
+<p>在进行运算时会被看做int，但由于char占两个字节，运算结果不能直接赋值给char类型，而是需要进行强制类型转换。</p>
+<p>char类型的比较，就是Unicode编号的比较。</p>
+<p>​    </p>
+<p>大小写转换：大写A-Z的编号是65-90，小写a-z的编号是97-122，正好相差32，所以大写转小写要加32，小写转大写要减32。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-乱码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/17/%E4%B9%B1%E7%A0%81/"
+    >乱码</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/17/%E4%B9%B1%E7%A0%81/" class="article-date">
+  <time datetime="2021-08-17T11:42:55.000Z" itemprop="datePublished">2021-08-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>ASCII编码：美国规定了128个字符的二进制表示法，即ASCII（美国信息互换标准代码）。</p>
+<p>数字32~126表示的字符都是可打印字符。</p>
+<p><img src="https://i.loli.net/2021/08/18/Ff3mCbyeoNtBswc.jpg" alt="ASCII:32~126"></p>
+<p>0~31和127表示的这些字符都是不可打印字符，它们一般用于控制目的。</p>
+<p><img src="https://i.loli.net/2021/08/18/IOQ7fqUmaC9Vwb8.jpg" alt="ASCII:0~31,127"></p>
+<p>​       </p>
+<p>美国的编码不够其他国家使用，其他国家陆续发明了各种各样的编码方式。在西欧国家中流行的是ISO 8859-1和Windows-1252，在中国是GB2312，GBK，GB18030和Big5。</p>
+<p>​    </p>
+<p>美国和西欧都是用一个字节（8位）就够了，但中文是两个字节（16位）</p>
+<p>​    </p>
+<p>Ascii码是基础，一个字节表示，最高位设为0，其他7位表示128个字符。其他编码都是兼容Ascii的，最高位使用1来进行区分。</p>
+<p>西欧主要使用Windows-1252，使用一个字节，增加了额外128个字符。</p>
+<p>中文大陆地区的三个主要编码GB2312，GBK，GB18030，有时间先后关系，表示的字符数越来越多，且后面的兼容前面的，GB2312和GBK都是用两个字节表示，而GB18030则使用两个或四个字节表示。</p>
+<p>​    </p>
+<p>最高位用1的编码，除了GB2312/GBK/GB18030外，都是不兼容的。比如Windows-1252和GBK就不兼容。</p>
+<p>​     </p>
+<p>Unicode：将世界上所有的字符统一编码，给世界上所有字符都分配了一个唯一的数字编号。</p>
+<p>其中UTF-8使用1~4个字节表示，兼容ASCII编码。英文字符使用1个字节，中文字符大多使用3个字节。</p>
+<p>如何恢复乱码？</p>
+<p>答:先将A编码的字符映射为二进制，再通过二进制映射B编码的字符。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> Silver Shaded
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Silver - Shaded - Cat"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">index</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">archives</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">category</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">tags</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/network/">network</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/algorithm/">algorithm</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/java/">java</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/travel/">travel</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/pet">pet</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2021/about">aboutMe</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
