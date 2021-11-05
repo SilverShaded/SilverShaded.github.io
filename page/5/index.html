@@ -155,6 +155,79 @@
     
     
     <article
+  id="post-乱码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/17/%E4%B9%B1%E7%A0%81/"
+    >乱码</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/17/%E4%B9%B1%E7%A0%81/" class="article-date">
+  <time datetime="2021-08-17T11:42:55.000Z" itemprop="datePublished">2021-08-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>ASCII编码：美国规定了128个字符的二进制表示法，即ASCII（美国信息互换标准代码）。</p>
+<p>数字32~126表示的字符都是可打印字符。</p>
+<p><img src="https://i.loli.net/2021/08/18/Ff3mCbyeoNtBswc.jpg" alt="ASCII:32~126"></p>
+<p>0~31和127表示的这些字符都是不可打印字符，它们一般用于控制目的。</p>
+<p><img src="https://i.loli.net/2021/08/18/IOQ7fqUmaC9Vwb8.jpg" alt="ASCII:0~31,127"></p>
+<p>​       </p>
+<p>美国的编码不够其他国家使用，其他国家陆续发明了各种各样的编码方式。在西欧国家中流行的是ISO 8859-1和Windows-1252，在中国是GB2312，GBK，GB18030和Big5。</p>
+<p>​    </p>
+<p>美国和西欧都是用一个字节（8位）就够了，但中文是两个字节（16位）</p>
+<p>​    </p>
+<p>Ascii码是基础，一个字节表示，最高位设为0，其他7位表示128个字符。其他编码都是兼容Ascii的，最高位使用1来进行区分。</p>
+<p>西欧主要使用Windows-1252，使用一个字节，增加了额外128个字符。</p>
+<p>中文大陆地区的三个主要编码GB2312，GBK，GB18030，有时间先后关系，表示的字符数越来越多，且后面的兼容前面的，GB2312和GBK都是用两个字节表示，而GB18030则使用两个或四个字节表示。</p>
+<p>​    </p>
+<p>最高位用1的编码，除了GB2312/GBK/GB18030外，都是不兼容的。比如Windows-1252和GBK就不兼容。</p>
+<p>​     </p>
+<p>Unicode：将世界上所有的字符统一编码，给世界上所有字符都分配了一个唯一的数字编号。</p>
+<p>其中UTF-8使用1~4个字节表示，兼容ASCII编码。英文字符使用1个字节，中文字符大多使用3个字节。</p>
+<p>如何恢复乱码？</p>
+<p>答:先将A编码的字符映射为二进制，再通过二进制映射B编码的字符。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-位运算"
   class="article article-type-post"
   itemscope
@@ -711,60 +784,13 @@
 </article>
 
     
-    <article
-  id="post-blog的诞生"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/06/blog%E7%9A%84%E8%AF%9E%E7%94%9F/"
-    >blog的诞生</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/06/blog%E7%9A%84%E8%AF%9E%E7%94%9F/" class="article-date">
-  <time datetime="2021-08-06T09:32:59.000Z" itemprop="datePublished">2021-08-06</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav>
   
 </section>

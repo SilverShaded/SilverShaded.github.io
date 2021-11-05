@@ -155,6 +155,69 @@
     
     
     <article
+  id="post-冒泡排序"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/11/05/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"
+    >冒泡排序</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/11/05/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time datetime="2021-11-05T03:50:19.000Z" itemprop="datePublished">2021-11-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>冒泡排序是从头开始，第1个和第2个比较，前大于后则互换位置；然后第2个和第3个比较，前大于后则互换位置……如此找到最大值放到最后位置。<br>再找到倒数第二大的值放到倒数第二的位置，依此类推……</p>
+<p>​    </p>
+<p>假设有一个数组arr{867,143,99,452,301,992,53}，冒泡排序如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">867</span>,<span class="number">143</span>,<span class="number">99</span>,<span class="number">452</span>,<span class="number">301</span>,<span class="number">992</span>,<span class="number">53</span>&#125;;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;数组的初始排序：&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index:arr) &#123;</span><br><span class="line">            System.out.print(index+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> temp; <span class="comment">//临时寄存数字</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++) &#123;  <span class="comment">//因为最后一位无需比较，进行length-1次对比置换</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>-i;j++) &#123; <span class="comment">//length-1-i,i代表已经比较完成的数量</span></span><br><span class="line">                <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                    temp = arr[j];</span><br><span class="line">                    arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                    arr[j+<span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;数组的现今排序：&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> index:arr) &#123;</span><br><span class="line">            System.out.print(index+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数组的初始排序：</span><br><span class="line"><span class="number">867</span> <span class="number">143</span> <span class="number">99</span> <span class="number">452</span> <span class="number">301</span> <span class="number">992</span> <span class="number">53</span> </span><br><span class="line">数组的现今排序：</span><br><span class="line"><span class="number">53</span> <span class="number">99</span> <span class="number">143</span> <span class="number">301</span> <span class="number">452</span> <span class="number">867</span> <span class="number">992</span> </span><br></pre></td></tr></table></figure>
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort/" rel="tag">sort</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-异常中的finally"
   class="article article-type-post"
   itemscope
@@ -200,7 +263,13 @@
 </ul>
 <p>由于finally的这个特点，它一般用于释放资源，如数据库连接、文件流等。</p>
 <p>​    </p>
-<p>try/catch/finall语法中，catch不是必须的，可以只有try/finally。这表示不捕获异常，异常自动向上传递。</p>
+<p>try/catch/finall语法中，catch不是必须的，可以只有try/finally。这表示不捕获异常，异常自动向上传递，但finally中的代码在异常发生后也执行。</p>
+<p>​    </p>
+<p><strong>如果在try或者catch语句内有return语句，则return语句在finally语句执行结束后才执行，但finally并不能改变返回值</strong>，我们来看下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        ret = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数的返回值是0，不是2。在执行到return ret;语句之前，会先将返回值ret保存在一个临时变量中，然后才执行finally语句，最后try再返回那个临时变量，finally中对ret的修改不会被返回。</p>
+<p>如果在finally中也有return语句</p>
  
       <!-- reward -->
       
@@ -752,95 +821,13 @@
 </article>
 
     
-    <article
-  id="post-枚举的基本用法"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/30/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/"
-    >枚举的基本用法</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/30/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="article-date">
-  <time datetime="2021-09-30T09:40:04.000Z" itemprop="datePublished">2021-09-30</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>枚举是一种特殊的数据，它的取值是<strong>有限</strong>的，可以枚举出来的。</p>
-<p><strong>基本用法</strong></p>
-<p>举个栗子，为表示衣服的尺寸，需要定义一个枚举类型Size。Size包括三个尺寸，小/中/大。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    SMALL, MEDIUM, LARGE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>枚举使用enum关键字来定义，Size包括三个值，分别表示小、中、大。<strong>值一般是大写的字母，多个值之间以逗号分隔</strong>。</p>
-<p>枚举类型可以定义为一个单独的文件，也可以定义在其他类内部。</p>
-<p>​    </p>
-<p>使用Size：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.MEDIUM;</span><br></pre></td></tr></table></figure>
-
-<p>Size size声明了一个变量size，它的类型是Size，size=Size.MEDIUM将枚举值MEDIUM赋值给size变量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.toString());	<span class="comment">//输出SMALL</span></span><br><span class="line">System.out.println(size.name());	<span class="comment">//输出SMALL</span></span><br></pre></td></tr></table></figure>
-
-<p>枚举变量的toString方法返回其字面值（SMALL），所有枚举类型也有一个<strong>name</strong>方法，返回值与toString一样。</p>
-<p>​    </p>
-<p><strong>枚举值是有顺序的</strong>，可以比较大小。</p>
-<p>枚举类型都有一个方法**int ordinal()**，表示枚举值在声明时的顺序，从0开始。</p>
-<p>枚举类型都实现了Java API中的Comparable接口，都可以通过方法compareTo与其他枚举值比较ordinal的大小。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Size size = Size.SMALL;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出0</span></span><br><span class="line">size = Size.MEDIUM;</span><br><span class="line">System.out.println(size.ordinal()); <span class="comment">//输出1</span></span><br><span class="line">System.out.println(Size.SMALL.compareTo(Size.MEDIUM));  <span class="comment">//输出-1，表示SMALL小于MEDIUM</span></span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>枚举类型都有一个静态的valueOf(String)方法，可以返回字符串对应的枚举值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Size.SMALL==Size.valueOf(<span class="string">&quot;SMALL&quot;</span>)); <span class="comment">//输出true</span></span><br></pre></td></tr></table></figure>
-
-<p>枚举类型都有一个静态的values方法，返回一个包括所有枚举值的数组，顺序与声明时的顺序一致。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Size size : Size.values()) &#123;</span><br><span class="line">	System.out.println(size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>屏幕输出三行，分别是SMALL，MEDIUM，LARGE。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
