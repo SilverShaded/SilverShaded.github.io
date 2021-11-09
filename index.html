@@ -155,6 +155,75 @@
     
     
     <article
+  id="post-数组的增删"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/11/09/%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0/"
+    >数组的增删</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/11/09/%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0/" class="article-date">
+  <time datetime="2021-11-09T09:04:13.000Z" itemprop="datePublished">2021-11-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>数组的插入</strong></p>
+<p>插入数组元素的操作存在3种情况：</p>
+<ul>
+<li><p>尾部插入</p>
+</li>
+<li><p>中间插入（包含头部插入）</p>
+</li>
+<li><p>超范围插入</p>
+</li>
+</ul>
+<p>尾部插入：直接把元素放在数组尾部的空闲位置，等同于更新元素。</p>
+<p>中间插入：首先把<strong>插入位置以及后面的元素</strong>向后移动，腾出地方，再把要插入的元素放到对应的数组位置上。</p>
+<p>超范围插入：创建一个<strong>新数组</strong>，长度是<strong>旧数组的2倍</strong>，再把旧数组中的元素统统复制过去，实现数组的<strong>扩容</strong>。</p>
+<p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size; <span class="comment">//size:实际的元素个数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造一个数组，初始是空，容量为capacity</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = <span class="keyword">new</span> <span class="keyword">int</span>[capacity];</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入元素</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> element,<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IndexOutOfBoundsException </span>&#123;</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;超出数组实际元素范围&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//超容量插入,需扩容</span></span><br><span class="line">        <span class="keyword">if</span> (size &gt;= array.length) &#123;</span><br><span class="line">            resize();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//index及之后元素统一向右移动一位，从最后一位元素开始右移</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=size-<span class="number">1</span>;i&gt;=index;i--) &#123;</span><br><span class="line">            array[i+<span class="number">1</span>] = array[i];</span><br><span class="line">        &#125;</span><br><span class="line">        array[index] = element;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//扩容数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">resize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arrayNew = <span class="keyword">new</span> <span class="keyword">int</span>[array.length*<span class="number">2</span>];</span><br><span class="line">        <span class="comment">//旧数组复制到新数组</span></span><br><span class="line">        System.arraycopy(array,<span class="number">0</span>,arrayNew,<span class="number">0</span>,array.length);</span><br><span class="line">        array = arrayNew;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">outPut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;当前的数组为：&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;size;x++) &#123;</span><br><span class="line">            System.out.print(array[x]+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyArray myArray = <span class="keyword">new</span> MyArray(<span class="number">5</span>);</span><br><span class="line">        myArray.insert(<span class="number">9</span>,<span class="number">0</span>);</span><br><span class="line">        myArray.insert(<span class="number">5</span>,<span class="number">1</span>);</span><br><span class="line">        myArray.insert(<span class="number">8</span>,<span class="number">2</span>);</span><br><span class="line">        myArray.insert(<span class="number">3</span>,<span class="number">3</span>);</span><br><span class="line">        myArray.insert(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">        myArray.insert(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line">        myArray.outPut();	<span class="comment">//9 1 4 5 8 3 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/" rel="tag">array</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-冒泡排序"
   class="article article-type-post"
   itemscope
@@ -762,72 +831,13 @@
 </article>
 
     
-    <article
-  id="post-枚举的好处"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%A5%BD%E5%A4%84/"
-    >枚举的好处</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%A5%BD%E5%A4%84/" class="article-date">
-  <time datetime="2021-10-12T09:21:27.000Z" itemprop="datePublished">2021-10-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>枚举的优点：</p>
-<ul>
-<li>定义枚举的语法更为简洁。</li>
-<li>枚举更为安全，一个枚举类型的变量，它的值要么为null，要么为枚举值之一，不可能为其他值。</li>
-<li>枚举类型自带很多遍历方法（如values,valueOf,toString等），易于使用。</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
