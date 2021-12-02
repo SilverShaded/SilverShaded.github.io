@@ -155,6 +155,97 @@
     
     
     <article
+  id="post-继承的细节-重名与静态绑定"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/"
+    >继承的细节--重名与静态绑定</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/02/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-%E9%87%8D%E5%90%8D%E4%B8%8E%E9%9D%99%E6%80%81%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time datetime="2021-09-02T10:44:48.000Z" itemprop="datePublished">2021-09-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定 <font color=blue>now!</font></li>
+<li>重载和重写</li>
+<li>父子类型转换</li>
+<li>继承访问权限（protected）</li>
+<li>可见性重写</li>
+<li>防止继承（final）</li>
+</ul>
+<p>​    </p>
+<p><strong>重名</strong></p>
+<p>对于private变量和方法，它们只能在类内被访问，访问的也永远是当前类的对象。</p>
+<p>​    </p>
+<p>对于public变量和方法，在类内访问的是当前类的，但子类可以通过super.明确指定访问父类的。</p>
+<p>在类外，则要看访问变量的静态类型，静态类型是父类，则访问父类的变量和方法；静态类型是子类，则访问子类的变量和方法。</p>
+<p>​    </p>
+<p>接下来举个栗子。父类Base代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;static_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;base&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;base static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Base类定义了一个public静态变量s，一个public实例变量m、一个静态方法staticTest。</p>
+<p>子类Child代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String s = <span class="string">&quot;child_base&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> String m = <span class="string">&quot;child&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;child static: &quot;</span>+s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类定义了和父类重名的变量m、s和方法staticTest。</p>
+<p>对于一个子类对象，它就有了两份变量和方法。在子类内部访问的时候，访问的是子类的。子类变量和方法隐藏了父类对应的变量和方法。</p>
+<p>​     </p>
+<p>调用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Child c = <span class="keyword">new</span> Child();</span><br><span class="line">    Base b = c;</span><br><span class="line">    </span><br><span class="line">    System.out.println(b.s);</span><br><span class="line">    System.out.println(b.m);</span><br><span class="line">    b.staticTest();</span><br><span class="line">    </span><br><span class="line">    System.out.println(c.s);</span><br><span class="line">    System.out.println(c.m);</span><br><span class="line">    c.staticTest();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个子类对象new Child()，然后将该对象分别赋值给子类引用变量c和父类引用变量b。</p>
+<p>再通过b和c分别引用变量和方法。</p>
+<p>输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">static_base</span><br><span class="line">base</span><br><span class="line">base <span class="keyword">static</span>: static_base</span><br><span class="line">child_base</span><br><span class="line">child</span><br><span class="line">child <span class="keyword">static</span>: child_base</span><br></pre></td></tr></table></figure>
+
+<p>通过b(静态类型Base)访问时，访问的是Base的变量和方法。通过c(静态类型Child)访问时，访问的是Child的变量和方法。</p>
+<p>这叫做<strong>静态绑定</strong>，即访问绑定到变量的静态类型。</p>
+<p><strong>实例变量、静态变量、private方法，都是静态绑定的。</strong></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-继承的细节-构造方法"
   class="article article-type-post"
   itemscope
@@ -1196,92 +1287,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/" rel="tag">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-四种循环"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/20/%E5%9B%9B%E7%A7%8D%E5%BE%AA%E7%8E%AF/"
-    >四种循环</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/20/%E5%9B%9B%E7%A7%8D%E5%BE%AA%E7%8E%AF/" class="article-date">
-  <time datetime="2021-08-20T08:58:53.000Z" itemprop="datePublished">2021-08-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>在java中，循环有四种形式，分别是while,do/while,for,foreach。</p>
-<p>​    </p>
-<p><strong>while</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Scanner reader = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line"><span class="keyword">int</span> num = reader.nextInt();</span><br><span class="line"><span class="keyword">int</span> password = <span class="number">12345</span>;</span><br><span class="line"><span class="keyword">while</span>(num!=password) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line">    num = reader.nextInt();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;correct&quot;</span>);</span><br><span class="line">reader.close();</span><br></pre></td></tr></table></figure>
-
-<p>上述代码的功能：使用类型为Scanner的reader变量从屏幕控制台接收数字,reader.nextInt()从屏幕接收一个数字。如果数字不是12345，就一直提示输入；数字是12345，就跳出循环。</p>
-<p>​    </p>
-<p><strong>do/while</strong></p>
-<p>不管语句条件是什么，代码块都会至少执行一次。</p>
-<p>先执行代码块，然后再判断条件语句。如果成立，则继续循环，否则退出循环。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Scanner reader = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="keyword">int</span> password = <span class="number">6789</span>;</span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;please input password&quot;</span>);</span><br><span class="line">    num = reader.nextInt();</span><br><span class="line">&#125;<span class="keyword">while</span>(num!=password); <span class="comment">//注意加分号</span></span><br><span class="line">System.out.println(<span class="string">&quot;correct&quot;</span>);</span><br><span class="line">reader.close();</span><br></pre></td></tr></table></figure>
-
-<p><strong>for</strong></p>
-<p>for(初始化语句;循环条件;步进操作){</p>
-<p>​    循环体<br>}</p>
-<p>分号不能省略。</p>
-<p>​    </p>
-<p><strong>foreach</strong></p>
-<p>for (元素类型 元素名称 : 遍历数组/集合/能进行迭代的实例) {</p>
-<p>​    语句</p>
-<p>}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> element : arr) &#123;</span><br><span class="line">    System.out.println(element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>foreach使用冒号:，冒号前面是循环中的每个元素，包括数据类型和变量名称。</p>
-<p>冒号后面是要遍历的数组或集合。</p>
-<p>每次循环中element都会自动更新。</p>
-<p>对于不需要使用索引变量、只是简单遍历的情况，foreach语法上更为简洁。</p>
-<p>​    </p>
-<p>**循环控制 - break **</p>
-<p>使用break关键字可以中断循环。</p>
-<p>​    </p>
-<p>**循环控制 - continue **</p>
-<p>continue语句会跳过循环体中剩下的代码，然后执行步进操作。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>

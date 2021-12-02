@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>数组的增删 |  Silver - Shaded - Cat</title>
+      <title>链表的增删 |  Silver - Shaded - Cat</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-数组的增删"
+  id="post-链表的增删"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  数组的增删
+  链表的增删
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/11/09/%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0/" class="article-date">
-  <time datetime="2021-11-09T09:04:13.000Z" itemprop="datePublished">2021-11-09</time>
+      <a href="/2021/11/16/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A2%9E%E5%88%A0/" class="article-date">
+  <time datetime="2021-11-16T07:56:04.000Z" itemprop="datePublished">2021-11-16</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">557</span>
+            <span class="post-count">610</span>
         </span>
     </span>
 
@@ -107,31 +107,69 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><strong>数组的插入</strong></p>
-<p>插入数组元素的操作存在3种情况：</p>
+  <p>单向链表的每一个结点包含两部分，一部分是存放数据的变量data，另一部分是指向下一个结点的指针next。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>链表的第1个结点被称为头结点，最后1个结点被称为尾结点，尾结点的next指针指向空。</p>
+<p>双向链表除了有data和next指针，还有指向前置结点的prev指针。</p>
+<p>链表在内存中的存储方式则是随机存储。</p>
+<p>​    </p>
+<p><strong>链表的查询</strong></p>
+<p>从头部结点开始，向后一个一个结点逐一查找。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询链表</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">search</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IndexOutOfBoundsException</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index&lt;<span class="number">0</span> || index&gt;=size) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;search：index超出链表范围！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Node searchNode;</span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;   <span class="comment">//头部查询</span></span><br><span class="line">        searchNode = head;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index == size - <span class="number">1</span>) &#123;     <span class="comment">//尾部查询</span></span><br><span class="line">        searchNode = tail;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;    <span class="comment">//中间查询</span></span><br><span class="line">        searchNode = head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;index;i++) &#123;</span><br><span class="line">            searchNode =searchNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> searchNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>链表的插入</strong></p>
+<p>链表插入结点时，分为3种情况：</p>
 <ul>
-<li><p>尾部插入</p>
+<li>头部插入</li>
+<li>尾部插入</li>
+<li>中间插入</li>
+</ul>
+<p>头部插入，将新结点的next指针指向head结点，再让head结点指向新结点。<br>尾部插入，将tail结点的next指针指向新结点，再让tail结点指向新结点。</p>
+<p>中间插入，找到新结点要插入的index的前置结点，新结点的next指向前置结点的next，前置结点的next指向新结点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入链表</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> data,<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IndexOutOfBoundsException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index&lt;<span class="number">0</span> || index&gt;size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;insert：index超出链表范围！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Node insertNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="comment">//第一个结点</span></span><br><span class="line">        <span class="keyword">if</span> (size==<span class="number">0</span>) &#123;</span><br><span class="line">            head = insertNode;</span><br><span class="line">            tail = insertNode;</span><br><span class="line">            size ++;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;   <span class="comment">//插入头部</span></span><br><span class="line">            insertNode.next = head;</span><br><span class="line">            head = insertNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (index == size) &#123;  <span class="comment">//插入尾部</span></span><br><span class="line">            tail.next = insertNode;</span><br><span class="line">            tail = insertNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;    <span class="comment">//插入中间</span></span><br><span class="line">            Node prev = search(index-<span class="number">1</span>);</span><br><span class="line">            Node next = prev.next;</span><br><span class="line">            prev.next = insertNode;</span><br><span class="line">            insertNode.next = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p><strong>链表的删除</strong></p>
+<p>链表删除结点时，分为3种情况：</p>
+<ul>
+<li><p>头部删除</p>
 </li>
-<li><p>中间插入（包含头部插入）</p>
+<li><p>尾部删除</p>
 </li>
-<li><p>超范围插入</p>
+<li><p>中间删除<br>```java<br>public void delete(int index) throws IndexOutOfBoundsException {</p>
+<pre><code>  if (index&lt;0 || index&gt;=size) &#123;
+      throw new IndexOutOfBoundsException(&quot;delete：index超出链表范围！&quot;);
+  &#125;
+
+  //只有一个结点
+  if (size==1) &#123;
+      head = null;
+      tail = null;
+      size--;
+      return;
+  &#125;
+
+  if (index == 0) &#123;   //删除头部结点
+      head = head.next;
+  &#125; else if (index == size-1) &#123;   //删除尾部结点
+      Node prev = search(index-1);
+      prev.next = null;
+      tail = prev;
+  &#125; else &#123;    //删除中间结点
+      Node prev = search(index-1);
+      Node next = prev.next.next;
+      prev.next = next;
+  &#125;
+
+  size--;
+</code></pre>
+<p>  }</p>
 </li>
 </ul>
-<p>尾部插入：直接把元素放在数组尾部的空闲位置，等同于更新元素。</p>
-<p>中间插入：首先把<strong>插入位置以及后面的元素</strong>向后移动，腾出地方，再把要插入的元素放到对应的数组位置上。</p>
-<p>超范围插入：创建一个<strong>新数组</strong>，长度是<strong>旧数组的2倍</strong>，再把旧数组中的元素统统复制过去，实现数组的<strong>扩容</strong>。</p>
-<p>​    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyArray</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size; <span class="comment">//size:实际的元素个数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造一个数组，初始是空，容量为capacity</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = <span class="keyword">new</span> <span class="keyword">int</span>[capacity];</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入元素</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> element,<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IndexOutOfBoundsException </span>&#123;</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;超出数组实际元素范围&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//超容量插入,需扩容</span></span><br><span class="line">        <span class="keyword">if</span> (size &gt;= array.length) &#123;</span><br><span class="line">            resize();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//index及之后元素统一向右移动一位，从最后一位元素开始右移</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=size-<span class="number">1</span>;i&gt;=index;i--) &#123;</span><br><span class="line">            array[i+<span class="number">1</span>] = array[i];</span><br><span class="line">        &#125;</span><br><span class="line">        array[index] = element;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//扩容数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">resize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arrayNew = <span class="keyword">new</span> <span class="keyword">int</span>[array.length*<span class="number">2</span>];</span><br><span class="line">        <span class="comment">//旧数组复制到新数组</span></span><br><span class="line">        System.arraycopy(array,<span class="number">0</span>,arrayNew,<span class="number">0</span>,array.length);</span><br><span class="line">        array = arrayNew;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">outPut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;当前的数组为：&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;size;x++) &#123;</span><br><span class="line">            System.out.print(array[x]+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyArray myArray = <span class="keyword">new</span> MyArray(<span class="number">5</span>);</span><br><span class="line">        myArray.insert(<span class="number">9</span>,<span class="number">0</span>);</span><br><span class="line">        myArray.insert(<span class="number">5</span>,<span class="number">1</span>);</span><br><span class="line">        myArray.insert(<span class="number">8</span>,<span class="number">2</span>);</span><br><span class="line">        myArray.insert(<span class="number">3</span>,<span class="number">3</span>);</span><br><span class="line">        myArray.insert(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">        myArray.insert(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line">        myArray.outPut();	<span class="comment">//9 1 4 5 8 3 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>​    </p>
-<p><strong>数组的删除</strong></p>
-<p>数组的<strong>删除操作与插入操作的过程相反</strong>，假设被删除的元素的索引是x，x之后的元素都要<strong>向前挪动1位</strong>。</p>
-<p>删除操作不涉及扩容，比起插入要更简单。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除数组元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> ArrayIndexOutOfBoundsException </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= size) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;index超出数组实际元素范围&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = index;i&lt;size-<span class="number">1</span>;i++) &#123;  <span class="comment">//size-1，否则array[i+1]=array[size]，报错</span></span><br><span class="line">		array[i] = array[i+<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    size--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
  
       <!-- reward -->
       
@@ -196,12 +234,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/11/09/%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/11/16/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A2%9E%E5%88%A0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/" rel="tag">array</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
 
     </footer>
   </div>
@@ -209,19 +247,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/11/16/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A2%9E%E5%88%A0/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            链表的增删
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/11/05/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="article-nav-link">
+      <a href="/2021/11/09/%E6%95%B0%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">冒泡排序</div>
+        <div class="article-nav-title">数组的增删</div>
       </a>
     
   </nav>

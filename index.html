@@ -155,6 +155,122 @@
     
     
     <article
+  id="post-链表的增删"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/11/16/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A2%9E%E5%88%A0/"
+    >链表的增删</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/11/16/%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A2%9E%E5%88%A0/" class="article-date">
+  <time datetime="2021-11-16T07:56:04.000Z" itemprop="datePublished">2021-11-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>单向链表的每一个结点包含两部分，一部分是存放数据的变量data，另一部分是指向下一个结点的指针next。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>链表的第1个结点被称为头结点，最后1个结点被称为尾结点，尾结点的next指针指向空。</p>
+<p>双向链表除了有data和next指针，还有指向前置结点的prev指针。</p>
+<p>链表在内存中的存储方式则是随机存储。</p>
+<p>​    </p>
+<p><strong>链表的查询</strong></p>
+<p>从头部结点开始，向后一个一个结点逐一查找。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询链表</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">search</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IndexOutOfBoundsException</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index&lt;<span class="number">0</span> || index&gt;=size) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;search：index超出链表范围！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Node searchNode;</span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;   <span class="comment">//头部查询</span></span><br><span class="line">        searchNode = head;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index == size - <span class="number">1</span>) &#123;     <span class="comment">//尾部查询</span></span><br><span class="line">        searchNode = tail;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;    <span class="comment">//中间查询</span></span><br><span class="line">        searchNode = head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;index;i++) &#123;</span><br><span class="line">            searchNode =searchNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> searchNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>链表的插入</strong></p>
+<p>链表插入结点时，分为3种情况：</p>
+<ul>
+<li>头部插入</li>
+<li>尾部插入</li>
+<li>中间插入</li>
+</ul>
+<p>头部插入，将新结点的next指针指向head结点，再让head结点指向新结点。<br>尾部插入，将tail结点的next指针指向新结点，再让tail结点指向新结点。</p>
+<p>中间插入，找到新结点要插入的index的前置结点，新结点的next指向前置结点的next，前置结点的next指向新结点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入链表</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> data,<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IndexOutOfBoundsException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index&lt;<span class="number">0</span> || index&gt;size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;insert：index超出链表范围！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Node insertNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="comment">//第一个结点</span></span><br><span class="line">        <span class="keyword">if</span> (size==<span class="number">0</span>) &#123;</span><br><span class="line">            head = insertNode;</span><br><span class="line">            tail = insertNode;</span><br><span class="line">            size ++;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;   <span class="comment">//插入头部</span></span><br><span class="line">            insertNode.next = head;</span><br><span class="line">            head = insertNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (index == size) &#123;  <span class="comment">//插入尾部</span></span><br><span class="line">            tail.next = insertNode;</span><br><span class="line">            tail = insertNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;    <span class="comment">//插入中间</span></span><br><span class="line">            Node prev = search(index-<span class="number">1</span>);</span><br><span class="line">            Node next = prev.next;</span><br><span class="line">            prev.next = insertNode;</span><br><span class="line">            insertNode.next = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p><strong>链表的删除</strong></p>
+<p>链表删除结点时，分为3种情况：</p>
+<ul>
+<li><p>头部删除</p>
+</li>
+<li><p>尾部删除</p>
+</li>
+<li><p>中间删除<br>```java<br>public void delete(int index) throws IndexOutOfBoundsException {</p>
+<pre><code>  if (index&lt;0 || index&gt;=size) &#123;
+      throw new IndexOutOfBoundsException(&quot;delete：index超出链表范围！&quot;);
+  &#125;
+
+  //只有一个结点
+  if (size==1) &#123;
+      head = null;
+      tail = null;
+      size--;
+      return;
+  &#125;
+
+  if (index == 0) &#123;   //删除头部结点
+      head = head.next;
+  &#125; else if (index == size-1) &#123;   //删除尾部结点
+      Node prev = search(index-1);
+      prev.next = null;
+      tail = prev;
+  &#125; else &#123;    //删除中间结点
+      Node prev = search(index-1);
+      Node next = prev.next.next;
+      prev.next = next;
+  &#125;
+
+  size--;
+</code></pre>
+<p>  }</p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/" rel="tag">LinkedList</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-数组的增删"
   class="article article-type-post"
   itemscope
@@ -758,67 +874,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    SMALL(<span class="string">&quot;S&quot;</span>,<span class="string">&quot;小号&quot;</span>),</span><br><span class="line">    MEDIUM(<span class="string">&quot;M&quot;</span>,<span class="string">&quot;中号&quot;</span>),</span><br><span class="line">    LARGE(<span class="string">&quot;L&quot;</span>,<span class="string">&quot;大号&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String abbr;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String abbr,String title)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.abbr = abbr;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAbbr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> abbr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> title;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//根据abbr返回枚举值，比如输入M返回MEDIUM</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">fromAbbr</span><span class="params">(String abbr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Size size : Size.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (size.getAbbr().equals(abbr)) &#123;</span><br><span class="line">                <span class="keyword">return</span> size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><strong>枚举值的定义需要放在最上面，枚举值写完之后，要以分号结尾，然后才能写其他代码</strong>。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-枚举的基本实现原理"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"
-    >枚举的基本实现原理</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="article-date">
-  <time datetime="2021-10-12T09:31:25.000Z" itemprop="datePublished">2021-10-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>实际上，枚举类型会被Java编译器转换为一个对应的类，这个类继承了Java API中的java.lang.Enum类。</p>
-<p>Enum类有两个实例变量name和ordinal，在构造方法中需要传递，name()，toString()，ordinal()，compareTo()，equals()方法都是由Enum类根据其实例变量name和ordinal实现的。</p>
-<p>values和valueOf方法是编译器给每个枚举类型自动添加的。</p>
-<p>枚举类型Size转换后的普通类的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Size</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">Size</span>&gt; </span>&#123;	<span class="comment">//final，不能被继承</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size SMALL = <span class="keyword">new</span> Size(<span class="string">&quot;SMALL&quot;</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size MEDIUM = <span class="keyword">new</span> Size(<span class="string">&quot;MEDIUM&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Size LARGE = <span class="keyword">new</span> Size(<span class="string">&quot;LARGE&quot;</span>,<span class="number">2</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Size[] VALUES =</span><br><span class="line">            <span class="keyword">new</span> Size[]&#123;SMALL,MEDIUM,LARGE&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//私有构造方法，接受name和ordinal，传递给父类。不能在外部创建新的实例。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String name, <span class="keyword">int</span> ordinal)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, ordinal);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Size[] values()&#123;</span><br><span class="line">        Size[] values = <span class="keyword">new</span> Size[VALUES.length];</span><br><span class="line">        System.arraycopy(VALUES, <span class="number">0</span>,</span><br><span class="line">                values, <span class="number">0</span>, VALUES.length);<span class="comment">//要复制的源数组VALUES,从源数组0的位置开始复制，目标数组为values，目标数组的下标位置是0，要复制的长度是VALUES的长度</span></span><br><span class="line">        <span class="keyword">return</span> values;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">valueOf</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Enum.valueOf(Size.class, name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>枚举类型本质上也是类，但由于编译器自动做了很多事情，它的使用也就更为简洁、安全和方便。</p>
  
       <!-- reward -->
       
