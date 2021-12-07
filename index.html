@@ -155,6 +155,69 @@
     
     
     <article
+  id="post-foreach循环输出二维数组"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/07/foreach%E5%BE%AA%E7%8E%AF%E8%BE%93%E5%87%BA%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/"
+    >foreach循环输出二维数组</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/07/foreach%E5%BE%AA%E7%8E%AF%E8%BE%93%E5%87%BA%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2021-12-07T13:00:00.000Z" itemprop="datePublished">2021-12-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>声明一个二维数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][]; <span class="comment">//可以只声明行数，不声明列数，反之不行；</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>初始化一个二维数组，并foreach循环遍历输出该数组的每一个元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] num = &#123;&#123;<span class="number">78</span>,<span class="number">98</span>&#125;,&#123;<span class="number">65</span>,<span class="number">75</span>,<span class="number">63</span>&#125;,&#123;<span class="number">98</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span>[] i:num) &#123; <span class="comment">//先定位到行</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j:i) &#123;	<span class="comment">//再定位到列</span></span><br><span class="line">        System.out.print(j+<span class="string">&quot; &quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">78</span> <span class="number">98</span> </span><br><span class="line"><span class="number">65</span> <span class="number">75</span> <span class="number">63</span> </span><br><span class="line"><span class="number">98</span> </span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/" rel="tag">array</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-链表的增删"
   class="article article-type-post"
   itemscope
@@ -799,64 +862,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-枚举的典型场景"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/"
-    >枚举的典型场景</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/10/12/%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF/" class="article-date">
-  <time datetime="2021-10-12T11:25:25.000Z" itemprop="datePublished">2021-10-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>实际应用中，枚举经常会有关联的实例变量和方法。</p>
-<p>举个栗子，假设Size的枚举值可能有关联的缩写和中文名称，可能需要静态方法根据缩写返回对应的枚举值：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    SMALL(<span class="string">&quot;S&quot;</span>,<span class="string">&quot;小号&quot;</span>),</span><br><span class="line">    MEDIUM(<span class="string">&quot;M&quot;</span>,<span class="string">&quot;中号&quot;</span>),</span><br><span class="line">    LARGE(<span class="string">&quot;L&quot;</span>,<span class="string">&quot;大号&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String abbr;</span><br><span class="line">    <span class="keyword">private</span> String title;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Size</span><span class="params">(String abbr,String title)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.abbr = abbr;</span><br><span class="line">        <span class="keyword">this</span>.title = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAbbr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> abbr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> title;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//根据abbr返回枚举值，比如输入M返回MEDIUM</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">fromAbbr</span><span class="params">(String abbr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Size size : Size.values()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (size.getAbbr().equals(abbr)) &#123;</span><br><span class="line">                <span class="keyword">return</span> size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>枚举值的定义需要放在最上面，枚举值写完之后，要以分号结尾，然后才能写其他代码</strong>。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/enum/" rel="tag">enum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
