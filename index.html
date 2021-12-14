@@ -155,6 +155,135 @@
     
     
     <article
+  id="post-装箱与拆箱"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/14/%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1/"
+    >装箱与拆箱</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/14/%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1/" class="article-date">
+  <time datetime="2021-12-14T08:32:30.000Z" itemprop="datePublished">2021-12-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>java有八种基本类型，每种基本类型都有一个对应的包装类。</p>
+<table>
+<thead>
+<tr>
+<th align="center">基本类型</th>
+<th align="center">包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">boolean</td>
+<td align="center">Boolean</td>
+</tr>
+<tr>
+<td align="center">byte</td>
+<td align="center">Byte</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">Short</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">Integer</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">Float</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">Double</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">Character</td>
+</tr>
+</tbody></table>
+<p>​    </p>
+<p>包装类的定义：它是一个类，内部有一个实例变量，保存对应的基本类型的值。这个类一般还有一些静态方法、静态变量和实例方法，以方便对数据进行操作。</p>
+<p>​    </p>
+<p><strong>各个基本类型和包装类之间的转换</strong></p>
+<p>Boolean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> bool1 = <span class="keyword">false</span>;</span><br><span class="line">Boolean boolObj = Boolean.valueOf(bool1);</span><br><span class="line"><span class="keyword">boolean</span> bool2 = boolObj.booleanValue();</span><br></pre></td></tr></table></figure>
+
+<p>Byte</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> byte1 = <span class="number">123</span>;</span><br><span class="line">Byte byteObj = Byte.valueOf(byte1);</span><br><span class="line"><span class="keyword">byte</span> byte2 = byteObj.byteValue();</span><br></pre></td></tr></table></figure>
+
+<p>Short</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> short1 = <span class="number">12345</span>;</span><br><span class="line">Short shortObj = Short.valueOf(short1);</span><br><span class="line"><span class="keyword">short</span> short2 = shortObj.shortValue();</span><br></pre></td></tr></table></figure>
+
+<p>Integer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> int1 = <span class="number">12345</span>;</span><br><span class="line">Integer integerObj = Integer.valueOf(int1);</span><br><span class="line"><span class="keyword">int</span> int2 = integerObj.intValue();</span><br></pre></td></tr></table></figure>
+
+<p>Long</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> long1 = <span class="number">12345</span>;</span><br><span class="line">Long longObj = Long.valueOf(long1);</span><br><span class="line"><span class="keyword">long</span> long2 = longObj.longValue();</span><br></pre></td></tr></table></figure>
+
+<p>Float</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> float1 = <span class="number">123.45f</span>;</span><br><span class="line">Float floatObj = Float.valueOf(float1);</span><br><span class="line"><span class="keyword">float</span> float2 = floatObj.floatValue();</span><br></pre></td></tr></table></figure>
+
+<p>Double</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> double1 = <span class="number">123.45</span>;</span><br><span class="line">Double doubleObj = Double.valueOf(double1);</span><br><span class="line"><span class="keyword">double</span> double2 = doubleObj.doubleValue();</span><br></pre></td></tr></table></figure>
+
+<p>Character</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> char1 = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">Character characterObj = Character.valueOf(char1);</span><br><span class="line"><span class="keyword">char</span> char2 = characterObj.charValue();</span><br></pre></td></tr></table></figure>
+
+<p>每种包装类都有一个静态方法valueOf()，接受基本类型，返回引用类型；也都有一个实例方法xxxValue()返回对应的基本类型。</p>
+<p>​    </p>
+<p><strong>装箱：基本类型 –&gt; 包装类</strong></p>
+<p><strong>拆箱：包装类 –&gt; 基本类型</strong></p>
+<p>java1.5以后引入自动装箱和拆箱，可以直接将基本类型赋值给引用类型，反之亦可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动装箱和拆箱</span></span><br><span class="line">Integer a = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> b = a;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wrapper-class/" rel="tag">wrapper class</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-关键字throws"
   class="article article-type-post"
   itemscope
@@ -780,76 +909,6 @@
 <p>​    </p>
 <p>RuntimeException(运行时异常)比较特殊，它的名字有点误导，因为其他异常也是运行时产生的，它表示的实际含义是unchecked exception (未受检异常)，相对而言，Exception的其他子类和Exception自身则是checked exception (受检异常)，Error及其子类也是unchecked exception。</p>
 <p>checked还是unchecked，区别在于java如何处理这两种异常。<strong>对于checked异常，java会强制要求开发者进行处理，否则会有编译错误，而对于unchecked异常则没有这个要求</strong>。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-NumberFormatException（数字格式异常）"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/10/13/NumberFormatException%EF%BC%88%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%BC%82%E5%B8%B8%EF%BC%89/"
-    >NumberFormatException（数字格式异常）</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/10/13/NumberFormatException%EF%BC%88%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%BC%82%E5%B8%B8%EF%BC%89/" class="article-date">
-  <time datetime="2021-10-13T06:48:35.000Z" itemprop="datePublished">2021-10-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入数字:&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> num = Integer.parseInt(scanner.next()); <span class="comment">//解析控制台输入的整数</span></span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>scanner要求输入数字，并通过Integer.parseInt将参数转换为一个整数，再输出这个整数。 </p>
-<p>如果输入123，屏幕会输出123，但如果用户输入的不是数字，比如doge，屏幕会输出：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.NumberFormatException: For input string: <span class="string">&quot;doge&quot;</span></span><br><span class="line">	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:<span class="number">65</span>)</span><br><span class="line">	at java.lang.Integer.parseInt(Integer.java:<span class="number">580</span>)</span><br><span class="line">	at java.lang.Integer.parseInt(Integer.java:<span class="number">615</span>)</span><br><span class="line">	at com.example.restservice.ExceptionTest.main(ExceptionTest.java:<span class="number">9</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>出现异常NumberFormatException。</p>
-<p>​     </p>
-<p>对于屏幕输出中的异常栈信息，开发者是可以理解的，但普通用户无法理解。<br>我们需要给用户一个更为友好的信息，告诉用户，ta应该输入的是数字。要做到这一点，我们需要自己“捕获”异常。</p>
-<p>“捕获”是指使用try/catch关键字，捕获异常后的示例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入数字:&quot;</span>);</span><br><span class="line">        String input = scanner.next();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> num = Integer.parseInt(input); <span class="comment">//解析控制台输入的整数</span></span><br><span class="line">            System.out.println(num);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;参数&quot;</span>+input+<span class="string">&quot;不是有效的数字，请输入数字。&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<strong>try/catch捕获并处理了异常</strong>，try后面的大括号{}内包含可能抛出异常的代码，括号后的catch语句包含能捕获的异常和代理代码。</p>
-<p>catch后面括号内是异常信息，包括异常类型和变量名，这里是NumberFormatException e。大括号{}内是处理代码，这里输出一个更为友好的提示信息。</p>
-<p><strong>捕获异常后，程序就不会异常退出了，但try语句内异常点之后的其他代码就不会执行了，执行完catch内的语句后，程序会继续执行catch大括号外的代码。</strong></p>
-<p>​    </p>
-<p>异常是相对于return的一种退出机制，可以由系统触发，也可以由程序通过<strong>throw语句</strong>触发。异常可以通过try/catch语句进行捕获并处理，如果没有捕获，则会导致程序退出并输出异常栈信息。</p>
  
       <!-- reward -->
       

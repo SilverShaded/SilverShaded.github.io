@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>关键字throws |  Silver - Shaded - Cat</title>
+      <title>装箱与拆箱 |  Silver - Shaded - Cat</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-关键字throws"
+  id="post-装箱与拆箱"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  关键字throws
+  装箱与拆箱
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/12/14/%E5%85%B3%E9%94%AE%E5%AD%97throws/" class="article-date">
-  <time datetime="2021-12-14T08:01:45.000Z" itemprop="datePublished">2021-12-14</time>
+      <a href="/2021/12/14/%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1/" class="article-date">
+  <time datetime="2021-12-14T08:32:30.000Z" itemprop="datePublished">2021-12-14</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/java/">java</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">94</span>
+            <span class="post-count">345</span>
         </span>
     </span>
 
@@ -107,12 +107,82 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>throws关键字，用于<strong>声明一个方法可能抛出的异常</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> AppException,SQLException,NumberFormatException </span>&#123;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>throws跟在方法的括号后面，<strong>可以声明多个异常，以逗号分隔。</strong></p>
-<p>test()方法内可能抛出如上三种一场，但开发者没有处理完，调用者必须进行处理。如果处理完则不需要声明。</p>
+  <p>java有八种基本类型，每种基本类型都有一个对应的包装类。</p>
+<table>
+<thead>
+<tr>
+<th align="center">基本类型</th>
+<th align="center">包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">boolean</td>
+<td align="center">Boolean</td>
+</tr>
+<tr>
+<td align="center">byte</td>
+<td align="center">Byte</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">Short</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">Integer</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">Float</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">Double</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">Character</td>
+</tr>
+</tbody></table>
 <p>​    </p>
+<p>包装类的定义：它是一个类，内部有一个实例变量，保存对应的基本类型的值。这个类一般还有一些静态方法、静态变量和实例方法，以方便对数据进行操作。</p>
+<p>​    </p>
+<p><strong>各个基本类型和包装类之间的转换</strong></p>
+<p>Boolean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> bool1 = <span class="keyword">false</span>;</span><br><span class="line">Boolean boolObj = Boolean.valueOf(bool1);</span><br><span class="line"><span class="keyword">boolean</span> bool2 = boolObj.booleanValue();</span><br></pre></td></tr></table></figure>
+
+<p>Byte</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> byte1 = <span class="number">123</span>;</span><br><span class="line">Byte byteObj = Byte.valueOf(byte1);</span><br><span class="line"><span class="keyword">byte</span> byte2 = byteObj.byteValue();</span><br></pre></td></tr></table></figure>
+
+<p>Short</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> short1 = <span class="number">12345</span>;</span><br><span class="line">Short shortObj = Short.valueOf(short1);</span><br><span class="line"><span class="keyword">short</span> short2 = shortObj.shortValue();</span><br></pre></td></tr></table></figure>
+
+<p>Integer</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> int1 = <span class="number">12345</span>;</span><br><span class="line">Integer integerObj = Integer.valueOf(int1);</span><br><span class="line"><span class="keyword">int</span> int2 = integerObj.intValue();</span><br></pre></td></tr></table></figure>
+
+<p>Long</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> long1 = <span class="number">12345</span>;</span><br><span class="line">Long longObj = Long.valueOf(long1);</span><br><span class="line"><span class="keyword">long</span> long2 = longObj.longValue();</span><br></pre></td></tr></table></figure>
+
+<p>Float</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> float1 = <span class="number">123.45f</span>;</span><br><span class="line">Float floatObj = Float.valueOf(float1);</span><br><span class="line"><span class="keyword">float</span> float2 = floatObj.floatValue();</span><br></pre></td></tr></table></figure>
+
+<p>Double</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> double1 = <span class="number">123.45</span>;</span><br><span class="line">Double doubleObj = Double.valueOf(double1);</span><br><span class="line"><span class="keyword">double</span> double2 = doubleObj.doubleValue();</span><br></pre></td></tr></table></figure>
+
+<p>Character</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> char1 = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">Character characterObj = Character.valueOf(char1);</span><br><span class="line"><span class="keyword">char</span> char2 = characterObj.charValue();</span><br></pre></td></tr></table></figure>
+
+<p>每种包装类都有一个静态方法valueOf()，接受基本类型，返回引用类型；也都有一个实例方法xxxValue()返回对应的基本类型。</p>
+<p>​    </p>
+<p><strong>装箱：基本类型 –&gt; 包装类</strong></p>
+<p><strong>拆箱：包装类 –&gt; 基本类型</strong></p>
+<p>java1.5以后引入自动装箱和拆箱，可以直接将基本类型赋值给引用类型，反之亦可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动装箱和拆箱</span></span><br><span class="line">Integer a = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> b = a;</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -177,12 +247,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/12/14/%E5%85%B3%E9%94%AE%E5%AD%97throws/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://silvershaded.github.io/2021/12/14/%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exception/" rel="tag">exception</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wrapper-class/" rel="tag">wrapper class</a></li></ul>
 
     </footer>
   </div>
@@ -190,19 +260,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/12/14/%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            装箱与拆箱
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/12/07/foreach%E5%BE%AA%E7%8E%AF%E8%BE%93%E5%87%BA%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" class="article-nav-link">
+      <a href="/2021/12/14/%E5%85%B3%E9%94%AE%E5%AD%97throws/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">foreach循环输出二维数组</div>
+        <div class="article-nav-title">关键字throws</div>
       </a>
     
   </nav>

@@ -155,6 +155,91 @@
     
     
     <article
+  id="post-继承的细节-protected"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-protected/"
+    >继承的细节--protected</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/03/%E7%BB%A7%E6%89%BF%E7%9A%84%E7%BB%86%E8%8A%82-protected/" class="article-date">
+  <time datetime="2021-09-03T11:08:43.000Z" itemprop="datePublished">2021-09-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>继承和多态概念还有一些相关的细节，具体包括：</p>
+<ul>
+<li>构造方法  </li>
+<li>重名与静态绑定 </li>
+<li>重载和重写</li>
+<li>父子类型转换 </li>
+<li>继承访问权限（protected） <font color=blue>now!</font></li>
+<li>可见性重写</li>
+<li>防止继承（final）</li>
+</ul>
+<p>​    </p>
+<p>除了public/private之外，还有一种可见性介于中间的修饰符<strong>protected</strong>。</p>
+<p>protected表示虽然不能被外部操作访问，但可被子类访问，还可被同一个包中的其他类访问（不管其他类是否是该类的子类）。</p>
+<p>​    </p>
+<p>举个栗子，基类Base代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> currentStep;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.currentStep = <span class="number">1</span>;</span><br><span class="line">        step1();</span><br><span class="line">        <span class="keyword">this</span>.currentStep = <span class="number">2</span>;</span><br><span class="line">        step2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>含有protected修饰符的是变量currentStep和方法step1、step2，还对外提供了方法action。</p>
+<p>子类一般不重写action，只重写step1和step2。同时，子类可以直接访问currentStep查看进行到了哪一步。</p>
+<p>子类Child的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step1</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child step &quot;</span>+<span class="keyword">this</span>.currentStep);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">step2</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;child step &quot;</span>+<span class="keyword">this</span>.currentStep);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用子类的main方法代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   Child child = <span class="keyword">new</span> Child();</span><br><span class="line">   child.action();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">child step <span class="number">1</span></span><br><span class="line">child step <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>子类通过重写protected方法step1和step2，来修改对外的行为。</p>
+<p>​    </p>
+<p>这种思路和设计在设计模式中被称之为<strong>模板方法</strong>，action就是一个模板方法，它定义了实现的模板，而具体实现由子类提供。</p>
+<p>模板方法在很多框架中由广泛的应用，这是使用protected的一个常用场景。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class/" rel="tag">class</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extends/" rel="tag">extends</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-继承的细节-父子类型转换"
   class="article article-type-post"
   itemscope
@@ -1276,71 +1361,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-structure/" rel="tag">data structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/" rel="tag">stack</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-函数递归"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/08/23/%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/"
-    >函数递归</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/08/23/%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92/" class="article-date">
-  <time datetime="2021-08-23T09:45:52.000Z" itemprop="datePublished">2021-08-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>调用自己的函数，就叫做递归函数。</p>
-<p>​     </p>
-<p>典型例子：数学中一个数n的阶乘，表示为n!，它的值定义是这样的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>! = <span class="number">1</span></span><br><span class="line">n! = (n-<span class="number">1</span>)*n</span><br></pre></td></tr></table></figure>
-
-<p>0的阶乘是1，n的阶乘的值是n-1的阶乘的值乘以n，所以这个定义是一个递归的定义。</p>
-<p>为求n的值，需先求n-1的值，直到0，然后一次往回退。</p>
-<p>求阶乘的递归函数代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n*factorial(n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<p>递归是有开销的，而且使用不当，可能会出现意外的错误。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/" rel="tag">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
   </div>
